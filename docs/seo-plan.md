@@ -4,10 +4,9 @@ How people find `accessibility-statement`, in priority order, with the
 reasoning behind each choice. Written 3 August 2026, against a live reading
 of the search results rather than general advice.
 
-The short version: **do not fight for the head term in year one, and do not
-host this on the gemresearchlabs domain.** Win the EU-specific and
-national-language long tail, where there is currently no competition at all,
-using content only this project can produce.
+The short version: **do not fight for the head term in year one.** Win the
+EU-specific and national-language long tail, where there is currently no
+competition at all, using content only this project can produce.
 
 ---
 
@@ -63,30 +62,29 @@ around €10–20/year and would be the single highest-value purchase this
 project could make. But it is an optimisation, not a prerequisite, and
 nothing in this plan depends on it.
 
-### Not the gemresearchlabs subdomain
+### Why not a subdomain of an unrelated site
 
-You offered a subdomain of `gemresearchlabs.com`. I looked: it is
-**Gemological Research Laboratories**, a gemstone and jewellery certification
-service, registered September 2024, small, no blog.
+A tempting free option is a subdomain of a domain you already own for
+something else. It was considered here and rejected, and the reasoning
+generalises:
 
-Since it is free to you, it is worth saying why a free-but-wrong host is
-still the wrong call:
-
-1. **Nothing to inherit.** The authority people expect a subdomain to borrow
-   is largely topical. A domain about gemstone spectroscopy carries no signal
-   for accessibility compliance.
-2. **Little to lend.** A two-year-old brochure site with no content engine
-   has minimal authority even for its own subject.
-3. **It damages the product's core claim.** This tool generates documents
-   with legal weight, and its central risk is credibility. A compliance
-   officer checking the provenance of a generated statement would find a
-   gemstone lab. That is the exact moment the source needs to reassure them.
-   It also weakens the NLnet framing, where the pitch is a public-good
-   commons rather than a side project on an unrelated commercial domain.
+1. **There is usually nothing to inherit.** The authority people expect a
+   subdomain to borrow is largely topical. A domain about an unrelated
+   industry carries no signal for accessibility compliance, so the
+   subdomain starts from zero either way.
+2. **A small site has little authority to lend.** A brochure site with no
+   content engine has minimal authority even for its own subject.
+3. **Provenance matters more than usual here, which is the real cost.** This
+   tool generates documents with legal weight, and its central risk is
+   credibility. A compliance officer checking where a generated statement
+   came from should find a project that is obviously about accessibility
+   compliance. Landing instead on an unrelated commercial business is the
+   opposite of reassuring, and it weakens the NLnet framing, where the pitch
+   is a public-good commons.
 
 `github.io` has none of those problems and costs the same: nothing.
 
-The subdomain does have one good use — a **staging host** for previewing the
+Such a domain does have one good use — a **staging host** for previewing the
 site before it goes public, never linked and marked `noindex`.
 
 ## 2. What the search results actually look like
@@ -435,8 +433,8 @@ a page that already ranks beats a month of writing.
 
 ## Summary
 
-- **Do not host on `gemresearchlabs.com`.** It is free, but the topical
-  mismatch gains nothing and the provenance actively damages a compliance
+- **Do not host on a subdomain of an unrelated site**, even a free one. The
+  topical mismatch gains nothing and the provenance damages a compliance
   tool's credibility. `github.io` costs the same and has neither problem.
 - **Host free on GitHub Pages**, which requires the repository to be public —
   it is going public before launch anyway. Cloudflare Pages is the free

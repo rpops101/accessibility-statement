@@ -1,7 +1,9 @@
 import { readFileSync, writeFileSync } from 'node:fs';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import * as YAML from 'yaml';
 
-const base = '/home/kali/EU-Access-OSS/packages/core/data/standards/';
+const base = join(dirname(dirname(fileURLToPath(import.meta.url))), 'data', 'standards') + '/';
 const w21 = YAML.parse(readFileSync(base + 'wcag-2.1.yaml', 'utf8'));
 
 const cmp = (a, b) => {
