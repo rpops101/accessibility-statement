@@ -41,15 +41,33 @@ if (!existsSync(keyFile)) {
 const key = readFileSync(keyFile, 'utf8').trim();
 const keyLocation = `${ORIGIN}${BASE}/${key}.txt`;
 
-// Take the URL list from the sitemap, so the two can never disagree.
-const sitemapPath = join(root, 'site', 'dist', 'sitemap.xml');
-if (!existsSync(sitemapPath)) {
-  console.error(`No sitemap at ${sitemapPath}. Build the site first:\n  npm run site`);
-  process.exit(1);
+/*
+ * Take the URL list from the *deployed* sitemap rather than a local build.
+ * Submitting what is actually live is the correct semantics — telling a
+ * search engine about a page that has not deployed yet earns a crawl of a
+ * 404 — and it means this needs no build step at all. Falls back to a local
+ * sitemap when offline.
+ */
+const liveSitemap = `${ORIGIN}${BASE}/sitemap.xml`;
+let sitemapXml = '';
+try {
+  const response = await fetch(liveSitemap, { signal: AbortSignal.timeout(20_000) });
+  if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
+  sitemapXml = await response.text();
+  console.log(`sitemap:     ${liveSitemap} (live)`);
+} catch (error) {
+  const sitemapPath = join(root, 'site', 'dist', 'sitemap.xml');
+  if (!existsSync(sitemapPath)) {
+    console.error(
+      `Could not fetch ${liveSitemap} (${error.message}), and there is no local ` +
+        `sitemap at ${sitemapPath}.\nDeploy the site, or build it first: npm run site`
+    );
+    process.exit(1);
+  }
+  sitemapXml = readFileSync(sitemapPath, 'utf8');
+  console.log(`sitemap:     ${sitemapPath} (local fallback)`);
 }
-const urlList = [...readFileSync(sitemapPath, 'utf8').matchAll(/<loc>([^<]+)<\/loc>/g)].map(
-  (m) => m[1]
-);
+const urlList = [...sitemapXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 
 if (urlList.length === 0) {
   console.error('The sitemap contains no URLs.');

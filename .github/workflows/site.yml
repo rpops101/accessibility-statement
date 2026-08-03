@@ -107,14 +107,8 @@ jobs:
         with:
           node-version: '22'
           cache: npm
-      - run: npm ci
-
-      - name: Rebuild the sitemap for the URL list
-        env:
-          BASE_PATH: /accessibility-statement
-          SITE_ORIGIN: https://rpops101.github.io
-        run: node site/build.mjs site/dist
-
+      # No build step: the script reads the sitemap that was just deployed,
+      # so it submits exactly what is live.
       # IndexNow needs no account — ownership is proved by the hosted key
       # file — so it can run unattended. Google does not participate and
       # discovers through the sitemap submitted in Search Console.
@@ -122,4 +116,7 @@ jobs:
       # unreachable is not a broken deployment.
       - name: Submit URLs via IndexNow
         continue-on-error: true
+        env:
+          BASE_PATH: /accessibility-statement
+          SITE_ORIGIN: https://rpops101.github.io
         run: node scripts/indexnow.mjs
