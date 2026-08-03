@@ -13,7 +13,17 @@ OUT_DIR="${INPUT_OUT_DIR:-eaa-artifacts}"
 VERSION="${INPUT_VERSION:-latest}"
 SUMMARY="${EAA_KIT_SUMMARY:-eaa-kit-summary.md}"
 
-EAA=(npx --yes "eaa-kit@${VERSION}")
+# Prefer a CLI built in this checkout over the published package. That is
+# what makes the action usable from a repository clone — including this
+# repository's own self-test, which must exercise the action rather than a
+# release artifact — and it keeps working before the first npm publish.
+LOCAL_CLI="${GITHUB_ACTION_PATH:-$(dirname "$0")}/../packages/cli/dist/main.js"
+if [ -f "$LOCAL_CLI" ]; then
+  echo "Using the CLI built in this checkout: $LOCAL_CLI"
+  EAA=(node "$LOCAL_CLI")
+else
+  EAA=(npx --yes "eaa-kit@${VERSION}")
+fi
 
 common=(--config "$CONFIG")
 [ -n "${INPUT_JURISDICTION:-}" ] && common+=(--jurisdiction "$INPUT_JURISDICTION")

@@ -51,6 +51,21 @@ export { resolveStrings, mergeStrings, coreStrings, type StringTree } from './i1
 export { renderTemplate, lintTemplate, escapeHtml } from './render/template.js';
 export { htmlPage, BASE_CSS } from './render/html.js';
 export { renderStatement, buildStatementView, type StatementRenderOptions } from './render/statement.js';
+export { renderBinary, type BinaryOptions } from './render/binary.js';
+export {
+  statementBlocks,
+  acrBlocks,
+  burdenBlocks,
+  traceBlocks,
+  blocksToDocx,
+  blocksToDocxBody,
+  blocksToPdf,
+  type DocBlock,
+  type BinaryRenderOptions,
+} from './render/doc-model.js';
+export { buildDocx, escapeXml, type DocxMeta } from './render/docx.js';
+export { buildPdf, type PdfMeta } from './render/pdf.js';
+export { createZip, crc32, type ZipEntry } from './util/zip.js';
 export { renderAcr, buildOpenAcr, type AcrRenderOptions } from './render/acr.js';
 export { renderBurden, reassessmentDate, type BurdenRenderOptions } from './render/burden.js';
 export { renderTrace, type TraceRenderOptions } from './render/trace.js';
@@ -61,6 +76,7 @@ import { renderStatement } from './render/statement.js';
 import { renderAcr, type AcrRenderOptions } from './render/acr.js';
 import { renderBurden } from './render/burden.js';
 import { renderTrace } from './render/trace.js';
+import { renderBinary as renderBinaryArtifact } from './render/binary.js';
 import { EaaKitError, DOCS_BASE } from './util/errors.js';
 
 /** One entry point over all artifact renderers (FR-API-1). */
@@ -70,6 +86,15 @@ export function renderArtifact(
   pack: Pack | undefined,
   opts: RenderOptions
 ): RenderedArtifact {
+  if (opts.format === 'docx' || opts.format === 'pdf') {
+    return renderBinaryArtifact(conformance, config, pack, {
+      kind: opts.kind,
+      format: opts.format,
+      lang: opts.lang ?? pack?.meta.defaultLanguage ?? 'en',
+      reviewedBy: opts.reviewedBy,
+      reviewedOn: opts.reviewedOn,
+    });
+  }
   switch (opts.kind) {
     case 'statement': {
       if (!pack) {

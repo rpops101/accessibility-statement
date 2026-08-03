@@ -124,8 +124,11 @@ test('render-all writes every artifact for the GitHub Action (FR-CI-1)', () => {
   const result = run(['render-all', '--jurisdiction', 'ie', '--out-dir', join(dir, 'out'), '--json'], dir);
   assert.equal(result.code, 0, result.stderr);
   const payload = JSON.parse(result.stdout);
-  assert.equal(payload.files.length, 7);
+  assert.equal(payload.files.length, 10);
   for (const file of payload.files) assert.ok(existsSync(file), `${file} missing`);
+  // The Word and PDF renditions legal teams ask for are part of the set.
+  assert.ok(payload.files.some((f: string) => f.endsWith('.docx')));
+  assert.ok(payload.files.some((f: string) => f.endsWith('.pdf')));
   rmSync(dir, { recursive: true, force: true });
 });
 
@@ -265,12 +268,41 @@ test('errors are actionable and never show a stack trace (NFR-8)', () => {
   rmSync(dir, { recursive: true, force: true });
 });
 
-test('unimplemented formats say so instead of failing obscurely', () => {
+test('binary formats refuse to write to a terminal and name the fix', () => {
   const dir = project();
   const result = run(['render', 'statement', '--format', 'docx'], dir);
   assert.equal(result.code, 2);
-  assert.match(result.stderr, /not available in this release/);
-  assert.match(result.stderr, /print cleanly to PDF/);
+  assert.match(result.stderr, /binary format/);
+  assert.match(result.stderr, /--out/);
+  rmSync(dir, { recursive: true, force: true });
+});
+
+test('DOCX and PDF render to real files (FR-ART-4)', () => {
+  const dir = project();
+
+  const docx = run(
+    ['render', 'statement', '--jurisdiction', 'de', '--lang', 'de', '--format', 'docx', '--out', join(dir, 'statement.docx')],
+    dir
+  );
+  assert.equal(docx.code, 0, docx.stderr);
+  const docxBytes = readFileSync(join(dir, 'statement.docx'));
+  // A .docx is a ZIP: check the magic rather than trusting the extension.
+  assert.equal(docxBytes.subarray(0, 2).toString('latin1'), 'PK');
+  assert.ok(docxBytes.length > 2000);
+
+  const pdf = run(
+    ['render', 'burden', '--format', 'pdf', '--out', join(dir, 'burden.pdf')],
+    dir
+  );
+  assert.equal(pdf.code, 0, pdf.stderr);
+  const pdfBytes = readFileSync(join(dir, 'burden.pdf'));
+  assert.equal(pdfBytes.subarray(0, 5).toString('latin1'), '%PDF-');
+  assert.ok(pdfBytes.subarray(-6).toString('latin1').includes('%%EOF'));
+
+  // Deterministic across invocations, like every other format.
+  run(['render', 'burden', '--format', 'pdf', '--out', join(dir, 'burden2.pdf')], dir);
+  assert.deepEqual(readFileSync(join(dir, 'burden.pdf')), readFileSync(join(dir, 'burden2.pdf')));
+
   rmSync(dir, { recursive: true, force: true });
 });
 

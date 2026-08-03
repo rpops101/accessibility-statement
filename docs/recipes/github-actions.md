@@ -41,7 +41,7 @@ jobs:
         # on its own — eaa-kit check decides that against the baseline.
 
       # 3. Generate artifacts and enforce the baseline.
-      - uses: eaa-kit/action@v1
+      - uses: rpops101/eaa-kit/action@v1 # use @main until v1 is tagged
         with:
           jurisdiction: de
           lang: de

@@ -10,7 +10,7 @@ const { CONFIG_SCHEMA } = await import(join(root, 'packages/core/dist/esm/index.
 
 const schema = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
-  $id: 'https://github.com/eaa-kit/eaa-kit/blob/main/schemas/eaa.config.schema.json',
+  $id: 'https://github.com/rpops101/eaa-kit/blob/main/schemas/eaa.config.schema.json',
   title: 'eaa-kit project configuration (eaa.config.yaml)',
   ...CONFIG_SCHEMA,
 };

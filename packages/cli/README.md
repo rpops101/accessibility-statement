@@ -51,7 +51,7 @@ Regressions:
 1 criterion regression against eaa.lock.json.
 ```
 
-There is a [first-party GitHub Action](https://github.com/eaa-kit/eaa-kit/blob/main/docs/ci.md),
+There is a [first-party GitHub Action](https://github.com/rpops101/eaa-kit/blob/main/docs/ci.md),
 recipes for other CI systems, and a pre-commit hook.
 
 ## Jurisdictions
@@ -64,8 +64,8 @@ a pack is data, not code, and takes about an evening:
 npx eaa-kit contrib scaffold-pack --country pt
 ```
 
-See the [support matrix](https://github.com/eaa-kit/eaa-kit#jurisdiction-support-matrix)
-and [CONTRIBUTING.md](https://github.com/eaa-kit/eaa-kit/blob/main/CONTRIBUTING.md).
+See the [support matrix](https://github.com/rpops101/eaa-kit#jurisdiction-support-matrix)
+and [CONTRIBUTING.md](https://github.com/rpops101/eaa-kit/blob/main/CONTRIBUTING.md).
 
 ## Licence
 

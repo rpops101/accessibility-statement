@@ -66,6 +66,9 @@ try {
         ['acr', 'openacr'],
         ['burden', 'html'],
         ['trace', 'json'],
+        ['statement', 'docx'],
+        ['statement', 'pdf'],
+        ['burden', 'docx'],
       ]) {
         renderArtifact(conformance, config, pack, { kind, format, lang });
       }

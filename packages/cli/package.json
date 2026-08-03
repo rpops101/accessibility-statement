@@ -1,7 +1,7 @@
 {
   "name": "eaa-kit",
   "version": "0.1.0",
-  "description": "Generate the artifacts the European Accessibility Act requires — accessibility statement, ACR/VPAT (OpenACR), disproportionate-burden worksheet — from your existing axe/pa11y/Lighthouse results. No network, no signup.",
+  "description": "Generate the artifacts the European Accessibility Act requires \u2014 accessibility statement, ACR/VPAT (OpenACR), disproportionate-burden worksheet \u2014 from your existing axe/pa11y/Lighthouse results. No network, no signup.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -36,5 +36,14 @@
     "en-301-549",
     "wcag",
     "cli"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/rpops101/eaa-kit/issues"
+  },
+  "homepage": "https://github.com/rpops101/eaa-kit#readme"
 }

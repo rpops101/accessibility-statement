@@ -202,21 +202,37 @@ Where possible use the W3C's own authorised translation of WCAG for this languag
 // A few core tasks, deliberately outnumbered by self-contained work.
 issues.push(
   {
-    title: 'core: DOCX renderer for the statement and burden worksheet (FR-ART-4)',
-    labels: ['core', 'help wanted'],
-    body: `Legal teams live in Word. Render the statement and the disproportionate-burden worksheet as DOCX.
+    title: 'core: PDF/UA conformance audit of the generated PDF',
+    labels: ['core', 'help wanted', 'accessibility'],
+    body: `The PDF renderer emits a tagged PDF (structure tree, marked content,
+\`/Lang\`, \`DisplayDocTitle\`) and poppler reports \`Tagged: yes\`. What has not
+been done is a formal PDF/UA conformance check with a real validator such as
+veraPDF or PAC.
 
-Constraints that make this interesting:
-- Output must stay **deterministic** (FR-ART-5): a DOCX is a ZIP, and ZIPs embed timestamps by default. Those must be fixed, not wall-clock.
-- The runtime dependency budget is five for \`@eaa-kit/core\` (NFR-2), currently one. A minimal OOXML writer may be better vendored than depended on — discuss in the issue before writing code.
-- The draft watermark and "reviewed by" fields must survive into the DOCX (FR-ART-7).`,
+Likely gaps to look for: an XMP metadata stream declaring PDF/UA-1, a
+\`/StructParents\` entry on every annotation, explicit \`/Alt\` text where
+graphics appear, and correct \`/L\`/\`/LI\` nesting for bullet lists (they are
+currently tagged \`LBody\` without an enclosing \`L\`).
+
+Run a validator, report what it says, and fix what it finds — each is a small,
+well-scoped change in \`packages/core/src/render/pdf.ts\`.`,
   },
   {
-    title: 'core: PDF rendition of all artifacts (FR-ART-4)',
-    labels: ['core', 'help wanted'],
-    body: `Produce PDF output without adding a browser dependency.
+    title: 'core: embed a Unicode font so packs beyond Latin-1 render in PDF',
+    labels: ['core', 'help wanted', 'i18n'],
+    body: `The PDF writer uses the base-14 Helvetica with WinAnsiEncoding, which
+covers Latin-1 and therefore every launch pack. Greek (el), Bulgarian (bg) and
+any future Cyrillic or Greek pack will render \`?\` for characters outside that
+range — see \`pdfString\` in \`packages/core/src/render/pdf-font.ts\`.
 
-Discuss the approach in this issue first — the constraint is no network access, no headless browser download at install time, and deterministic bytes. A print-stylesheet-plus-instructions path may serve users better than a bundled PDF engine; that is a legitimate outcome for this issue.`,
+Fixing this means embedding a subsetted TrueType font with a \`/ToUnicode\` CMap.
+The constraint that makes it interesting: no new runtime dependency (the budget
+is five, currently one), deterministic output, and the font file has to be
+licence-compatible and small enough to ship. Discuss the approach in this issue
+before writing code.
+
+This blocks Bronze packs for Greece, Bulgaria and Cyprus from having usable PDF
+output, so it matters more than its obscurity suggests.`,
   },
   {
     title: 'data: EN 301 549 v4.1.1 mapping when it publishes (FR-MAP-4)',

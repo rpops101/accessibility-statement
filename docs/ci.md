@@ -71,11 +71,15 @@ jobs:
       # Produce evidence however you already do it.
       - run: npm ci && npm run test:a11y   # writes axe.json
 
-      - uses: eaa-kit/action@v1
+      - uses: rpops101/eaa-kit/action@v1
         with:
           jurisdiction: de
           lang: de
 ```
+
+> **Before the first release**, no `v1` tag exists yet. Use
+> `rpops101/eaa-kit/action@main` until one is published, or pin a commit SHA
+> — pinning a SHA is good practice for third-party actions regardless.
 
 The action runs `check`, uploads the rendered statement, ACR and burden
 worksheet as build artifacts, and posts (or updates) a pull-request comment
@@ -120,7 +124,7 @@ Use `--json` on any command for machine-readable output.
 ```yaml
 # .pre-commit-config.yaml
 repos:
-  - repo: https://github.com/eaa-kit/eaa-kit
+  - repo: https://github.com/rpops101/eaa-kit
     rev: v0.1.0
     hooks:
       - id: eaa-kit-check

@@ -1,6 +1,6 @@
 # @eaa-kit/packs
 
-Jurisdiction packs for [eaa-kit](https://github.com/eaa-kit/eaa-kit): the
+Jurisdiction packs for [eaa-kit](https://github.com/rpops101/eaa-kit): the
 per-member-state accessibility-statement formats, translations, legal
 references and enforcement-body details.
 
@@ -50,7 +50,7 @@ npm run update-snapshots -w @eaa-kit/packs -- de    # regenerate snapshots
 
 Every pack cites official sources in `pack.yaml`. If you find a wrong
 enforcement body or a stale legal reference, please
-[open an issue](https://github.com/eaa-kit/eaa-kit/issues/new/choose) —
+[open an issue](https://github.com/rpops101/eaa-kit/issues/new/choose) —
 those reports matter more to us than feature requests.
 
 Generated artifacts carry a draft watermark and require named human

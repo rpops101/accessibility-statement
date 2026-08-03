@@ -1,7 +1,7 @@
 {
   "name": "@eaa-kit/core",
   "version": "0.1.0",
-  "description": "EU Accessibility Act conformance engine: evidence ingestion, WCAG → EN 301 549 mapping, artifact rendering. No network, no telemetry.",
+  "description": "EU Accessibility Act conformance engine: evidence ingestion, WCAG \u2192 EN 301 549 mapping, artifact rendering. No network, no telemetry.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -46,5 +46,14 @@
     "openacr",
     "accessibility-statement",
     "compliance"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "directory": "packages/core"
+  },
+  "bugs": {
+    "url": "https://github.com/rpops101/eaa-kit/issues"
+  },
+  "homepage": "https://github.com/rpops101/eaa-kit#readme"
 }

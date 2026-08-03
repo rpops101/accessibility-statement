@@ -7,14 +7,40 @@ eaa-kit render-all --out-dir eaa-artifacts
 
 | Artifact | Formats | Default |
 | --- | --- | --- |
-| `statement` | `html`, `md` | `html` |
-| `acr` | `openacr`, `json`, `html`, `md` | `openacr` |
-| `burden` | `html`, `md` | `html` |
-| `trace` | `md`, `html`, `json` | `md` |
+| `statement` | `html`, `md`, `docx`, `pdf` | `html` |
+| `acr` | `openacr`, `json`, `html`, `md`, `docx`, `pdf` | `openacr` |
+| `burden` | `html`, `md`, `docx`, `pdf` | `html` |
+| `trace` | `md`, `html`, `json`, `docx`, `pdf` | `md` |
 
-DOCX and PDF are planned (FR-ART-4) and currently refuse with an
-explanation rather than failing obscurely. HTML prints cleanly to PDF from
-any browser in the meantime.
+`docx` and `pdf` are binary and require `--out`:
+
+```bash
+eaa-kit render statement --format docx --out statement.docx
+eaa-kit render burden --format pdf --out burden.pdf
+```
+
+## Word and PDF
+
+Legal teams live in Word, so DOCX is a first-class output rather than an
+export. The generated document uses **real heading styles**, not bold
+paragraphs, and tables carry a marked header row — that structure is what
+makes a Word document navigable with a screen reader.
+
+The PDF is **tagged**: it carries a structure tree, marked content, a
+document language and `DisplayDocTitle`. An accessibility compliance tool
+emitting an untagged PDF would be failing its own subject matter, and
+untagged PDFs are exactly what EN 301 549 clause 10 exists to prevent. No
+browser or headless Chrome is involved; the writer is vendored, so PDF
+output works in any CI container.
+
+Both are deterministic like every other format: ZIP entries carry a fixed
+1980 timestamp and PDF dates come from your configuration, so re-rendering
+an unchanged project produces identical bytes.
+
+A jurisdiction pack can own its Word layout by shipping
+`templates/statement.docx.xml.mustache` — the same logic-less template
+mechanism as the HTML, applied to the WordprocessingML body. That is the
+DOCX template the Gold quality level asks for.
 
 ## Accessibility statement
 

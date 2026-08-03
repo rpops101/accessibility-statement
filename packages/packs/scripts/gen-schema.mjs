@@ -9,7 +9,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const src = join(here, '..', '..', 'core', 'data', 'pack.schema.yaml');
 const schema = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',
-  $id: 'https://github.com/eaa-kit/eaa-kit/blob/main/packages/packs/schema/pack.schema.json',
+  $id: 'https://github.com/rpops101/eaa-kit/blob/main/packages/packs/schema/pack.schema.json',
   title: 'eaa-kit jurisdiction pack metadata (pack.yaml)',
   ...parse(readFileSync(src, 'utf8')),
 };

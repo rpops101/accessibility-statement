@@ -5,12 +5,23 @@ repository so they survive a gap in attention.
 
 ## Before making the repository public
 
-- [ ] **Validate the name.** `eaa-kit` is a working name. Check npm
-      availability for `eaa-kit`, `@eaa-kit/core` and `@eaa-kit/packs`;
-      check for trademark collisions; and apply **the search test** — someone
-      googling *"EU accessibility statement generator"* or *"VPAT generator
-      open source"* should land on it. Name for the query, not for the pun.
-      Renaming after launch costs far more than an hour of deliberation now.
+- [x] **npm availability — checked 3 August 2026, all three free.**
+      `eaa-kit`, `@eaa-kit/core` and `@eaa-kit/packs` all return 404 from the
+      registry, and the `eaa-kit` GitHub organisation is unclaimed. Nothing
+      reserves them, so claim the scope when you first publish.
+- [ ] **Trademark check.** Not done. "EAA" is a common initialism; a quick
+      search of the EUIPO register before launch is cheap insurance.
+- [ ] **The search test.** Someone googling *"EU accessibility statement
+      generator"* or *"VPAT generator open source"* should land on this.
+      `eaa-kit` names the regulation, not the function, so consider whether
+      the npm `description` and repository topics carry the discoverable
+      words instead. Name for the query, not for the pun — renaming after
+      launch costs far more than an hour of deliberation now.
+- [ ] **Decide the final home.** Everything currently points at
+      `github.com/rpops101/eaa-kit`, which is where the code actually lives.
+      If you create an `eaa-kit` organisation and transfer, GitHub redirects
+      the old URLs automatically, but update them in the source anyway so
+      clones and npm pages are not one hop behind.
 - [ ] Record the README demo. A short screen capture of `init` →
       `render statement` → the rendered German statement, placed **above the
       fold**. This is the single highest-leverage asset in the repository:
@@ -26,7 +37,7 @@ repository so they survive a gap in attention.
       update `enforcement.verified`. Silver quality claims this is current.
 - [ ] Publish the packages: `npm publish --workspaces --access public`.
 - [ ] Publish the Action to the GitHub Marketplace, and tag `v1` so
-      `eaa-kit/action@v1` resolves.
+      `rpops101/eaa-kit/action@v1` resolves.
 
 ## Launch window
 

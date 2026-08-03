@@ -103,9 +103,85 @@ jobs:
       - run: npm run build
       - name: Render every artifact
         run: node scripts/render-corpus.mjs corpus-out
-      # The real thing, not the structural stand-in that runs in `npm test`.
+      # Playwright and axe-core are installed here rather than being
+      # devDependencies, so a contributor never downloads a browser just to
+      # run `npm test` (DX-2). The structural stand-in in the test suite
+      # covers them locally; this job is the authoritative gate.
+      - name: Install a browser and axe-core
+        run: |
+          npm install --no-save playwright@1 axe-core@4
+          npx playwright install --with-deps chromium
       - name: Run axe-core against the generated HTML
-        run: npx --yes @axe-core/cli@4 --exit --load-delay 0 $(find corpus-out -name '*.html' -printf 'file://%p ')
+        run: node scripts/axe-check.mjs corpus-out
+
+  action-selftest:
+    name: The GitHub Action works end to end (FR-CI-1)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      # A throwaway project with one axe report, exactly what a new user has.
+      - name: Create a sample project
+        run: |
+          mkdir -p /tmp/sample
+          cp packages/packs/packs/eu/fixture/axe.json /tmp/sample/axe.json
+          cd /tmp/sample
+          node "$GITHUB_WORKSPACE/packages/cli/dist/main.js" init --yes --date 2026-01-01
+          node "$GITHUB_WORKSPACE/packages/cli/dist/main.js" check --update
+
+      # Exercise the action from this checkout rather than a published tag,
+      # so the job proves the action itself rather than a release artifact.
+      - name: Run the action against it
+        id: eaa
+        uses: ./action
+        with:
+          config: /tmp/sample/eaa.config.yaml
+          lock: /tmp/sample/eaa.lock.json
+          jurisdiction: de
+          lang: de
+          out-dir: /tmp/sample/eaa-artifacts
+          comment: 'false'
+
+      - name: Check the action's outputs and artifacts
+        run: |
+          set -euo pipefail
+          echo "compliance=${{ steps.eaa.outputs.compliance }}"
+          echo "regressions=${{ steps.eaa.outputs.regressions }}"
+          test "${{ steps.eaa.outputs.regressions }}" = "0"
+          test -s /tmp/sample/eaa-artifacts/statement.de.de.html
+          test -s /tmp/sample/eaa-artifacts/statement.de.de.docx
+          test -s /tmp/sample/eaa-artifacts/statement.de.de.pdf
+          test -s /tmp/sample/eaa-artifacts/acr.openacr.yaml
+          grep -q "Erklärung zur Barrierefreiheit" /tmp/sample/eaa-artifacts/statement.de.de.html
+
+      # The regression gate must actually fail the build, or it is decoration.
+      - name: Seed a regression and confirm the action fails
+        run: |
+          set -uo pipefail
+          cd /tmp/sample
+          node - <<'EOF'
+          const fs = require('node:fs');
+          const axe = JSON.parse(fs.readFileSync('axe.json', 'utf8'));
+          const passing = axe.passes.find((p) => p.id === 'html-has-lang');
+          axe.passes = axe.passes.filter((p) => p.id !== 'html-has-lang');
+          axe.violations.push({ ...passing, impact: 'serious' });
+          fs.writeFileSync('axe.json', JSON.stringify(axe, null, 2));
+          EOF
+          set +e
+          node "$GITHUB_WORKSPACE/packages/cli/dist/main.js" check --config eaa.config.yaml
+          status=$?
+          set -e
+          if [ "$status" -eq 0 ]; then
+            echo "::error::check passed despite a seeded regression — the CI gate is not working"
+            exit 1
+          fi
+          echo "Regression correctly failed the check (exit $status)."
 
   packs:
     name: Jurisdiction packs validate (REQ-PACK-2)

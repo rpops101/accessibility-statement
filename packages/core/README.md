@@ -1,6 +1,6 @@
 # @eaa-kit/core
 
-The engine behind [eaa-kit](https://github.com/eaa-kit/eaa-kit): turn
+The engine behind [eaa-kit](https://github.com/rpops101/eaa-kit): turn
 accessibility test evidence into the artifacts the European Accessibility
 Act requires.
 
@@ -70,12 +70,12 @@ renders the full corpus on Linux, macOS and Windows and compares hashes.
 `buildLock` · `diffLock` · `getWcagStandard` · `getEnStandard` · `manualChecklistTemplate`
 
 Full TypeScript types are included. See
-[the documentation](https://github.com/eaa-kit/eaa-kit/tree/main/docs).
+[the documentation](https://github.com/rpops101/eaa-kit/tree/main/docs).
 
 ## Dependencies
 
 One, justified in
-[DEPENDENCIES.md](https://github.com/eaa-kit/eaa-kit/blob/main/packages/core/DEPENDENCIES.md).
+[DEPENDENCIES.md](https://github.com/rpops101/eaa-kit/blob/main/packages/core/DEPENDENCIES.md).
 The budget is five and a CI job enforces it.
 
 ## Licence

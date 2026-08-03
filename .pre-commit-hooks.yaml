@@ -4,7 +4,7 @@
 # Usage in a consuming repository's .pre-commit-config.yaml:
 #
 #   repos:
-#     - repo: https://github.com/eaa-kit/eaa-kit
+#     - repo: https://github.com/rpops101/eaa-kit
 #       rev: v0.1.0
 #       hooks:
 #         - id: eaa-kit-check

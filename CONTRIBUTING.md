@@ -9,7 +9,7 @@ If your country is missing from the [support matrix](README.md#jurisdiction-supp
 ## Set up (one step)
 
 ```bash
-git clone https://github.com/eaa-kit/eaa-kit
+git clone https://github.com/rpops101/eaa-kit
 cd eaa-kit
 npm install && npm test
 ```

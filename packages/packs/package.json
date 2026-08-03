@@ -1,7 +1,7 @@
 {
   "name": "@eaa-kit/packs",
   "version": "0.1.0",
-  "description": "Jurisdiction packs for eaa-kit: per-member-state accessibility-statement formats, translations, legal references and enforcement-body details. Data only — no code.",
+  "description": "Jurisdiction packs for eaa-kit: per-member-state accessibility-statement formats, translations, legal references and enforcement-body details. Data only \u2014 no code.",
   "license": "MIT",
   "type": "module",
   "files": [
@@ -33,5 +33,14 @@
     "accessibility-statement",
     "jurisdiction",
     "i18n"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "directory": "packages/packs"
+  },
+  "bugs": {
+    "url": "https://github.com/rpops101/eaa-kit/issues"
+  },
+  "homepage": "https://github.com/rpops101/eaa-kit#readme"
 }

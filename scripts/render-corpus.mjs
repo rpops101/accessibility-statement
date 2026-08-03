@@ -27,6 +27,14 @@ const TARGETS = [
   ['trace', 'html'],
   ['trace', 'md'],
   ['trace', 'json'],
+  // Binary formats are in the corpus precisely because they are the ones
+  // most likely to pick up a timestamp and break determinism.
+  ['statement', 'docx'],
+  ['statement', 'pdf'],
+  ['acr', 'docx'],
+  ['burden', 'docx'],
+  ['burden', 'pdf'],
+  ['trace', 'pdf'],
 ];
 
 const codes = readdirSync(PACKS, { withFileTypes: true })
@@ -53,7 +61,7 @@ for (const code of codes) {
       const artifact = renderArtifact(conformance, config, pack, { kind, format, lang });
       const dir = join(outDir, code, lang);
       mkdirSync(dir, { recursive: true });
-      writeFileSync(join(dir, artifact.filenameHint), artifact.content);
+      writeFileSync(join(dir, artifact.filenameHint), artifact.bytes ?? artifact.content);
       count++;
     }
   }

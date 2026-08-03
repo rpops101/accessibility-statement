@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import {
+  BINARY_FORMATS,
   EaaKitError,
   DOCS_BASE,
   renderArtifact,
@@ -33,16 +34,16 @@ export function renderCommand(args: ParsedArgs): number {
 
   const project = loadProject(args);
   const formatName: string = flagString(args.flags, 'format') ?? DEFAULT_FORMAT[kind];
+  const format = formatName as ArtifactFormat;
 
-  if (formatName === 'docx' || formatName === 'pdf') {
+  const outPathFlag = flagString(args.flags, 'out');
+  if (BINARY_FORMATS.has(formatName) && !outPathFlag) {
     throw new EaaKitError({
-      what: `Format "${formatName}" is not available in this release.`,
-      why: 'DOCX and PDF renditions are a v1.x deliverable (FR-ART-4) and are tracked as good-first-issues.',
-      fix: 'Render html or md today; both print cleanly to PDF from a browser.',
+      what: `"${formatName}" is a binary format and cannot be written to the terminal.`,
+      fix: `Use --out, for example: eaa-kit render ${kind} --format ${formatName} --out ${kind}.${formatName}`,
       docs: `${DOCS_BASE}/artifacts.md`,
     });
   }
-  const format = formatName as ArtifactFormat;
 
   const jurisdiction = flagString(args.flags, 'jurisdiction') ?? project.config.jurisdiction;
   const pack =
@@ -58,11 +59,11 @@ export function renderCommand(args: ParsedArgs): number {
     reviewedOn: flagString(args.flags, 'reviewed-on'),
   });
 
-  const outPath = flagString(args.flags, 'out');
+  const outPath = outPathFlag;
   if (outPath) {
     const abs = resolve(outPath);
     mkdirSync(dirname(abs), { recursive: true });
-    writeFileSync(abs, artifact.content);
+    writeFileSync(abs, artifact.bytes ?? artifact.content);
     if (flagBool(args.flags, 'json')) {
       process.stdout.write(
         JSON.stringify(
@@ -127,6 +128,9 @@ export function renderAllCommand(args: ParsedArgs): number {
     { kind: 'burden', format: 'html' },
     { kind: 'trace', format: 'md' },
     { kind: 'trace', format: 'json' },
+    { kind: 'statement', format: 'docx' },
+    { kind: 'statement', format: 'pdf' },
+    { kind: 'burden', format: 'docx' },
   ];
 
   mkdirSync(outDir, { recursive: true });
@@ -139,7 +143,7 @@ export function renderAllCommand(args: ParsedArgs): number {
       reviewedOn,
     });
     const path = resolve(outDir, artifact.filenameHint);
-    writeFileSync(path, artifact.content);
+    writeFileSync(path, artifact.bytes ?? artifact.content);
     written.push(path);
   }
 

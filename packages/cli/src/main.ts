@@ -41,7 +41,8 @@ Common options
   --config <path>           Configuration file (default: eaa.config.yaml)
   --jurisdiction <code>     Pack to use, e.g. de (default: from config)
   --lang <code>             Statement language (default: first configured)
-  --format <fmt>            html | md | openacr | json (default per artifact)
+  --format <fmt>            html | md | openacr | json | docx | pdf
+                            (default per artifact; docx and pdf need --out)
   --out <path>              Write to a file instead of stdout
   --reviewed-by <name>      Record the reviewer and remove the draft watermark
   --reviewed-on <date>      Review date, YYYY-MM-DD (required with --reviewed-by)
@@ -53,10 +54,11 @@ Examples
   eaa-kit init
   eaa-kit render statement --jurisdiction de --lang de --out statement.html
   eaa-kit render acr --format openacr --out acr.yaml
+  eaa-kit render statement --format docx --out statement.docx
   eaa-kit check
   eaa-kit contrib scaffold-pack --country pt
 
-Docs: https://github.com/eaa-kit/eaa-kit
+Docs: https://github.com/rpops101/eaa-kit
 Artifacts are drafts for human review and are not legal advice.
 `;
 
@@ -111,7 +113,7 @@ export async function main(argv: string[]): Promise<number> {
     process.stderr.write(
       `Error: ${message}\n` +
         `  This looks like a bug in eaa-kit rather than a problem with your input.\n` +
-        `  Please report it: https://github.com/eaa-kit/eaa-kit/issues/new\n` +
+        `  Please report it: https://github.com/rpops101/eaa-kit/issues/new\n` +
         (process.env['EAA_KIT_DEBUG'] && error instanceof Error && error.stack
           ? `\n${error.stack}\n`
           : `  Re-run with EAA_KIT_DEBUG=1 for a stack trace.\n`)

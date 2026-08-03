@@ -227,7 +227,10 @@ export interface BurdenConfig {
 }
 
 export type ArtifactKind = 'statement' | 'acr' | 'burden' | 'trace';
-export type ArtifactFormat = 'html' | 'md' | 'json' | 'yaml' | 'openacr';
+export type ArtifactFormat = 'html' | 'md' | 'json' | 'yaml' | 'openacr' | 'docx' | 'pdf';
+
+/** Formats whose payload is bytes rather than text. */
+export const BINARY_FORMATS: ReadonlySet<string> = new Set(['docx', 'pdf']);
 
 export interface RenderOptions {
   kind: ArtifactKind;
@@ -243,5 +246,13 @@ export interface RenderedArtifact {
   format: ArtifactFormat;
   lang: string;
   filenameHint: string;
+  /**
+   * Text payload. For binary formats (docx, pdf) this is the Latin-1
+   * decoding of `bytes` and must not be written to disk directly — write
+   * `bytes` instead. `isBinary` distinguishes the two.
+   */
   content: string;
+  /** Present for docx and pdf. */
+  bytes?: Uint8Array;
+  isBinary?: boolean;
 }

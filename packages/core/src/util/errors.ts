@@ -27,4 +27,4 @@ export class EaaKitError extends Error {
   }
 }
 
-export const DOCS_BASE = 'https://github.com/eaa-kit/eaa-kit/blob/main/docs';
+export const DOCS_BASE = 'https://github.com/rpops101/eaa-kit/blob/main/docs';

@@ -2,7 +2,7 @@
 
 **Generate the EU accessibility statement the European Accessibility Act requires — from the axe results you already have.**
 
-[![CI](https://github.com/eaa-kit/eaa-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/eaa-kit/eaa-kit/actions/workflows/ci.yml)
+[![CI](https://github.com/rpops101/eaa-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/rpops101/eaa-kit/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/eaa-kit.svg)](https://www.npmjs.com/package/eaa-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
@@ -84,7 +84,7 @@ Fix the underlying issues, or record the new baseline deliberately with: eaa-kit
 With the first-party GitHub Action:
 
 ```yaml
-- uses: eaa-kit/action@v1
+- uses: rpops101/eaa-kit/action@v1   # use @main until v1 is tagged
   with:
     jurisdiction: de
     lang: de
