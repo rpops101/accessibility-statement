@@ -27,13 +27,13 @@ accessibility:
     - npx --yes @axe-core/cli@4 http://localhost:4173 --save axe.json --exit || true
 
     # 2. Enforce the baseline and render the artifacts.
-    - npm install --no-save eaa-kit @eaa-kit/packs
-    - npx eaa-kit check --json | tee conformance.json
-    - npx eaa-kit render-all --out-dir eaa-artifacts
+    - npm install --no-save accessibility-statement @accessibility-statement/packs
+    - npx accessibility-statement check --json | tee conformance.json
+    - npx accessibility-statement render-all --out-dir accessibility-artifacts
   artifacts:
     when: always
     paths:
-      - eaa-artifacts/
+      - accessibility-artifacts/
       - conformance.json
     expire_in: 30 days
   rules:
@@ -54,7 +54,7 @@ want the rendered statement, because it shows what changed.
             const r = require("./conformance.json");
             const rows = r.regressions.map((c) => `| \`${c.criterion}\` | ${c.from} | ${c.to} |`);
             console.log([
-              "## Accessibility conformance (eaa-kit)",
+              "## Accessibility conformance (accessibility-statement)",
               "",
               `**Status:** ${r.compliance}`,
               "",
@@ -82,8 +82,8 @@ pages:
   needs: [accessibility]
   script:
     - mkdir -p public
-    - cp eaa-artifacts/statement.*.html public/index.html
-    - cp eaa-artifacts/* public/
+    - cp accessibility-artifacts/statement.*.html public/index.html
+    - cp accessibility-artifacts/* public/
   artifacts:
     paths: [public]
   rules:

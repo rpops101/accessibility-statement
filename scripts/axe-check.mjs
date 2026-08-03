@@ -91,7 +91,7 @@ console.log(`\nChecked ${files.length} generated HTML documents with axe-core.`)
 if (totalViolations > 0) {
   for (const failure of failures) console.error(`::error::${failure}`);
   console.error(
-    `\n${totalViolations} accessibility violation(s) in eaa-kit's own output. ` +
+    `\n${totalViolations} accessibility violation(s) in accessibility-statement's own output. ` +
       `A tool that emits inaccessible accessibility documents has no standing (FR-ART-6).`
   );
   process.exit(1);

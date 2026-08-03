@@ -2,10 +2,10 @@
 # Terminología alineada con el Real Decreto 1112/2018 y la declaración
 # modelo de la Decisión de Ejecución (UE) 2018/1523.
 common:
-  draftWatermark: "BORRADOR — pendiente de revisión humana. Generado por eaa-kit; este documento no constituye asesoramiento jurídico y debe ser revisado por una persona responsable antes de su publicación."
+  draftWatermark: "BORRADOR — pendiente de revisión humana. Generado por accessibility-statement; este documento no constituye asesoramiento jurídico y debe ser revisado por una persona responsable antes de su publicación."
   reviewedBy: "Revisado por"
   reviewedOn: "Revisado el"
-  generatedBy: "Generado con eaa-kit a partir de las evidencias de pruebas registradas."
+  generatedBy: "Generado con accessibility-statement a partir de las evidencias de pruebas registradas."
   status:
     pass: "Conforme"
     fail: "No conforme"

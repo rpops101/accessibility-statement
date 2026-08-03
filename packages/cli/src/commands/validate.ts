@@ -1,11 +1,11 @@
 import { existsSync } from 'node:fs';
 import { join, resolve } from 'node:path';
-import { validatePackDir, EaaKitError, DOCS_BASE } from '@eaa-kit/core';
+import { validatePackDir, A11yStatementError, DOCS_BASE } from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { listJurisdictions, resolvePacksDir } from '../resolve.js';
 
 /**
- * `eaa-kit validate-pack [dir|code]` (QA-6) — the contributor's local test
+ * `accessibility-statement validate-pack [dir|code]` (QA-6) — the contributor's local test
  * runner and the CI gate are the same code path, so "green locally" means
  * "green in CI".
  */
@@ -21,7 +21,7 @@ export function validatePackCommand(args: ParsedArgs): number {
   } else {
     const abs = resolve(target);
     if (!existsSync(join(abs, 'pack.yaml'))) {
-      throw new EaaKitError({
+      throw new A11yStatementError({
         what: `${abs} is not a jurisdiction pack (no pack.yaml).`,
         fix: `Pass a pack directory, a two-letter code (${listJurisdictions(packsDir).join(', ')}), or nothing to validate all packs.`,
         docs: `${DOCS_BASE}/packs.md`,
@@ -66,7 +66,7 @@ export function validatePackCommand(args: ParsedArgs): number {
   }
   process.stdout.write(
     `\n${results.length} pack${results.length === 1 ? '' : 's'} valid.\n` +
-      `Next: npm run update-snapshots -w @eaa-kit/packs\n`
+      `Next: npm run update-snapshots -w @accessibility-statement/packs\n`
   );
   return 0;
 }

@@ -1,20 +1,22 @@
-# eaa-kit
+# Accessibility Statement Generator
 
 **Generate the EU accessibility statement the European Accessibility Act requires — from the axe results you already have.**
 
-[![CI](https://github.com/rpops101/eaa-kit/actions/workflows/ci.yml/badge.svg)](https://github.com/rpops101/eaa-kit/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/eaa-kit.svg)](https://www.npmjs.com/package/eaa-kit)
+`npx accessibility-statement` · also installs as `a11y-statement`
+
+[![CI](https://github.com/rpops101/accessibility-statement/actions/workflows/ci.yml/badge.svg)](https://github.com/rpops101/accessibility-statement/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/accessibility-statement.svg)](https://www.npmjs.com/package/accessibility-statement)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-![Four commands turn an axe-core report into a German accessibility statement: the terminal on the left runs eaa-kit init, render statement and check; the document on the right is the resulting statement.html, carrying a draft watermark, a partial-compliance status, and WCAG criteria 1.1.1 and 1.4.3 listed against EN 301 549 clauses 9.1.1.1 and 9.1.4.3.](docs/assets/demo.svg)
+![Four commands turn an axe-core report into a German accessibility statement: the terminal on the left runs accessibility-statement init, render statement and check; the document on the right is the resulting statement.html, carrying a draft watermark, a partial-compliance status, and WCAG criteria 1.1.1 and 1.4.3 listed against EN 301 549 clauses 9.1.1.1 and 9.1.4.3.](docs/assets/demo.svg)
 
 The European Accessibility Act has been enforceable since **28 June 2025**, with the next deadline on **28 June 2027**. It requires documents — an accessibility statement in your country's format and language, a conformance report, and a documented disproportionate-burden assessment if you claim one. Today those are produced by consultancies and Word templates.
 
-`eaa-kit` compiles them from evidence you already produce.
+This tool compiles them from evidence you already produce.
 
 ```bash
-npx eaa-kit init          # answer a few questions, or press Enter through them
-npx eaa-kit render statement --jurisdiction de --lang de --out statement.html
+npx accessibility-statement init          # answer a few questions, or press Enter through them
+npx accessibility-statement render statement --jurisdiction de --lang de --out statement.html
 ```
 
 That is the whole flow. It reads your axe-core, pa11y or Lighthouse JSON plus a manual checklist, and writes the artifacts.
@@ -32,11 +34,11 @@ That is the whole flow. It reads your axe-core, pa11y or Lighthouse JSON plus a 
 | **Disproportionate-burden worksheet** | Article 14 assessment: cost–benefit prompts, micro-enterprise check, scope exclusions, and the auto-computed 5-year reassessment date | HTML, Markdown |
 | **Traceability report** | Every conclusion traced: criterion → EN clause → evidence file → rule → selector/URL | Markdown, HTML, JSON |
 
-Every artifact carries a **draft watermark and a legal disclaimer** until a named person signs off with `--reviewed-by` and `--reviewed-on`. eaa-kit produces drafts for human review; it does not give legal advice.
+Every artifact carries a **draft watermark and a legal disclaimer** until a named person signs off with `--reviewed-by` and `--reviewed-on`. It produces drafts for human review; it does not give legal advice.
 
 ## What it is not
 
-A scanner. axe-core owns that (242M downloads a month) and eaa-kit never competes with it — it *consumes* its output. It is also not a monitoring platform, a consultancy replacement, or a source of legal advice.
+A scanner. axe-core owns that (242M downloads a month) and this tool never competes with it — it *consumes* its output. It is also not a monitoring platform, a consultancy replacement, or a source of legal advice.
 
 ---
 
@@ -46,8 +48,8 @@ A scanner. axe-core owns that (242M downloads a month) and eaa-kit never compete
 $ ls
 axe.json
 
-$ npx eaa-kit init
-eaa-kit init — nothing leaves this machine.
+$ npx accessibility-statement init
+accessibility-statement init — nothing leaves this machine.
 
 Organisation name [My Organisation]: Example GmbH
 Product / service name [My Website]: Example Shop
@@ -57,12 +59,12 @@ Evidence file(s) or directory, comma-separated [axe.json]:
 Preparation date (YYYY-MM-DD) [2026-01-01]: 2026-08-03
 Accessibility feedback e-mail []: barrierefreiheit@example.de
 
-Wrote eaa.config.yaml
+Wrote a11y-statement.config.yaml
 Wrote manual.yaml (manual checklist template — the criteria automation cannot judge)
 
-Next: eaa-kit render statement --jurisdiction de --lang de
+Next: accessibility-statement render statement --jurisdiction de --lang de
 
-$ npx eaa-kit render statement --jurisdiction de --lang de --out statement.html
+$ npx accessibility-statement render statement --jurisdiction de --lang de --out statement.html
 Wrote statement.html
 ```
 
@@ -72,21 +74,21 @@ Wrote statement.html
 
 ## Keeping it true: `check` in CI
 
-A statement is only accurate the day you generate it. `eaa-kit check` compares current conformance against a committed baseline and fails the build when a criterion regresses.
+A statement is only accurate the day you generate it. `accessibility-statement check` compares current conformance against a committed baseline and fails the build when a criterion regresses.
 
 ```console
-$ eaa-kit check
+$ accessibility-statement check
 Regressions:
   1.1.1: pass → fail
 
-1 criterion regression against eaa.lock.json.
-Fix the underlying issues, or record the new baseline deliberately with: eaa-kit check --update
+1 criterion regression against a11y-statement.lock.json.
+Fix the underlying issues, or record the new baseline deliberately with: accessibility-statement check --update
 ```
 
 With the first-party GitHub Action:
 
 ```yaml
-- uses: rpops101/eaa-kit/action@v1   # use @main until v1 is tagged
+- uses: rpops101/accessibility-statement/action@v1   # use @main until v1 is tagged
   with:
     jurisdiction: de
     lang: de
@@ -140,16 +142,16 @@ Each member state words its statement differently, in its own language, citing i
 **The empty cells are the invitation.** One command starts your country's pack:
 
 ```bash
-npx eaa-kit contrib scaffold-pack --country pt
+npx accessibility-statement contrib scaffold-pack --country pt
 ```
 
-You get a complete skeleton — pack metadata with TODOs, a wired test fixture, a snapshot harness. Fill in your country's law, its enforcement body and the translation; `eaa-kit validate-pack` tells you when you are done. **You never need to read the engine.**
+You get a complete skeleton — pack metadata with TODOs, a wired test fixture, a snapshot harness. Fill in your country's law, its enforcement body and the translation; `accessibility-statement validate-pack` tells you when you are done. **You never need to read the engine.**
 
 ---
 
 ## Using it as a library
 
-The CLI is a thin wrapper over `@eaa-kit/core`, so testing tools can generate artifacts directly:
+The CLI is a thin wrapper over `@accessibility-statement/core`, so testing tools can generate artifacts directly:
 
 ```ts
 import {
@@ -157,11 +159,11 @@ import {
   computeConformance,
   loadPack,
   renderArtifact,
-} from '@eaa-kit/core';
+} from '@accessibility-statement/core';
 
 const evidence = loadEvidence(['axe.json'], { manualPath: 'manual.yaml' });
 const conformance = computeConformance(evidence);       // per-criterion, traceable
-const pack = loadPack('node_modules/@eaa-kit/packs/packs/de');
+const pack = loadPack('node_modules/@accessibility-statement/packs/packs/de');
 const statement = renderArtifact(conformance, config, pack, {
   kind: 'statement',
   format: 'html',
@@ -171,9 +173,9 @@ const statement = renderArtifact(conformance, config, pack, {
 
 | Package | What it holds |
 | --- | --- |
-| [`@eaa-kit/core`](packages/core) | The engine: readers, mapping, conformance, renderers. **One runtime dependency** ([justified here](packages/core/DEPENDENCIES.md)) |
-| [`@eaa-kit/packs`](packages/packs) | Jurisdiction data. Versioned separately so translations ship without touching the engine |
-| [`eaa-kit`](packages/cli) | The CLI |
+| [`@accessibility-statement/core`](packages/core) | The engine: readers, mapping, conformance, renderers. **One runtime dependency** ([justified here](packages/core/DEPENDENCIES.md)) |
+| [`@accessibility-statement/packs`](packages/packs) | Jurisdiction data. Versioned separately so translations ship without touching the engine |
+| [`accessibility-statement`](packages/cli) | The CLI |
 
 ---
 
@@ -185,7 +187,7 @@ These are constraints, not aspirations. Each is enforced by a test.
 - **Offline.** No network calls at runtime. Ever.
 - **Data, not code.** Standard mappings and jurisdiction packs are YAML. Adding EN 301 549 v4.1.1 when it publishes in 2026 is a data pull request, not a rewrite.
 - **Logic-less templates.** Pack templates have no expression evaluation, so a contributed pack cannot execute code. Packs are data.
-- **It passes its own test.** Every HTML artifact eaa-kit generates is checked with axe-core in CI. A tool that emits inaccessible accessibility documents has no standing.
+- **It passes its own test.** Every HTML artifact accessibility-statement generates is checked with axe-core in CI. A tool that emits inaccessible accessibility documents has no standing.
 - **Errors that help.** What failed, why, what to do, and a docs link. No stack traces at users.
 
 ## Standards
@@ -202,4 +204,4 @@ MIT. See [LICENSE](LICENSE).
 
 ---
 
-*eaa-kit generates drafts for human review. It does not constitute legal advice. Have a responsible person review every artifact before you publish it.*
+*This tool generates drafts for human review. It does not constitute legal advice. Have a responsible person review every artifact before you publish it.*

@@ -1,5 +1,5 @@
 {
-  "name": "eaa-kit",
+  "name": "accessibility-statement",
   "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
   "features": {
     "ghcr.io/devcontainers/features/github-cli:1": {}
@@ -19,8 +19,8 @@
           "./packages/packs/schema/pack.schema.json": [
             "packages/packs/packs/*/pack.yaml"
           ],
-          "./schemas/eaa.config.schema.json": [
-            "eaa.config.yaml",
+          "./schemas/a11y-statement.config.schema.json": [
+            "a11y-statement.config.yaml",
             "**/fixture/config.yaml"
           ]
         },
@@ -29,6 +29,6 @@
     }
   },
   "remoteEnv": {
-    "EAA_KIT_PACKS_DIR": "${containerWorkspaceFolder}/packages/packs/packs"
+    "A11Y_STATEMENT_PACKS_DIR": "${containerWorkspaceFolder}/packages/packs/packs"
   }
 }

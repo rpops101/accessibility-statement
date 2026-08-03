@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 /**
- * eaa-kit CLI — a thin wrapper over @eaa-kit/core (FR-API-1).
+ * accessibility-statement CLI — a thin wrapper over @accessibility-statement/core (FR-API-1).
  *
  * No network access, ever (NFR-1): no telemetry, no update checks, no
  * template fetching. Everything it needs ships in the packages.
  */
-import { EaaKitError } from '@eaa-kit/core';
+import { realpathSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
+import { A11yStatementError } from '@accessibility-statement/core';
 import { parseArgs, flagBool } from './args.js';
 import { initCommand } from './commands/init.js';
 import { renderCommand, renderAllCommand } from './commands/render.js';
@@ -16,7 +18,7 @@ import { packsCommand } from './commands/info.js';
 
 const VERSION = '0.1.0';
 
-const HELP = `eaa-kit ${VERSION} — generate the artifacts the European Accessibility Act requires
+const HELP = `accessibility-statement ${VERSION} — generate the artifacts the European Accessibility Act requires
 
   Turns accessibility test output you already have (axe-core, pa11y,
   Lighthouse) plus a manual checklist into an EU accessibility statement,
@@ -24,21 +26,21 @@ const HELP = `eaa-kit ${VERSION} — generate the artifacts the European Accessi
   worksheet. Runs entirely offline.
 
 Usage
-  eaa-kit <command> [options]
+  accessibility-statement <command> [options]
 
 Commands
-  init                      Interactive wizard; writes eaa.config.yaml and a
+  init                      Interactive wizard; writes a11y-statement.config.yaml and a
                             manual checklist template
   render <artifact>         statement | acr | burden | trace
   render-all                Render every artifact into a directory
-  check                     Compare against eaa.lock.json; non-zero on regression
+  check                     Compare against a11y-statement.lock.json; non-zero on regression
   validate-pack [dir|code]  Validate jurisdiction packs (same code path as CI)
   packs                     List available jurisdiction packs
   contrib scaffold-pack     Scaffold a new jurisdiction pack
   contrib scaffold-reader   Scaffold a new evidence-format reader
 
 Common options
-  --config <path>           Configuration file (default: eaa.config.yaml)
+  --config <path>           Configuration file (default: a11y-statement.config.yaml)
   --jurisdiction <code>     Pack to use, e.g. de (default: from config)
   --lang <code>             Statement language (default: first configured)
   --format <fmt>            html | md | openacr | json | docx | pdf
@@ -51,14 +53,14 @@ Common options
   --help, --version
 
 Examples
-  eaa-kit init
-  eaa-kit render statement --jurisdiction de --lang de --out statement.html
-  eaa-kit render acr --format openacr --out acr.yaml
-  eaa-kit render statement --format docx --out statement.docx
-  eaa-kit check
-  eaa-kit contrib scaffold-pack --country pt
+  accessibility-statement init
+  accessibility-statement render statement --jurisdiction de --lang de --out statement.html
+  accessibility-statement render acr --format openacr --out acr.yaml
+  accessibility-statement render statement --format docx --out statement.docx
+  accessibility-statement check
+  accessibility-statement contrib scaffold-pack --country pt
 
-Docs: https://github.com/rpops101/eaa-kit
+Docs: https://github.com/rpops101/accessibility-statement
 Artifacts are drafts for human review and are not legal advice.
 `;
 
@@ -93,9 +95,9 @@ export async function run(argv: string[]): Promise<number> {
       process.stdout.write(HELP);
       return 0;
     default:
-      throw new EaaKitError({
+      throw new A11yStatementError({
         what: `Unknown command "${args.command}".`,
-        fix: 'Run "eaa-kit --help" to see the available commands.',
+        fix: 'Run "accessibility-statement --help" to see the available commands.',
       });
   }
 }
@@ -105,29 +107,42 @@ export async function main(argv: string[]): Promise<number> {
   try {
     return await run(argv);
   } catch (error) {
-    if (error instanceof EaaKitError) {
+    if (error instanceof A11yStatementError) {
       process.stderr.write(error.format() + '\n');
       return 2;
     }
     const message = error instanceof Error ? error.message : String(error);
     process.stderr.write(
       `Error: ${message}\n` +
-        `  This looks like a bug in eaa-kit rather than a problem with your input.\n` +
-        `  Please report it: https://github.com/rpops101/eaa-kit/issues/new\n` +
-        (process.env['EAA_KIT_DEBUG'] && error instanceof Error && error.stack
+        `  This looks like a bug in accessibility-statement rather than a problem with your input.\n` +
+        `  Please report it: https://github.com/rpops101/accessibility-statement/issues/new\n` +
+        (process.env['A11Y_STATEMENT_DEBUG'] && error instanceof Error && error.stack
           ? `\n${error.stack}\n`
-          : `  Re-run with EAA_KIT_DEBUG=1 for a stack trace.\n`)
+          : `  Re-run with A11Y_STATEMENT_DEBUG=1 for a stack trace.\n`)
     );
     return 2;
   }
 }
 
-// Only self-execute as a program, so tests can import run()/main().
-const invokedDirectly =
-  process.argv[1] !== undefined &&
-  (process.argv[1].endsWith('main.js') || process.argv[1].endsWith('main.ts') || process.argv[1].endsWith('eaa-kit'));
+/**
+ * Only self-execute as a program, so tests can import run()/main().
+ *
+ * Compare real paths rather than matching on a filename: the CLI is
+ * installed under two names, and npm invokes it through a symlink in
+ * node_modules/.bin, so any name-based check silently stops working the
+ * moment a bin is added or renamed.
+ */
+function isMainModule(): boolean {
+  const entry = process.argv[1];
+  if (entry === undefined) return false;
+  try {
+    return realpathSync(entry) === fileURLToPath(import.meta.url);
+  } catch {
+    return false;
+  }
+}
 
-if (invokedDirectly) {
+if (isMainModule()) {
   main(process.argv.slice(2)).then((code) => {
     process.exitCode = code;
   });

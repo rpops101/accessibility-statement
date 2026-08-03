@@ -62,7 +62,7 @@ npm publish --workspaces --access public
 
 Rules:
 
-- `@eaa-kit/packs` versions independently. Translation releases must not bump the engine.
+- `@accessibility-statement/packs` versions independently. Translation releases must not bump the engine.
 - Standard-version additions (e.g. EN 301 549 v4.1.1) are **minor** releases: new data files, never edits to shipped ones.
 - Any change to rendered output is a **minor** release at minimum, even when the code change looks trivial. Someone's committed artifacts will change.
 

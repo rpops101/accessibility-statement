@@ -13,7 +13,7 @@ import {
 import { checkHtmlAccessibility } from './html-a11y.js';
 
 /**
- * FR-ART-6 / QA-4: the HTML eaa-kit generates must itself be accessible.
+ * FR-ART-6 / QA-4: the HTML accessibility-statement generates must itself be accessible.
  * A compliance tool that emits inaccessible documents has no credibility.
  *
  * This runs the structural checker over every artifact of every pack in

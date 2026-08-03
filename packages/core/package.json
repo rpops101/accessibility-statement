@@ -1,7 +1,7 @@
 {
-  "name": "@eaa-kit/core",
+  "name": "@accessibility-statement/core",
   "version": "0.1.0",
-  "description": "EU Accessibility Act conformance engine: evidence ingestion, WCAG \u2192 EN 301 549 mapping, artifact rendering. No network, no telemetry.",
+  "description": "Engine for generating EU accessibility statements and VPAT 2.5 / ACR conformance reports (OpenACR) from accessibility test evidence. WCAG to EN 301 549 mapping, one runtime dependency, no network access.",
   "license": "MIT",
   "type": "module",
   "main": "./dist/cjs/index.js",
@@ -37,23 +37,27 @@
     "node": ">=20"
   },
   "keywords": [
+    "accessibility-statement",
     "accessibility",
+    "a11y",
     "eaa",
     "european-accessibility-act",
     "en-301-549",
     "wcag",
     "vpat",
+    "acr",
     "openacr",
-    "accessibility-statement",
-    "compliance"
+    "compliance",
+    "conformance-report",
+    "axe-core"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "url": "git+https://github.com/rpops101/accessibility-statement.git",
     "directory": "packages/core"
   },
   "bugs": {
-    "url": "https://github.com/rpops101/eaa-kit/issues"
+    "url": "https://github.com/rpops101/accessibility-statement/issues"
   },
-  "homepage": "https://github.com/rpops101/eaa-kit#readme"
+  "homepage": "https://github.com/rpops101/accessibility-statement#readme"
 }

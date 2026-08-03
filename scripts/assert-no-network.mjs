@@ -47,7 +47,7 @@ const core = await import(join(root, 'packages/core/dist/esm/index.js'));
 const { computeConformance, loadEvidence, loadPack, parseConfig, renderArtifact, buildLock, serializeLock } = core;
 
 const PACKS = join(root, 'packages/packs/packs');
-const work = mkdtempSync(join(tmpdir(), 'eaa-kit-nonet-'));
+const work = mkdtempSync(join(tmpdir(), 'accessibility-statement-nonet-'));
 
 try {
   for (const code of ['eu', 'de', 'fr', 'es', 'it', 'ie']) {

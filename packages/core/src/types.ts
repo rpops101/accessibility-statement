@@ -1,5 +1,5 @@
 /**
- * Shared types for the eaa-kit engine.
+ * Shared types for the accessibility-statement engine.
  *
  * The pipeline: evidence files → canonical EvidenceModel → ConformanceModel
  * (per WCAG criterion / EN 301 549 clause, fully traceable) → rendered artifacts.
@@ -158,7 +158,7 @@ export interface ConformanceModel {
   urls: string[];
 }
 
-/** Project configuration (eaa.config.yaml). */
+/** Project configuration (a11y-statement.config.yaml). */
 export interface EaaConfig {
   organisation: {
     name: string;

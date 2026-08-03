@@ -2,8 +2,8 @@ import type { ConformanceModel, CriterionStatus } from './types.js';
 import { stableJson } from './util/stable.js';
 
 /**
- * Conformance baseline (eaa.lock.json) for CI regression mode (FR-CLI-3).
- * Committed to the repo; `eaa-kit check` compares a fresh computation
+ * Conformance baseline (a11y-statement.lock.json) for CI regression mode (FR-CLI-3).
+ * Committed to the repo; `accessibility-statement check` compares a fresh computation
  * against it and fails on regressions.
  */
 

@@ -3,7 +3,7 @@
 //   node scripts/check-pack-links.mjs          # all packs
 //   node scripts/check-pack-links.mjs de fr    # selected packs
 //
-// This is a **maintainer tool**, not part of the engine. eaa-kit itself
+// This is a **maintainer tool**, not part of the engine. accessibility-statement itself
 // never touches the network (NFR-1); this script exists so a scheduled job
 // can tell us when a government reorganises its website, rather than a user
 // discovering it from a dead link in a legal document.

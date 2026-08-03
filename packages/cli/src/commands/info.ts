@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
-import { listBundledStandards } from '@eaa-kit/core';
+import { listBundledStandards } from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { listJurisdictions, resolvePacksDir } from '../resolve.js';
 
@@ -13,7 +13,7 @@ interface PackSummary {
   enforcement: string;
 }
 
-/** `eaa-kit packs` — the support matrix, from the CLI (DX-6 in text form). */
+/** `accessibility-statement packs` — the support matrix, from the CLI (DX-6 in text form). */
 export function packsCommand(args: ParsedArgs): number {
   const packsDir = resolvePacksDir(flagString(args.flags, 'packs-dir'));
   const summaries: PackSummary[] = listJurisdictions(packsDir).map((code) => {
@@ -49,7 +49,7 @@ export function packsCommand(args: ParsedArgs): number {
   const standards = listBundledStandards();
   process.stdout.write(
     `\n${summaries.length} packs · WCAG ${standards.wcag.join(', ')} · EN 301 549 ${standards.en301549.join(', ')}\n` +
-      `Missing your country? eaa-kit contrib scaffold-pack --country xx\n`
+      `Missing your country? accessibility-statement contrib scaffold-pack --country xx\n`
   );
   return 0;
 }

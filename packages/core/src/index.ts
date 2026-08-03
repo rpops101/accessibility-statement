@@ -1,17 +1,17 @@
 /**
- * @eaa-kit/core — the engine behind eaa-kit (FR-API-1).
+ * @accessibility-statement/core — the engine behind accessibility-statement (FR-API-1).
  *
  * Typical use:
  *   const evidence = loadEvidence(['axe.json'], { manualPath: 'manual.yaml' });
  *   const conformance = computeConformance(evidence);
- *   const pack = loadPack('node_modules/@eaa-kit/packs/packs/de', { fallbackTemplatesDir: '.../packs/eu' });
+ *   const pack = loadPack('node_modules/@accessibility-statement/packs/packs/de', { fallbackTemplatesDir: '.../packs/eu' });
  *   const artifact = renderArtifact(conformance, config, pack, { kind: 'statement', format: 'html', lang: 'de' });
  *
  * No network access, ever (NFR-1). Deterministic output (FR-ART-5).
  */
 
 export * from './types.js';
-export { EaaKitError, DOCS_BASE } from './util/errors.js';
+export { A11yStatementError, DOCS_BASE } from './util/errors.js';
 export { stableJson, sortKeysDeep, compareDotted, sortedUnique } from './util/stable.js';
 export { validateSchema, type SchemaIssue } from './util/microschema.js';
 
@@ -77,7 +77,7 @@ import { renderAcr, type AcrRenderOptions } from './render/acr.js';
 import { renderBurden } from './render/burden.js';
 import { renderTrace } from './render/trace.js';
 import { renderBinary as renderBinaryArtifact } from './render/binary.js';
-import { EaaKitError, DOCS_BASE } from './util/errors.js';
+import { A11yStatementError, DOCS_BASE } from './util/errors.js';
 
 /** One entry point over all artifact renderers (FR-API-1). */
 export function renderArtifact(
@@ -98,14 +98,14 @@ export function renderArtifact(
   switch (opts.kind) {
     case 'statement': {
       if (!pack) {
-        throw new EaaKitError({
+        throw new A11yStatementError({
           what: 'Rendering a statement requires a jurisdiction pack.',
           fix: 'Pass a pack loaded with loadPack(), or use the CLI which resolves packs automatically.',
           docs: `${DOCS_BASE}/packs.md`,
         });
       }
       if (opts.format !== 'html' && opts.format !== 'md') {
-        throw new EaaKitError({
+        throw new A11yStatementError({
           what: `Statement format "${opts.format}" is not supported.`,
           fix: 'Use --format html or --format md.',
           docs: `${DOCS_BASE}/artifacts.md`,
@@ -127,7 +127,7 @@ export function renderArtifact(
       });
     case 'burden': {
       if (opts.format !== 'html' && opts.format !== 'md') {
-        throw new EaaKitError({
+        throw new A11yStatementError({
           what: `Burden worksheet format "${opts.format}" is not supported.`,
           fix: 'Use --format html or --format md.',
           docs: `${DOCS_BASE}/artifacts.md`,
@@ -142,7 +142,7 @@ export function renderArtifact(
     }
     case 'trace': {
       if (opts.format !== 'html' && opts.format !== 'md' && opts.format !== 'json') {
-        throw new EaaKitError({
+        throw new A11yStatementError({
           what: `Trace format "${opts.format}" is not supported.`,
           fix: 'Use --format html, md or json.',
           docs: `${DOCS_BASE}/artifacts.md`,

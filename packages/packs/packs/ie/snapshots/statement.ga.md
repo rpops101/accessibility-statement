@@ -1,4 +1,4 @@
-> **DRÉACHT — le hathbhreithniú daonna. Ginte ag eaa-kit; ní comhairle dlí é an doiciméad seo agus ní mór do dhuine freagrach é a athbhreithniú roimh fhoilsiú.**
+> **DRÉACHT — le hathbhreithniú daonna. Ginte ag accessibility-statement; ní comhairle dlí é an doiciméad seo agus ní mór do dhuine freagrach é a athbhreithniú roimh fhoilsiú.**
 
 # Ráiteas Inrochtaineachta — Example Online Shop
 
@@ -99,4 +99,4 @@ Is féidir leat gearán a dhéanamh freisin tríd an gcainéal oifigiúil:
 
 European Union (Accessibility Requirements of Products and Services) Regulations 2023 (S.I. No. 636 of 2023) · Regulation 4 (market surveillance and compliance authorities) · Regulation 32 (offences and penalties) and Regulation 41 (complaints) · Directive (EU) 2019/882 (European Accessibility Act) · EN 301 549
 
-EN 301 549 v3.2.1 · WCAG 2.1 · Ginte le eaa-kit ó fhianaise tástála taifeadta.
+EN 301 549 v3.2.1 · WCAG 2.1 · Ginte le accessibility-statement ó fhianaise tástála taifeadta.

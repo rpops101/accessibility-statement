@@ -5,23 +5,30 @@ repository so they survive a gap in attention.
 
 ## Before making the repository public
 
-- [x] **npm availability — checked 3 August 2026, all three free.**
-      `eaa-kit`, `@eaa-kit/core` and `@eaa-kit/packs` all return 404 from the
-      registry, and the `eaa-kit` GitHub organisation is unclaimed. Nothing
-      reserves them, so claim the scope when you first publish.
+- [x] **Name chosen and availability confirmed, 3 August 2026.** The project
+      is `accessibility-statement`, with `a11y-statement` as a short CLI
+      alias. `accessibility-statement`, `@accessibility-statement/core` and
+      `@accessibility-statement/packs` were all free on npm; claim the scope
+      when you first publish.
 - [ ] **Trademark check.** Not done. "EAA" is a common initialism; a quick
       search of the EUIPO register before launch is cheap insurance.
-- [ ] **The search test.** Someone googling *"EU accessibility statement
-      generator"* or *"VPAT generator open source"* should land on this.
-      `eaa-kit` names the regulation, not the function, so consider whether
-      the npm `description` and repository topics carry the discoverable
-      words instead. Name for the query, not for the pun — renaming after
-      launch costs far more than an hour of deliberation now.
-- [ ] **Decide the final home.** Everything currently points at
-      `github.com/rpops101/eaa-kit`, which is where the code actually lives.
-      If you create an `eaa-kit` organisation and transfer, GitHub redirects
-      the old URLs automatically, but update them in the source anyway so
-      clones and npm pages are not one hop behind.
+- [x] **The search test — addressed by the rename.** The package name is now
+      the head search term itself. The README H1 is "Accessibility Statement
+      Generator", supplying the verb, and the npm descriptions and keywords
+      carry the long tail: *VPAT generator*, *ACR*, *OpenACR*,
+      *EN 301 549*, *European Accessibility Act*.
+- [ ] **Add GitHub repository topics** — GitHub topics are indexed and are
+      free discovery: `accessibility`, `a11y`, `accessibility-statement`,
+      `vpat`, `wcag`, `en-301-549`, `european-accessibility-act`,
+      `compliance`, `openacr`.
+- [ ] **Trademark still unchecked** for the new name too, though a
+      descriptive phrase is far harder for anyone to claim than a coined one.
+- [ ] **Decide the final home.** Everything points at
+      `github.com/rpops101/accessibility-statement`, which is where the code
+      lives. The `accessibility-statement` GitHub organisation was unclaimed
+      as of 3 August 2026 if you want the project to live there instead;
+      GitHub redirects old URLs after a transfer, but update them in the
+      source anyway so clones and npm pages are not one hop behind.
 - [x] **README hero image — done.** `docs/assets/demo.svg` shows the terminal
       session beside the statement it produces, above the fold. Regenerate
       with `npm run gen-demo` if the CLI output changes. It is deliberately
@@ -45,7 +52,7 @@ repository so they survive a gap in attention.
       it cannot tell you a live URL points at the wrong organisation.
 - [ ] Publish the packages: `npm publish --workspaces --access public`.
 - [ ] Publish the Action to the GitHub Marketplace, and tag `v1` so
-      `rpops101/eaa-kit/action@v1` resolves.
+      `rpops101/accessibility-statement/action@v1` resolves.
 
 ## Launch window
 
@@ -53,7 +60,7 @@ Everything inside one 48-hour window; a launch spread over two weeks reads as
 no launch at all.
 
 - [ ] **Show HN**, titled:
-      `Show HN: eaa-kit – generate the EU accessibility statement the EAA requires, from your axe results`
+      `Show HN: accessibility-statement – generate the EU accessibility statement the EAA requires, from your axe results`
       Link the repository, not a landing page.
 - [ ] Post to accessibility communities (web-a11y Slack, WebAIM list,
       relevant Mastodon and LinkedIn groups), EU-developer communities, and
@@ -83,7 +90,7 @@ no launch at all.
 
 1. Unique external contributors with merged pull requests
 2. Pack coverage across the 27 member states
-3. Downloads of `@eaa-kit/core`, particularly as a transitive dependency of
+3. Downloads of `@accessibility-statement/core`, particularly as a transitive dependency of
    another testing tool
 4. Stars — telemetry, not a target
 

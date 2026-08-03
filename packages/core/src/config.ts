@@ -1,12 +1,12 @@
 import { readFileSync } from 'node:fs';
 import { parse } from 'yaml';
 import type { EaaConfig } from './types.js';
-import { EaaKitError, DOCS_BASE } from './util/errors.js';
+import { A11yStatementError, DOCS_BASE } from './util/errors.js';
 import { validateSchema } from './util/microschema.js';
 
 /**
- * Schema for eaa.config.yaml (NFR-9: schema-validate all inputs).
- * Also published as schemas/eaa.config.schema.json for editor support.
+ * Schema for a11y-statement.config.yaml (NFR-9: schema-validate all inputs).
+ * Also published as schemas/a11y-statement.config.schema.json for editor support.
  */
 export const CONFIG_SCHEMA = {
   type: 'object',
@@ -114,19 +114,19 @@ export function parseConfig(content: string, path: string): EaaConfig {
   try {
     doc = parse(content);
   } catch (e) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${path} is not valid YAML.`,
       why: (e as Error).message,
-      fix: 'Fix the syntax or regenerate with: eaa-kit init',
+      fix: 'Fix the syntax or regenerate with: accessibility-statement init',
       docs: `${DOCS_BASE}/configuration.md`,
     });
   }
   const issues = validateSchema(doc, CONFIG_SCHEMA as unknown as Record<string, unknown>);
   if (issues.length > 0) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${path} failed validation.`,
       why: issues.map((i) => `${i.path}: ${i.message}`).join('; '),
-      fix: 'Compare against the annotated example in the docs, or regenerate with: eaa-kit init',
+      fix: 'Compare against the annotated example in the docs, or regenerate with: accessibility-statement init',
       docs: `${DOCS_BASE}/configuration.md`,
     });
   }
@@ -139,10 +139,10 @@ export function loadConfig(path: string): EaaConfig {
   try {
     content = readFileSync(path, 'utf8');
   } catch (e) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `Cannot read configuration file ${path}.`,
       why: (e as NodeJS.ErrnoException).code === 'ENOENT' ? 'The file does not exist.' : (e as Error).message,
-      fix: 'Run "eaa-kit init" to create eaa.config.yaml, or pass --config <path>.',
+      fix: 'Run "accessibility-statement init" to create a11y-statement.config.yaml, or pass --config <path>.',
       docs: `${DOCS_BASE}/configuration.md`,
     });
   }

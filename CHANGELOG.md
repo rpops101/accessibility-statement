@@ -37,10 +37,10 @@ Two project-specific rules:
 - **CLI**: `init`, `render`, `render-all`, `check`, `validate-pack`, `packs`,
   `contrib scaffold-pack`, `contrib scaffold-reader`, with `--json` on every
   command.
-- **CI regression mode**: `eaa-kit check` against a committed
-  `eaa.lock.json`, with a first-party GitHub Action, GitLab CI recipe and
+- **CI regression mode**: `accessibility-statement check` against a committed
+  `a11y-statement.lock.json`, with a first-party GitHub Action, GitLab CI recipe and
   pre-commit hook definitions.
-- **Library API**: `@eaa-kit/core` with `loadEvidence`, `computeConformance`
+- **Library API**: `@accessibility-statement/core` with `loadEvidence`, `computeConformance`
   and `renderArtifact`, typed, with one runtime dependency.
 
 ### Guarantees established in this release
@@ -50,5 +50,5 @@ Two project-specific rules:
 - No network access at runtime, verified by a CI job that stubs every
   network primitive and renders the full corpus.
 - Generated HTML passes axe-core, checked in CI.
-- At most five runtime dependencies in `@eaa-kit/core` (currently one),
+- At most five runtime dependencies in `@accessibility-statement/core` (currently one),
   enforced by a CI budget check.

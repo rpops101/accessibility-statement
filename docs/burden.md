@@ -6,7 +6,7 @@ disproportionate burden. The exemption is not self-executing: it must be
 **assessed and documented**, and the documentation must be produced on
 request.
 
-`eaa-kit render burden` generates that document from your configuration.
+`accessibility-statement render burden` generates that document from your configuration.
 
 > This page describes what the tool produces. It is not legal advice, and
 > a disproportionate-burden claim is exactly the kind of decision to take
@@ -59,7 +59,7 @@ exemptions it relies on is incomplete.
 
 **Reassessment date.** Article 14(4) requires the assessment to be renewed
 at the latest five years after it was made, when the service offering
-changes, or at the request of the market surveillance authority. eaa-kit
+changes, or at the request of the market surveillance authority. accessibility-statement
 computes the five-year date from `dates.burdenAssessment`. (A 29 February
 assessment rolls to 1 March, since the anniversary does not exist.)
 
@@ -71,5 +71,5 @@ dates you will otherwise forget. The judgement stays with you and your
 counsel — which is why every worksheet carries the draft watermark until
 someone signs it.
 
-A claim recorded in eaa-kit and reviewed annually is a considerably better
+A claim recorded in accessibility-statement and reviewed annually is a considerably better
 position than one made in an email thread nobody can find.

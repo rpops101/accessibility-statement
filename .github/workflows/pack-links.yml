@@ -5,7 +5,7 @@ name: Pack links
 # on a schedule so we find out before a user does.
 #
 # It is the only workflow that touches the network on the project's behalf.
-# eaa-kit itself never does (NFR-1) — this checks pack *data*, not the
+# accessibility-statement itself never does (NFR-1) — this checks pack *data*, not the
 # engine, and nothing it does affects a build.
 
 on:

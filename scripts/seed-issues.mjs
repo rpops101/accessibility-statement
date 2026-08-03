@@ -84,22 +84,22 @@ for (const [code, name, languages] of COUNTRIES) {
   issues.push({
     title: `pack: add the ${name} jurisdiction pack (${code})`,
     labels: ['pack', 'good first issue', 'help wanted'],
-    body: `Add the jurisdiction pack for **${name}**, so \`eaa-kit render statement --jurisdiction ${code}\` produces a statement in the national format and language.
+    body: `Add the jurisdiction pack for **${name}**, so \`accessibility-statement render statement --jurisdiction ${code}\` produces a statement in the national format and language.
 
 **No knowledge of the engine is required.** A pack is data: the national law, the enforcement body, and a translation. Roughly one evening.
 
 ### Start here
 
 \`\`\`bash
-npx eaa-kit contrib scaffold-pack --country ${code}
+npx accessibility-statement contrib scaffold-pack --country ${code}
 \`\`\`
 
 That writes the whole skeleton, including a \`TODO.md\` checklist and a test fixture. Then:
 
 1. Fill in the TODOs in \`pack.yaml\` — the national act transposing Directive (EU) 2019/882, and the market surveillance authority a user would complain to. Every claim needs an official source URL.
 2. Translate \`strings.<lang>.yaml\`. Expected language(s): **${languages}**. One is enough for Bronze.
-3. \`npx eaa-kit validate-pack packages/packs/packs/${code}\` — it lists exactly what remains.
-4. \`npm run update-snapshots -w @eaa-kit/packs -- ${code}\` and commit.
+3. \`npx accessibility-statement validate-pack packages/packs/packs/${code}\` — it lists exactly what remains.
+4. \`npm run update-snapshots -w @accessibility-statement/packs -- ${code}\` and commit.
 
 ### Definition of done
 
@@ -117,14 +117,14 @@ for (const [name, slug, docs] of READERS) {
   issues.push({
     title: `reader: support ${name} reports`,
     labels: ['reader', 'good first issue', 'help wanted'],
-    body: `Let eaa-kit read **${name}** output as evidence, so teams already using it do not have to add another scanner.
+    body: `Let accessibility-statement read **${name}** output as evidence, so teams already using it do not have to add another scanner.
 
 A reader is one self-contained file implementing \`detect()\` and \`read()\`. It never touches conformance computation or rendering.
 
 ### Start here
 
 \`\`\`bash
-npx eaa-kit contrib scaffold-reader --name ${slug}
+npx accessibility-statement contrib scaffold-reader --name ${slug}
 \`\`\`
 
 You get the module and its test, both commented with what to fill in.
@@ -143,11 +143,11 @@ Tool documentation: ${docs}
 
 for (const [name, slug] of RECIPES) {
   issues.push({
-    title: `docs: ${name} recipe for eaa-kit check`,
+    title: `docs: ${name} recipe for accessibility-statement check`,
     labels: ['docs', 'good first issue', 'help wanted'],
-    body: `Document how to run \`eaa-kit check\` on **${name}**, so the regression gate is usable outside GitHub Actions.
+    body: `Document how to run \`accessibility-statement check\` on **${name}**, so the regression gate is usable outside GitHub Actions.
 
-eaa-kit is a plain CLI with no network access, so this is a docs contribution: a working, tested configuration plus a short explanation.
+accessibility-statement is a plain CLI with no network access, so this is a docs contribution: a working, tested configuration plus a short explanation.
 
 ### Start here
 
@@ -156,7 +156,7 @@ Copy \`docs/recipes/github-actions.md\` as the shape to follow, and add \`docs/r
 ### Definition of done
 
 - [ ] A complete, copy-pasteable configuration
-- [ ] Shows caching the baseline (\`eaa.lock.json\`) and publishing the rendered artifacts
+- [ ] Shows caching the baseline (\`a11y-statement.lock.json\`) and publishing the rendered artifacts
 - [ ] You actually ran it somewhere and it worked (say so in the pull request)
 - [ ] Linked from \`docs/ci.md\``,
   });
@@ -164,7 +164,7 @@ Copy \`docs/recipes/github-actions.md\` as the shape to follow, and add \`docs/r
 
 for (const [name, code] of UI_LANGUAGES) {
   issues.push({
-    title: `i18n: translate the eaa-kit interface strings into ${name} (${code})`,
+    title: `i18n: translate the accessibility-statement interface strings into ${name} (${code})`,
     labels: ['i18n', 'good first issue', 'help wanted'],
     body: `Translate the shared artifact and interface strings into **${name}**, so packs in that language inherit correct wording instead of falling back to English.
 
@@ -194,7 +194,7 @@ Where possible use the W3C's own authorised translation of WCAG for this languag
 ### Definition of done
 
 - [ ] \`criteria:\` block added for the A and AA criteria
-- [ ] Snapshots updated (\`npm run update-snapshots -w @eaa-kit/packs\`)
+- [ ] Snapshots updated (\`npm run update-snapshots -w @accessibility-statement/packs\`)
 - [ ] You speak this language`,
   });
 }

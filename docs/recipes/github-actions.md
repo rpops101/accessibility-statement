@@ -38,10 +38,10 @@ jobs:
           npx --yes @axe-core/cli@4 http://localhost:4173 \
             --save axe.json --exit || true
         # `|| true` because the scan finding violations is not a CI failure
-        # on its own — eaa-kit check decides that against the baseline.
+        # on its own — accessibility-statement check decides that against the baseline.
 
       # 3. Generate artifacts and enforce the baseline.
-      - uses: rpops101/eaa-kit/action@v1 # use @main until v1 is tagged
+      - uses: rpops101/accessibility-statement/action@v1 # use @main until v1 is tagged
         with:
           jurisdiction: de
           lang: de
@@ -59,7 +59,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: eaa-kit-artifacts
+          name: accessibility-statement-artifacts
           path: site
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -74,15 +74,15 @@ If you would rather not add an action dependency:
 ```yaml
       - name: Accessibility conformance
         run: |
-          npm install --no-save eaa-kit @eaa-kit/packs
-          npx eaa-kit check
-          npx eaa-kit render-all --out-dir eaa-artifacts
+          npm install --no-save accessibility-statement @accessibility-statement/packs
+          npx accessibility-statement check
+          npx accessibility-statement render-all --out-dir accessibility-artifacts
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: eaa-kit-artifacts
-          path: eaa-artifacts
+          name: accessibility-statement-artifacts
+          path: accessibility-artifacts
 ```
 
 `if: always()` matters: when the check fails you especially want the
@@ -90,7 +90,7 @@ artifacts, because they show what changed.
 
 ## Scanning multiple routes
 
-eaa-kit merges evidence across files and keeps per-URL provenance:
+accessibility-statement merges evidence across files and keeps per-URL provenance:
 
 ```yaml
       - name: Scan every route
@@ -104,7 +104,7 @@ eaa-kit merges evidence across files and keeps per-URL provenance:
 ```
 
 ```yaml
-# eaa.config.yaml
+# a11y-statement.config.yaml
 evidence:
   paths:
     - "reports/"

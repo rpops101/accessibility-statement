@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import type { EvidenceFile, EvidenceModel, ManualEntry } from '../types.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { sortedUnique } from '../util/stable.js';
 import { axeReader } from './readers/axe.js';
 import { pa11yReader } from './readers/pa11y.js';
@@ -11,7 +11,7 @@ import { parseManualChecklist } from './manual.js';
  * The pluggable ingestion interface (FR-ING-6). A new format — Playwright
  * ariaSnapshot, WAVE, IBM Equal Access — is one self-contained module
  * implementing this interface plus a fixture; see docs/writing-a-reader.md
- * and `eaa-kit contrib scaffold-reader`.
+ * and `accessibility-statement contrib scaffold-reader`.
  */
 export interface EvidenceReader {
   /** Short id, used as `Finding.source` and in traces. */
@@ -53,13 +53,13 @@ function unknownFormatError(
   path: string,
   extraReaders: EvidenceReader[],
   why?: string
-): EaaKitError {
+): A11yStatementError {
   const formats = getReaders(extraReaders)
     .map((r) => `  - ${r.formatLabel}`)
     .join('\n');
-  return new EaaKitError({
+  return new A11yStatementError({
     what: `Could not recognise the evidence format of ${path}.`,
-    why: why ?? 'It parses as JSON but matches none of the supported report shapes (eaa-kit never guesses).',
+    why: why ?? 'It parses as JSON but matches none of the supported report shapes (accessibility-statement never guesses).',
     fix: `Supported formats:\n${formats}\nManual checklists (manual.yaml) are configured via evidence.manual, not evidence.paths.`,
     docs: `${DOCS_BASE}/evidence-formats.md`,
   });
@@ -82,10 +82,10 @@ export function loadEvidence(paths: string[], opts: LoadEvidenceOptions = {}): E
     try {
       content = readFileSync(p, 'utf8');
     } catch (e) {
-      throw new EaaKitError({
+      throw new A11yStatementError({
         what: `Cannot read evidence file ${p}.`,
         why: (e as NodeJS.ErrnoException).code === 'ENOENT' ? 'The file does not exist.' : (e as Error).message,
-        fix: 'Check evidence.paths in eaa.config.yaml.',
+        fix: 'Check evidence.paths in a11y-statement.config.yaml.',
         docs: `${DOCS_BASE}/evidence-formats.md`,
       });
     }
@@ -98,10 +98,10 @@ export function loadEvidence(paths: string[], opts: LoadEvidenceOptions = {}): E
     try {
       content = readFileSync(opts.manualPath, 'utf8');
     } catch (e) {
-      throw new EaaKitError({
+      throw new A11yStatementError({
         what: `Cannot read manual checklist ${opts.manualPath}.`,
         why: (e as NodeJS.ErrnoException).code === 'ENOENT' ? 'The file does not exist.' : (e as Error).message,
-        fix: 'Check evidence.manual in eaa.config.yaml, or generate a template with: eaa-kit init',
+        fix: 'Check evidence.manual in a11y-statement.config.yaml, or generate a template with: accessibility-statement init',
         docs: `${DOCS_BASE}/manual-checklist.md`,
       });
     }

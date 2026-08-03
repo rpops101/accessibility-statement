@@ -2,7 +2,7 @@
  * Actionable errors (NFR-8): what failed, why, what to do, docs link.
  * The CLI formats these without a stack trace.
  */
-export class EaaKitError extends Error {
+export class A11yStatementError extends Error {
   readonly what: string;
   readonly why?: string;
   readonly fix?: string;
@@ -10,7 +10,7 @@ export class EaaKitError extends Error {
 
   constructor(opts: { what: string; why?: string; fix?: string; docs?: string }) {
     super(opts.what);
-    this.name = 'EaaKitError';
+    this.name = 'A11yStatementError';
     this.what = opts.what;
     this.why = opts.why;
     this.fix = opts.fix;
@@ -27,4 +27,4 @@ export class EaaKitError extends Error {
   }
 }
 
-export const DOCS_BASE = 'https://github.com/rpops101/eaa-kit/blob/main/docs';
+export const DOCS_BASE = 'https://github.com/rpops101/accessibility-statement/blob/main/docs';

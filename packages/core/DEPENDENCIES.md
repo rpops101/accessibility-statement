@@ -1,4 +1,4 @@
-# Runtime dependency justification — `@eaa-kit/core`
+# Runtime dependency justification — `@accessibility-statement/core`
 
 Policy (NFR-2): at most **5** runtime dependencies, each justified here.
 Small utilities are vendored in `src/util/` and `src/render/template.ts`
@@ -6,7 +6,7 @@ instead of adding dependencies.
 
 | Dependency | Why it is a dependency and not vendored |
 | --- | --- |
-| `yaml` (^2, zero transitive deps) | All human-edited data in eaa-kit is YAML (config, manual checklist, mapping tables, jurisdiction packs, OpenACR output). A correct YAML 1.2 parser/serializer is far too large and too security-sensitive to vendor. `yaml` has no transitive dependencies. |
+| `yaml` (^2, zero transitive deps) | All human-edited data in accessibility-statement is YAML (config, manual checklist, mapping tables, jurisdiction packs, OpenACR output). A correct YAML 1.2 parser/serializer is far too large and too security-sensitive to vendor. `yaml` has no transitive dependencies. |
 
 ## Vendored instead of depended on
 

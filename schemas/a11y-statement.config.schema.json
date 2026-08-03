@@ -1,7 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/rpops101/eaa-kit/blob/main/schemas/eaa.config.schema.json",
-  "title": "eaa-kit project configuration (eaa.config.yaml)",
+  "$id": "https://github.com/rpops101/accessibility-statement/blob/main/schemas/a11y-statement.config.schema.json",
+  "title": "accessibility-statement project configuration (a11y-statement.config.yaml)",
   "type": "object",
   "required": [
     "organisation",

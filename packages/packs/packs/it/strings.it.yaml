@@ -2,10 +2,10 @@
 # Terminologia allineata alle Linee guida AgID e alla dichiarazione modello
 # della decisione di esecuzione (UE) 2018/1523.
 common:
-  draftWatermark: "BOZZA — da sottoporre a revisione umana. Generato da eaa-kit; questo documento non costituisce consulenza legale e deve essere esaminato da una persona responsabile prima della pubblicazione."
+  draftWatermark: "BOZZA — da sottoporre a revisione umana. Generato da accessibility-statement; questo documento non costituisce consulenza legale e deve essere esaminato da una persona responsabile prima della pubblicazione."
   reviewedBy: "Rivisto da"
   reviewedOn: "Rivisto il"
-  generatedBy: "Generato con eaa-kit dalle evidenze di test registrate."
+  generatedBy: "Generato con accessibility-statement dalle evidenze di test registrate."
   status:
     pass: "Conforme"
     fail: "Non conforme"

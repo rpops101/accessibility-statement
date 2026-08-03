@@ -1,4 +1,4 @@
-> **BOZZA — da sottoporre a revisione umana. Generato da eaa-kit; questo documento non costituisce consulenza legale e deve essere esaminato da una persona responsabile prima della pubblicazione.**
+> **BOZZA — da sottoporre a revisione umana. Generato da accessibility-statement; questo documento non costituisce consulenza legale e deve essere esaminato da una persona responsabile prima della pubblicazione.**
 
 # Dichiarazione di accessibilità — Negozio online Esempio
 
@@ -99,4 +99,4 @@ Può inoltre presentare un reclamo attraverso il canale ufficiale dedicato:
 
 Decreto legislativo 27 maggio 2022, n. 82 (attuazione della direttiva (UE) 2019/882) · Linee guida sull&#39;accessibilità dei servizi (EAA), AgID, versione 1.0 del 4 marzo 2026 · Legge 9 gennaio 2004, n. 4 (Legge Stanca) · Direttiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
-EN 301 549 v3.2.1 · WCAG 2.1 · Generato con eaa-kit dalle evidenze di test registrate.
+EN 301 549 v3.2.1 · WCAG 2.1 · Generato con accessibility-statement dalle evidenze di test registrate.

@@ -1,4 +1,4 @@
-> **BORRADOR — pendiente de revisión humana. Generado por eaa-kit; este documento no constituye asesoramiento jurídico y debe ser revisado por una persona responsable antes de su publicación.**
+> **BORRADOR — pendiente de revisión humana. Generado por accessibility-statement; este documento no constituye asesoramiento jurídico y debe ser revisado por una persona responsable antes de su publicación.**
 
 # Declaración de accesibilidad — Tienda en línea Ejemplo
 
@@ -98,4 +98,4 @@ También puede dirigirse al órgano competente para tramitar y sancionar la recl
 
 Ley 11/2023, de 8 de mayo, Título I (accesibilidad de determinados productos y servicios) · Real Decreto 143/2026, de 25 de febrero (Unidad Técnica de Apoyo y Coordinación) · Real Decreto Legislativo 1/2013, de 29 de noviembre (régimen sancionador supletorio, arts. 83-84) · Real Decreto 1112/2018 (accesibilidad de sitios web y aplicaciones móviles del sector público) · Directiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
-EN 301 549 v3.2.1 · WCAG 2.1 · Generado con eaa-kit a partir de las evidencias de pruebas registradas.
+EN 301 549 v3.2.1 · WCAG 2.1 · Generado con accessibility-statement a partir de las evidencias de pruebas registradas.

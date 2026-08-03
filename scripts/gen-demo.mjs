@@ -29,16 +29,16 @@ const SESSION = [
   { kind: 'cmd', text: 'ls' },
   { kind: 'out', text: 'axe.json', cls: 'dim' },
   { kind: 'gap' },
-  { kind: 'cmd', text: 'npx eaa-kit init' },
-  { kind: 'out', text: 'Wrote eaa.config.yaml', cls: 'ok' },
+  { kind: 'cmd', text: 'npx accessibility-statement init' },
+  { kind: 'out', text: 'Wrote a11y-statement.config.yaml', cls: 'ok' },
   { kind: 'out', text: 'Wrote manual.yaml', cls: 'ok' },
   { kind: 'gap' },
-  { kind: 'cmd', text: 'npx eaa-kit render statement \\' },
+  { kind: 'cmd', text: 'npx accessibility-statement render statement \\' },
   { kind: 'cont', text: '    --jurisdiction de --lang de \\' },
   { kind: 'cont', text: '    --out statement.html' },
   { kind: 'out', text: 'Wrote statement.html', cls: 'ok' },
   { kind: 'gap' },
-  { kind: 'cmd', text: 'npx eaa-kit check' },
+  { kind: 'cmd', text: 'npx accessibility-statement check' },
   { kind: 'out', text: 'No conformance changes', cls: 'ok' },
   { kind: 'out', text: 'against the baseline.', cls: 'ok' },
 ];
@@ -169,7 +169,7 @@ const doc = [];
 
 const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${WIDTH} ${HEIGHT}" width="${WIDTH}" height="${HEIGHT}" role="img" aria-labelledby="t d">
 <title id="t">Four commands turn an axe-core report into a German accessibility statement</title>
-<desc id="d">Two panels. Left, a terminal: the directory contains only axe.json; "npx eaa-kit init" writes eaa.config.yaml and manual.yaml; "npx eaa-kit render statement --jurisdiction de --lang de --out statement.html" writes statement.html; "npx eaa-kit check" reports no conformance changes against the baseline. Right, the resulting statement.html: a dashed draft notice reading "ENTWURF — zur menschlichen Prüfung. Kein Rechtsrat; vor Veröffentlichung prüfen."; the heading "Erklärung zur Barrierefreiheit"; a compliance section stating My Website is partially compliant with EN 301 549; a non-accessible content section listing WCAG 1.1.1 Nicht-Text-Inhalt against EN 301 549 clause 9.1.1.1 and WCAG 1.4.3 Kontrast (Minimum) against clause 9.1.4.3; and an enforcement section naming the Marktüberwachungsstelle der Länder (MLBF).</desc>
+<desc id="d">Two panels. Left, a terminal: the directory contains only axe.json; "npx accessibility-statement init" writes a11y-statement.config.yaml and manual.yaml; "npx accessibility-statement render statement --jurisdiction de --lang de --out statement.html" writes statement.html; "npx accessibility-statement check" reports no conformance changes against the baseline. Right, the resulting statement.html: a dashed draft notice reading "ENTWURF — zur menschlichen Prüfung. Kein Rechtsrat; vor Veröffentlichung prüfen."; the heading "Erklärung zur Barrierefreiheit"; a compliance section stating My Website is partially compliant with EN 301 549; a non-accessible content section listing WCAG 1.1.1 Nicht-Text-Inhalt against EN 301 549 clause 9.1.1.1 and WCAG 1.4.3 Kontrast (Minimum) against clause 9.1.4.3; and an enforcement section naming the Marktüberwachungsstelle der Länder (MLBF).</desc>
 <style>
 text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .m{font-size:12.5px;fill:#c9d1d9}

@@ -1,6 +1,6 @@
 # Jurisdiction packs
 
-A pack tells eaa-kit how an accessibility statement reads in one country:
+A pack tells accessibility-statement how an accessibility statement reads in one country:
 the wording, the language, the national law, and the body a user complains
 to. Packs are **data** — no code — and each is self-contained.
 
@@ -137,8 +137,8 @@ verified enforcement body fails.
 ## Validation
 
 ```bash
-npx eaa-kit validate-pack packages/packs/packs/de   # one pack
-npx eaa-kit validate-pack                           # all of them
+npx accessibility-statement validate-pack packages/packs/packs/de   # one pack
+npx accessibility-statement validate-pack                           # all of them
 ```
 
 This is the same code path CI runs (QA-6), so green locally means green in
@@ -195,7 +195,7 @@ a breaking change.
 ## Snapshots
 
 ```bash
-npm run update-snapshots -w @eaa-kit/packs -- de
+npm run update-snapshots -w @accessibility-statement/packs -- de
 ```
 
 Snapshots are committed so that a change to the engine can never silently

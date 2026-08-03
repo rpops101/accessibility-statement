@@ -1,4 +1,4 @@
-> **PROJET — à faire relire. Généré par eaa-kit ; ce document ne constitue pas un avis juridique et doit être relu par une personne responsable avant publication.**
+> **PROJET — à faire relire. Généré par accessibility-statement ; ce document ne constitue pas un avis juridique et doit être relu par une personne responsable avant publication.**
 
 # Déclaration d&#39;accessibilité — Boutique en ligne Exemple
 
@@ -99,4 +99,4 @@ Vous pouvez également signaler le problème par la voie officielle prévue à c
 
 Loi n° 2023-171 du 9 mars 2023 (DDADUE), article 16 — articles L. 412-13 et L. 511-25-1 du code de la consommation · Décret n° 2023-931 du 9 octobre 2023 relatif à l&#39;accessibilité aux personnes handicapées des produits et services · Arrêté du 9 octobre 2023 fixant les exigences en matière d&#39;accessibilité · Ordonnance n° 2023-859 du 6 septembre 2023 (article 47-1 de la loi n° 2005-102) · Article 47 de la loi n° 2005-102 du 11 février 2005 et décret n° 2019-768 (RGAA) · Directive (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
-EN 301 549 v3.2.1 · WCAG 2.1 · Généré avec eaa-kit à partir des résultats de tests enregistrés.
+EN 301 549 v3.2.1 · WCAG 2.1 · Généré avec accessibility-statement à partir des résultats de tests enregistrés.

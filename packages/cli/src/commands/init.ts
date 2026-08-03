@@ -1,21 +1,21 @@
 import { createInterface } from 'node:readline/promises';
 import { existsSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { getWcagStandard, manualChecklistTemplate, EaaKitError } from '@eaa-kit/core';
+import { getWcagStandard, manualChecklistTemplate, A11yStatementError } from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { listJurisdictions, resolvePacksDir } from '../resolve.js';
 
 /**
- * `eaa-kit init` — interactive wizard producing eaa.config.yaml (FR-CLI-1).
+ * `accessibility-statement init` — interactive wizard producing a11y-statement.config.yaml (FR-CLI-1).
  * Zero signup, zero network. Every prompt has a default so the whole
  * wizard can be completed by pressing Enter (FR-CLI-5: first artifact in
  * under five minutes). `--yes` skips prompting entirely.
  */
 export async function initCommand(args: ParsedArgs): Promise<number> {
-  const configPath = resolve(flagString(args.flags, 'config') ?? 'eaa.config.yaml');
+  const configPath = resolve(flagString(args.flags, 'config') ?? 'a11y-statement.config.yaml');
   const force = flagBool(args.flags, 'force');
   if (existsSync(configPath) && !force) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${configPath} already exists.`,
       fix: 'Edit it directly, or re-run with --force to overwrite it.',
     });
@@ -44,7 +44,7 @@ export async function initCommand(args: ParsedArgs): Promise<number> {
         const reply = (await rl.question(`${question} [${fallback}]: `)).trim();
         return reply === '' ? fallback : reply;
       };
-      process.stdout.write('eaa-kit init — nothing leaves this machine.\n\n');
+      process.stdout.write('accessibility-statement init — nothing leaves this machine.\n\n');
       answers = {
         organisation: await ask('Organisation name', defaults.organisation),
         product: await ask('Product / service name', defaults.product),
@@ -101,7 +101,7 @@ export async function initCommand(args: ParsedArgs): Promise<number> {
       );
     }
     process.stdout.write(
-      `\nNext: eaa-kit render statement --jurisdiction ${answers.jurisdiction} --lang ${languages[0] ?? 'en'}\n`
+      `\nNext: accessibility-statement render statement --jurisdiction ${answers.jurisdiction} --lang ${languages[0] ?? 'en'}\n`
     );
   }
   return 0;
@@ -134,7 +134,7 @@ interface ConfigAnswers {
 function renderConfigYaml(a: ConfigAnswers): string {
   const yamlList = (items: string[], indent = '    ') =>
     items.map((i) => `${indent}- ${JSON.stringify(i)}`).join('\n');
-  return `# eaa-kit configuration. Everything here is local: eaa-kit never
+  return `# accessibility-statement configuration. Everything here is local: accessibility-statement never
 # accesses the network (NFR-1). Full reference: docs/configuration.md
 organisation:
   name: ${JSON.stringify(a.organisation)}

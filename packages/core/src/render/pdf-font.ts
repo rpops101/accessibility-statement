@@ -1,7 +1,7 @@
 /**
  * Adobe Helvetica / Helvetica-Bold metrics and WinAnsi encoding.
  *
- * Base-14 fonts are the reason eaa-kit can emit PDF with no embedded font
+ * Base-14 fonts are the reason accessibility-statement can emit PDF with no embedded font
  * file, no browser and no dependency: every conforming PDF reader already
  * has them. Widths are the standard AFM values in 1/1000 em.
  */

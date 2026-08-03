@@ -1,5 +1,5 @@
 /**
- * A small structural accessibility checker for the HTML eaa-kit generates
+ * A small structural accessibility checker for the HTML accessibility-statement generates
  * (FR-ART-6 / QA-4).
  *
  * The repo also runs real axe-core against these artifacts in CI

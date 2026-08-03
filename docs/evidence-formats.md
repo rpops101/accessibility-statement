@@ -1,6 +1,6 @@
 # Evidence formats
 
-eaa-kit consumes reports from tools you already run. It never runs a scan
+accessibility-statement consumes reports from tools you already run. It never runs a scan
 itself — axe-core owns that job and does it better than a document
 generator would.
 
@@ -35,7 +35,7 @@ Each tool finding maps to zero or more WCAG success criteria:
 1. **The shipped mapping table** (`packages/core/data/rules/axe.yaml`) is
    authoritative for the rules it lists.
 2. **Fallback for axe:** the rule's own `wcagNNN` tags are parsed, so rules
-   released after your version of eaa-kit still work.
+   released after your version of accessibility-statement still work.
 3. **pa11y** codes embed the criterion
    (`WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail` → 1.4.3).
 4. **Lighthouse** audit ids equal axe rule ids, so they resolve through the
@@ -49,9 +49,9 @@ Mappings are data. Correcting one is a YAML pull request.
 ## Unsupported files are an error
 
 ```console
-$ eaa-kit render statement
+$ accessibility-statement render statement
 Error: Could not recognise the evidence format of reports/scan.json.
-  Why:  It parses as JSON but matches none of the supported report shapes (eaa-kit never guesses).
+  Why:  It parses as JSON but matches none of the supported report shapes (accessibility-statement never guesses).
   Fix:  Supported formats:
   - axe-core JSON (axe.run() result or array of results, axe ≥ 4.x)
   - pa11y JSON (--reporter json) or pa11y-ci JSON (pa11y ≥ 6.x)
@@ -77,7 +77,7 @@ checklist:
 ```
 
 `status` is one of `pass`, `fail`, `partial`, `not-applicable` or
-`not-evaluated`. `eaa-kit init` writes a template listing every criterion
+`not-evaluated`. `accessibility-statement init` writes a template listing every criterion
 automation cannot fully judge, each with guidance on how to check it.
 
 Manual entries take precedence over automated results — a human who looked
@@ -90,7 +90,7 @@ quietly resolved.
 New readers are one of the best contributions to the project:
 
 ```bash
-npx eaa-kit contrib scaffold-reader --name wave
+npx accessibility-statement contrib scaffold-reader --name wave
 ```
 
 See [writing-a-reader.md](writing-a-reader.md).

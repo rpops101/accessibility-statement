@@ -1,8 +1,8 @@
 # The artifacts
 
 ```bash
-eaa-kit render statement|acr|burden|trace [--format …] [--lang …] [--out …]
-eaa-kit render-all --out-dir eaa-artifacts
+accessibility-statement render statement|acr|burden|trace [--format …] [--lang …] [--out …]
+accessibility-statement render-all --out-dir accessibility-artifacts
 ```
 
 | Artifact | Formats | Default |
@@ -15,8 +15,8 @@ eaa-kit render-all --out-dir eaa-artifacts
 `docx` and `pdf` are binary and require `--out`:
 
 ```bash
-eaa-kit render statement --format docx --out statement.docx
-eaa-kit render burden --format pdf --out burden.pdf
+accessibility-statement render statement --format docx --out statement.docx
+accessibility-statement render burden --format pdf --out burden.pdf
 ```
 
 ## Word and PDF
@@ -67,7 +67,7 @@ An Accessibility Conformance Report in the **OpenACR** interchange format,
 with HTML and Markdown views over the same object.
 
 ```bash
-eaa-kit render acr --format openacr --out acr.yaml
+accessibility-statement render acr --format openacr --out acr.yaml
 ```
 
 Conformance levels use the OpenACR vocabulary: `supports`,
@@ -121,14 +121,14 @@ Every artifact carries a visible draft marker and a disclaimer until a
 named person signs off:
 
 ```bash
-eaa-kit render statement --reviewed-by "Jane Doe, Accessibility Officer" --reviewed-on 2026-12-01
+accessibility-statement render statement --reviewed-by "Jane Doe, Accessibility Officer" --reviewed-on 2026-12-01
 ```
 
 Both flags are required. One alone leaves the watermark in place — a
 document is not reviewed until there is a person *and* a date attached to
 it. The same can be recorded permanently under `review:` in the config.
 
-This is a liability control, not decoration. eaa-kit generates drafts from
+This is a liability control, not decoration. accessibility-statement generates drafts from
 evidence; it does not know whether your evidence is complete, and it does
 not give legal advice.
 

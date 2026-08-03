@@ -1,6 +1,6 @@
 import { parse } from 'yaml';
 import { DATA_FILES } from '../generated/data.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { compareDotted } from '../util/stable.js';
 import type { EnStandard, WcagStandard } from '../types.js';
 
@@ -10,8 +10,8 @@ const enCache = new Map<string, EnStandard>();
 function dataFile(key: string): string {
   const content = DATA_FILES[key];
   if (content === undefined) {
-    throw new EaaKitError({
-      what: `Standards data file "${key}" is not bundled in this build of @eaa-kit/core.`,
+    throw new A11yStatementError({
+      what: `Standards data file "${key}" is not bundled in this build of @accessibility-statement/core.`,
       why: 'The requested standard version is not shipped (yet).',
       fix: `Available: ${Object.keys(DATA_FILES)
         .filter((k) => k.startsWith('standards/'))

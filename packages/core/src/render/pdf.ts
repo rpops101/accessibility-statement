@@ -354,7 +354,7 @@ function serialize(layout: Layout, meta: PdfMeta): Uint8Array {
   objects[infoId - 1] =
     `<< /Title <${pdfTextString(meta.title)}> /Author <${pdfTextString(meta.author)}> ` +
     (meta.subject ? `/Subject <${pdfTextString(meta.subject)}> ` : '') +
-    `/Creator (eaa-kit) /Producer (eaa-kit) /CreationDate (${stamp}) /ModDate (${stamp}) >>`;
+    `/Creator (accessibility-statement) /Producer (accessibility-statement) /CreationDate (${stamp}) /ModDate (${stamp}) >>`;
 
   // Assemble with a cross-reference table.
   let pdf = '%PDF-1.7\n%âãÏÓ\n';

@@ -29,7 +29,7 @@ function run(args: string[], cwd: string): RunResult {
   const result = spawnSync(process.execPath, ['--import', TSX, CLI, ...args], {
     cwd,
     encoding: 'utf8',
-    env: { ...process.env, EAA_KIT_PACKS_DIR: PACKS },
+    env: { ...process.env, A11Y_STATEMENT_PACKS_DIR: PACKS },
   });
   return {
     code: result.status ?? -1,
@@ -39,7 +39,7 @@ function run(args: string[], cwd: string): RunResult {
 }
 
 function project(): string {
-  const dir = mkdtempSync(join(tmpdir(), 'eaa-kit-cli-'));
+  const dir = mkdtempSync(join(tmpdir(), 'accessibility-statement-cli-'));
   cpSync(AXE_FIXTURE, join(dir, 'axe.json'));
   const init = run(['init', '--yes', '--date', '2026-07-01'], dir);
   assert.equal(init.code, 0, init.stderr);
@@ -48,14 +48,14 @@ function project(): string {
 
 test('init writes a valid config and a manual checklist without prompting (FR-CLI-1)', () => {
   const dir = project();
-  assert.ok(existsSync(join(dir, 'eaa.config.yaml')));
+  assert.ok(existsSync(join(dir, 'a11y-statement.config.yaml')));
   assert.ok(existsSync(join(dir, 'manual.yaml')));
 
-  const config = readFileSync(join(dir, 'eaa.config.yaml'), 'utf8');
+  const config = readFileSync(join(dir, 'a11y-statement.config.yaml'), 'utf8');
   // The evidence file present in the directory is detected.
   assert.match(config, /axe\.json/);
   // The config is documentation as well as data.
-  assert.match(config, /# eaa-kit configuration/);
+  assert.match(config, /# accessibility-statement configuration/);
   assert.match(config, /accesses the network/);
 
   // Re-running without --force refuses rather than clobbering.
@@ -143,7 +143,7 @@ test('check creates, passes and fails on regression (FR-CLI-3, acceptance 3)', (
 
   const created = run(['check', '--update'], dir);
   assert.equal(created.code, 0, created.stderr);
-  assert.ok(existsSync(join(dir, 'eaa.lock.json')));
+  assert.ok(existsSync(join(dir, 'a11y-statement.lock.json')));
 
   const clean = run(['check'], dir);
   assert.equal(clean.code, 0, clean.stderr);
@@ -175,7 +175,7 @@ test('check creates, passes and fails on regression (FR-CLI-3, acceptance 3)', (
 });
 
 test('scaffold-pack produces a pack that fails validation only where work remains (REQ-PACK-3)', () => {
-  const dir = mkdtempSync(join(tmpdir(), 'eaa-kit-scaffold-'));
+  const dir = mkdtempSync(join(tmpdir(), 'accessibility-statement-scaffold-'));
   const target = join(dir, 'pt');
   const scaffold = run(['contrib', 'scaffold-pack', '--country', 'pt', '--out', target], dir);
   assert.equal(scaffold.code, 0, scaffold.stderr);
@@ -209,7 +209,7 @@ test('scaffold-pack produces a pack that fails validation only where work remain
 });
 
 test('scaffold-reader produces a reader skeleton and its test', () => {
-  const dir = mkdtempSync(join(tmpdir(), 'eaa-kit-reader-'));
+  const dir = mkdtempSync(join(tmpdir(), 'accessibility-statement-reader-'));
   const result = run(['contrib', 'scaffold-reader', '--name', 'wave', '--out', dir], dir);
   assert.equal(result.code, 0, result.stderr);
   const source = readFileSync(join(dir, 'wave.ts'), 'utf8');
@@ -243,12 +243,12 @@ test('packs lists the support matrix, including via --json', () => {
 });
 
 test('errors are actionable and never show a stack trace (NFR-8)', () => {
-  const dir = mkdtempSync(join(tmpdir(), 'eaa-kit-err-'));
+  const dir = mkdtempSync(join(tmpdir(), 'accessibility-statement-err-'));
 
   const noConfig = run(['render', 'statement'], dir);
   assert.equal(noConfig.code, 2);
   assert.match(noConfig.stderr, /Cannot read configuration file/);
-  assert.match(noConfig.stderr, /Fix: .*eaa-kit init/);
+  assert.match(noConfig.stderr, /Fix: .*accessibility-statement init/);
   assert.match(noConfig.stderr, /Docs: https/);
   assert.doesNotMatch(noConfig.stderr, /\bat \w+.*:\d+:\d+/, 'no stack frames');
 
@@ -306,8 +306,32 @@ test('DOCX and PDF render to real files (FR-ART-4)', () => {
   rmSync(dir, { recursive: true, force: true });
 });
 
+test('both installed binaries are the same program', () => {
+  // The package ships two bins: the searchable name and a short alias.
+  // A name-based "am I the entry point?" check silently breaks the alias,
+  // which is exactly the bug this guards.
+  const pkg = JSON.parse(
+    readFileSync(join(import.meta.dirname, '..', 'package.json'), 'utf8')
+  ) as { bin: Record<string, string> };
+  assert.deepEqual(Object.keys(pkg.bin).sort(), ['a11y-statement', 'accessibility-statement']);
+  assert.equal(new Set(Object.values(pkg.bin)).size, 1, 'both bins must point at one entry point');
+
+  const dir = mkdtempSync(join(tmpdir(), 'a11y-bin-'));
+  const entry = join(import.meta.dirname, '..', pkg.bin['accessibility-statement']!);
+  if (existsSync(entry)) {
+    // Invoke the built entry point the way npm's .bin shim does.
+    const result = spawnSync(process.execPath, [entry, '--version'], {
+      cwd: dir,
+      encoding: 'utf8',
+    });
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /^\d+\.\d+\.\d+$/m, 'the built binary must run and report a version');
+  }
+  rmSync(dir, { recursive: true, force: true });
+});
+
 test('--help and --version work without a project', () => {
-  const dir = mkdtempSync(join(tmpdir(), 'eaa-kit-help-'));
+  const dir = mkdtempSync(join(tmpdir(), 'accessibility-statement-help-'));
   const help = run(['--help'], dir);
   assert.equal(help.code, 1); // no command given
   assert.match(help.stdout, /generate the artifacts the European Accessibility Act requires/);
@@ -326,8 +350,8 @@ test('two renders of the same project are byte-identical (FR-ART-5, acceptance 5
 
   // Also across a different working directory and absolute config path,
   // which is what "two machines" reduces to for a deterministic tool.
-  const other = mkdtempSync(join(tmpdir(), 'eaa-kit-elsewhere-'));
-  const viaAbsolute = run([...args, '--config', join(dir, 'eaa.config.yaml')], other);
+  const other = mkdtempSync(join(tmpdir(), 'accessibility-statement-elsewhere-'));
+  const viaAbsolute = run([...args, '--config', join(dir, 'a11y-statement.config.yaml')], other);
   assert.equal(viaAbsolute.code, 0, viaAbsolute.stderr);
   assert.equal(viaAbsolute.stdout, run(args, dir).stdout);
 

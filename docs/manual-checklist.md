@@ -10,7 +10,7 @@ statement generated from tool output alone would overstate what you know.
 
 ## Generating the template
 
-`eaa-kit init` writes one, listing every WCAG 2.1 AA criterion automation
+`accessibility-statement init` writes one, listing every WCAG 2.1 AA criterion automation
 cannot fully judge, each with guidance:
 
 ```yaml
@@ -56,7 +56,7 @@ and Safari; focus order follows the visual order" is.
 Manual entries beat automated results: a human who looked outranks a tool
 that guessed.
 
-When a manual `pass` overrides an automated failure, eaa-kit records a
+When a manual `pass` overrides an automated failure, accessibility-statement records a
 **conflict** in the trace artifact:
 
 ```

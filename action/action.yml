@@ -1,15 +1,15 @@
-name: 'eaa-kit'
+name: 'accessibility-statement'
 description: 'Generate EU Accessibility Act artifacts and fail the build on accessibility conformance regressions.'
-author: 'eaa-kit contributors'
+author: 'accessibility-statement contributors'
 branding:
   icon: 'check-square'
   color: 'blue'
 
 inputs:
   config:
-    description: 'Path to eaa.config.yaml'
+    description: 'Path to a11y-statement.config.yaml'
     required: false
-    default: 'eaa.config.yaml'
+    default: 'a11y-statement.config.yaml'
   jurisdiction:
     description: 'Jurisdiction pack to render with (defaults to the one in the config)'
     required: false
@@ -19,7 +19,7 @@ inputs:
   lock:
     description: 'Path to the conformance baseline'
     required: false
-    default: 'eaa.lock.json'
+    default: 'a11y-statement.lock.json'
   check:
     description: 'Run the regression check and fail the job on a regression'
     required: false
@@ -31,13 +31,13 @@ inputs:
   out-dir:
     description: 'Directory to render artifacts into'
     required: false
-    default: 'eaa-artifacts'
+    default: 'accessibility-artifacts'
   comment:
     description: 'Post a conformance summary as a pull-request comment'
     required: false
     default: 'true'
   version:
-    description: 'Version of eaa-kit to run'
+    description: 'Version of accessibility-statement to run'
     required: false
     default: 'latest'
 
@@ -55,7 +55,7 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    - name: Run eaa-kit
+    - name: Run accessibility-statement
       id: run
       shell: bash
       env:
@@ -73,7 +73,7 @@ runs:
       if: ${{ inputs.render == 'true' }}
       uses: actions/upload-artifact@v4
       with:
-        name: eaa-kit-artifacts
+        name: accessibility-statement-artifacts
         path: ${{ inputs.out-dir }}
         if-no-files-found: warn
 
@@ -83,10 +83,10 @@ runs:
       with:
         script: |
           const fs = require('fs');
-          const summaryPath = process.env.EAA_KIT_SUMMARY || 'eaa-kit-summary.md';
+          const summaryPath = process.env.A11Y_STATEMENT_SUMMARY || 'accessibility-statement-summary.md';
           if (!fs.existsSync(summaryPath)) return;
           const body = fs.readFileSync(summaryPath, 'utf8');
-          const marker = '<!-- eaa-kit-summary -->';
+          const marker = '<!-- accessibility-statement-summary -->';
           const { data: comments } = await github.rest.issues.listComments({
             ...context.repo,
             issue_number: context.issue.number,

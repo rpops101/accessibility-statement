@@ -2,7 +2,7 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { parse } from 'yaml';
 import { DATA_FILES } from '../generated/data.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { validateSchema, type SchemaIssue } from '../util/microschema.js';
 import { lintTemplate } from '../render/template.js';
 import type { StringTree } from '../i18n/strings.js';
@@ -133,9 +133,9 @@ function findPlaceholders(value: unknown, path: string): SchemaIssue[] {
 export function loadPack(dir: string, opts: LoadPackOptions = {}): Pack {
   const metaPath = join(dir, 'pack.yaml');
   if (!existsSync(metaPath)) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${dir} is not a jurisdiction pack: pack.yaml is missing.`,
-      fix: 'Scaffold one with: eaa-kit contrib scaffold-pack --country <code>',
+      fix: 'Scaffold one with: accessibility-statement contrib scaffold-pack --country <code>',
       docs: `${DOCS_BASE}/packs.md`,
     });
   }
@@ -143,19 +143,19 @@ export function loadPack(dir: string, opts: LoadPackOptions = {}): Pack {
   try {
     meta = parse(readFileSync(metaPath, 'utf8'));
   } catch (e) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${metaPath} is not valid YAML.`,
       why: (e as Error).message,
-      fix: 'Fix the YAML syntax; validate with: eaa-kit validate-pack ' + dir,
+      fix: 'Fix the YAML syntax; validate with: accessibility-statement validate-pack ' + dir,
       docs: `${DOCS_BASE}/packs.md`,
     });
   }
   const issues = validatePackMeta(meta);
   if (issues.length > 0) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${metaPath} failed schema validation.`,
       why: issues.map((i) => `${i.path}: ${i.message}`).join('; '),
-      fix: 'Validate locally with: eaa-kit validate-pack ' + dir,
+      fix: 'Validate locally with: accessibility-statement validate-pack ' + dir,
       docs: `${DOCS_BASE}/packs.md`,
     });
   }
@@ -177,7 +177,7 @@ export function loadPack(dir: string, opts: LoadPackOptions = {}): Pack {
 }
 
 /**
- * Full pack validation for CI / `eaa-kit validate-pack` (QA-6): schema,
+ * Full pack validation for CI / `accessibility-statement validate-pack` (QA-6): schema,
  * template lint (logic-less, parseable), strings coverage per language.
  */
 export function validatePackDir(dir: string, opts: LoadPackOptions = {}): PackValidationResult {
@@ -187,7 +187,7 @@ export function validatePackDir(dir: string, opts: LoadPackOptions = {}): PackVa
   try {
     pack = loadPack(dir, opts);
   } catch (e) {
-    if (e instanceof EaaKitError) {
+    if (e instanceof A11yStatementError) {
       return { ok: false, issues: [{ path: '$', message: e.why ? `${e.what} (${e.why})` : e.what }], warnings };
     }
     throw e;

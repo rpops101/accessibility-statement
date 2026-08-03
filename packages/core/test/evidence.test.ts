@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import {
-  EaaKitError,
+  A11yStatementError,
   loadEvidence,
   parseManualChecklist,
   readEvidenceContent,
@@ -15,12 +15,12 @@ import {
 const FIXTURES = join(import.meta.dirname, 'fixtures');
 const fixture = (name: string) => readFileSync(join(FIXTURES, name), 'utf8');
 
-/** Run fn, assert it threw an EaaKitError, and hand the error back. */
-function catchEaaError(fn: () => unknown): EaaKitError {
+/** Run fn, assert it threw an A11yStatementError, and hand the error back. */
+function catchEaaError(fn: () => unknown): A11yStatementError {
   try {
     fn();
   } catch (e) {
-    assert.ok(e instanceof EaaKitError, `expected an EaaKitError, got ${String(e)}`);
+    assert.ok(e instanceof A11yStatementError, `expected an A11yStatementError, got ${String(e)}`);
     return e;
   }
   assert.fail('expected the call to throw');

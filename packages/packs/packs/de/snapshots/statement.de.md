@@ -1,4 +1,4 @@
-> **ENTWURF — zur menschlichen Prüfung. Erstellt mit eaa-kit; dieses Dokument stellt keine Rechtsberatung dar und muss vor der Veröffentlichung von einer verantwortlichen Person geprüft werden.**
+> **ENTWURF — zur menschlichen Prüfung. Erstellt mit accessibility-statement; dieses Dokument stellt keine Rechtsberatung dar und muss vor der Veröffentlichung von einer verantwortlichen Person geprüft werden.**
 
 # Erklärung zur Barrierefreiheit — Beispiel Online-Shop
 
@@ -100,4 +100,4 @@ Sie können außerdem ein Schlichtungsverfahren bei der zuständigen Schlichtung
 
 Barrierefreiheitsstärkungsgesetz (BFSG) vom 16. Juli 2021 · Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) vom 15. Juni 2022 · Richtlinie (EU) 2019/882 (European Accessibility Act) · EN 301 549
 
-EN 301 549 v3.2.1 · WCAG 2.1 · Erstellt mit eaa-kit aus aufgezeichneten Testnachweisen.
+EN 301 549 v3.2.1 · WCAG 2.1 · Erstellt mit accessibility-statement aus aufgezeichneten Testnachweisen.

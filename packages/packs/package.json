@@ -1,7 +1,7 @@
 {
-  "name": "@eaa-kit/packs",
+  "name": "@accessibility-statement/packs",
   "version": "0.1.0",
-  "description": "Jurisdiction packs for eaa-kit: per-member-state accessibility-statement formats, translations, legal references and enforcement-body details. Data only \u2014 no code.",
+  "description": "Per-country accessibility statement templates, translations, legal references and enforcement-body details for all EU member states. Data only.",
   "license": "MIT",
   "type": "module",
   "files": [
@@ -20,7 +20,7 @@
     "gen-schema": "node scripts/gen-schema.mjs"
   },
   "devDependencies": {
-    "@eaa-kit/core": "*",
+    "@accessibility-statement/core": "*",
     "tsx": "^4.19.0",
     "typescript": "^5.5.0"
   },
@@ -28,19 +28,23 @@
     "node": ">=20"
   },
   "keywords": [
-    "accessibility",
-    "eaa",
     "accessibility-statement",
+    "accessibility",
+    "a11y",
+    "eaa",
+    "european-accessibility-act",
     "jurisdiction",
-    "i18n"
+    "i18n",
+    "compliance",
+    "eu"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "url": "git+https://github.com/rpops101/accessibility-statement.git",
     "directory": "packages/packs"
   },
   "bugs": {
-    "url": "https://github.com/rpops101/eaa-kit/issues"
+    "url": "https://github.com/rpops101/accessibility-statement/issues"
   },
-  "homepage": "https://github.com/rpops101/eaa-kit#readme"
+  "homepage": "https://github.com/rpops101/accessibility-statement#readme"
 }

@@ -1,9 +1,9 @@
-# eaa-kit documentation
+# accessibility-statement documentation
 
 ## Using it
 
-- **[configuration.md](configuration.md)** — every field of `eaa.config.yaml`
-- **[evidence-formats.md](evidence-formats.md)** — which reports eaa-kit reads, and how findings become criteria
+- **[configuration.md](configuration.md)** — every field of `a11y-statement.config.yaml`
+- **[evidence-formats.md](evidence-formats.md)** — which reports accessibility-statement reads, and how findings become criteria
 - **[manual-checklist.md](manual-checklist.md)** — recording what tools cannot judge
 - **[artifacts.md](artifacts.md)** — the four artifacts and their formats
 - **[burden.md](burden.md)** — the Article 14 disproportionate-burden worksheet
@@ -24,6 +24,6 @@
 
 ## A standing caveat
 
-eaa-kit generates **drafts for human review**. It does not constitute legal
+accessibility-statement generates **drafts for human review**. It does not constitute legal
 advice, and it cannot know whether your evidence is complete. Every artifact
 says so, on its face, until a named person signs it off.

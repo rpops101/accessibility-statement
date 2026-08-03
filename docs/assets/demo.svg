@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 918 486" width="918" height="486" role="img" aria-labelledby="t d">
 <title id="t">Four commands turn an axe-core report into a German accessibility statement</title>
-<desc id="d">Two panels. Left, a terminal: the directory contains only axe.json; "npx eaa-kit init" writes eaa.config.yaml and manual.yaml; "npx eaa-kit render statement --jurisdiction de --lang de --out statement.html" writes statement.html; "npx eaa-kit check" reports no conformance changes against the baseline. Right, the resulting statement.html: a dashed draft notice reading "ENTWURF — zur menschlichen Prüfung. Kein Rechtsrat; vor Veröffentlichung prüfen."; the heading "Erklärung zur Barrierefreiheit"; a compliance section stating My Website is partially compliant with EN 301 549; a non-accessible content section listing WCAG 1.1.1 Nicht-Text-Inhalt against EN 301 549 clause 9.1.1.1 and WCAG 1.4.3 Kontrast (Minimum) against clause 9.1.4.3; and an enforcement section naming the Marktüberwachungsstelle der Länder (MLBF).</desc>
+<desc id="d">Two panels. Left, a terminal: the directory contains only axe.json; "npx accessibility-statement init" writes a11y-statement.config.yaml and manual.yaml; "npx accessibility-statement render statement --jurisdiction de --lang de --out statement.html" writes statement.html; "npx accessibility-statement check" reports no conformance changes against the baseline. Right, the resulting statement.html: a dashed draft notice reading "ENTWURF — zur menschlichen Prüfung. Kein Rechtsrat; vor Veröffentlichung prüfen."; the heading "Erklärung zur Barrierefreiheit"; a compliance section stating My Website is partially compliant with EN 301 549; a non-accessible content section listing WCAG 1.1.1 Nicht-Text-Inhalt against EN 301 549 clause 9.1.1.1 and WCAG 1.4.3 Kontrast (Minimum) against clause 9.1.4.3; and an enforcement section naming the Marktüberwachungsstelle der Länder (MLBF).</desc>
 <style>
 text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 .m{font-size:12.5px;fill:#c9d1d9}
@@ -30,14 +30,14 @@ text{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
 <text x="248" y="37" text-anchor="middle" class="chrome">terminal</text>
 <text x="32" y="74" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">ls</tspan></text>
 <text x="32" y="94" class="m dim">axe.json</text>
-<text x="32" y="124" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx eaa-kit init</tspan></text>
-<text x="32" y="144" class="m ok">Wrote eaa.config.yaml</text>
+<text x="32" y="124" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx accessibility-statement init</tspan></text>
+<text x="32" y="144" class="m ok">Wrote a11y-statement.config.yaml</text>
 <text x="32" y="164" class="m ok">Wrote manual.yaml</text>
-<text x="32" y="194" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx eaa-kit render statement \</tspan></text>
+<text x="32" y="194" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx accessibility-statement render statement \</tspan></text>
 <text x="32" y="214" class="m cmd">    --jurisdiction de --lang de \</text>
 <text x="32" y="234" class="m cmd">    --out statement.html</text>
 <text x="32" y="254" class="m ok">Wrote statement.html</text>
-<text x="32" y="284" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx eaa-kit check</tspan></text>
+<text x="32" y="284" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan><tspan class="cmd">npx accessibility-statement check</tspan></text>
 <text x="32" y="304" class="m ok">No conformance changes</text>
 <text x="32" y="324" class="m ok">against the baseline.</text>
 <text x="32" y="350" class="m"><tspan class="pr">~/my-project</tspan><tspan class="ar"> $ </tspan></text>

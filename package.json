@@ -1,8 +1,8 @@
 {
-  "name": "eaa-kit-monorepo",
+  "name": "accessibility-statement-monorepo",
   "private": true,
   "version": "0.1.0",
-  "description": "Open-source EU Accessibility Act conformance artifact generator (monorepo)",
+  "description": "Accessibility statement generator for the European Accessibility Act (monorepo)",
   "type": "module",
   "workspaces": [
     "packages/core",
@@ -10,9 +10,9 @@
     "packages/cli"
   ],
   "scripts": {
-    "build": "npm run build -w @eaa-kit/core -w @eaa-kit/packs -w eaa-kit && npm run gen-schemas",
-    "gen-schemas": "node scripts/gen-config-schema.mjs && npm run gen-schema -w @eaa-kit/packs",
-    "test": "npm run test -w @eaa-kit/core -w @eaa-kit/packs -w eaa-kit",
+    "build": "npm run build -w @accessibility-statement/core -w @accessibility-statement/packs -w accessibility-statement && npm run gen-schemas",
+    "gen-schemas": "node scripts/gen-config-schema.mjs && npm run gen-schema -w @accessibility-statement/packs",
+    "test": "npm run test -w @accessibility-statement/core -w @accessibility-statement/packs -w accessibility-statement",
     "lint": "tsc -p packages/core/tsconfig.json --noEmit && tsc -p packages/cli/tsconfig.json --noEmit",
     "format": "prettier --write \"packages/**/*.{ts,yaml,md}\" \"scripts/*.mjs\" \"*.md\"",
     "format:check": "prettier --check \"packages/**/*.{ts,yaml,md}\" \"scripts/*.mjs\" \"*.md\"",
@@ -30,10 +30,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpops101/eaa-kit.git"
+    "url": "git+https://github.com/rpops101/accessibility-statement.git"
   },
   "bugs": {
-    "url": "https://github.com/rpops101/eaa-kit/issues"
+    "url": "https://github.com/rpops101/accessibility-statement/issues"
   },
-  "homepage": "https://github.com/rpops101/eaa-kit#readme"
+  "homepage": "https://github.com/rpops101/accessibility-statement#readme"
 }

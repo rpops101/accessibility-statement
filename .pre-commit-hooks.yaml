@@ -4,23 +4,23 @@
 # Usage in a consuming repository's .pre-commit-config.yaml:
 #
 #   repos:
-#     - repo: https://github.com/rpops101/eaa-kit
+#     - repo: https://github.com/rpops101/accessibility-statement
 #       rev: v0.1.0
 #       hooks:
-#         - id: eaa-kit-check
+#         - id: accessibility-statement-check
 
-- id: eaa-kit-check
-  name: eaa-kit conformance check
-  description: Fail the commit when an accessibility criterion regresses against eaa.lock.json.
-  entry: eaa-kit check
+- id: accessibility-statement-check
+  name: accessibility-statement conformance check
+  description: Fail the commit when an accessibility criterion regresses against a11y-statement.lock.json.
+  entry: accessibility-statement check
   language: node
   pass_filenames: false
   files: ^(eaa\.config\.yaml|eaa\.lock\.json|manual\.yaml|.*\.json)$
 
-- id: eaa-kit-validate-pack
-  name: eaa-kit pack validation
+- id: accessibility-statement-validate-pack
+  name: accessibility-statement pack validation
   description: Validate jurisdiction packs (for repositories that carry their own packs).
-  entry: eaa-kit validate-pack
+  entry: accessibility-statement validate-pack
   language: node
   pass_filenames: false
   files: ^packs/.*/(pack\.yaml|strings\..*\.yaml)$

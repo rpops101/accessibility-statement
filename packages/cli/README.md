@@ -1,10 +1,10 @@
-# eaa-kit
+# accessibility-statement
 
 **Generate the EU accessibility statement the European Accessibility Act requires — from the axe results you already have.**
 
 ```bash
-npx eaa-kit init
-npx eaa-kit render statement --jurisdiction de --lang de --out statement.html
+npx accessibility-statement init
+npx accessibility-statement render statement --jurisdiction de --lang de --out statement.html
 ```
 
 No signup. No network access, ever. No telemetry.
@@ -25,33 +25,33 @@ itself — axe-core owns that job.
 ## Commands
 
 ```
-eaa-kit init                      Interactive wizard; writes eaa.config.yaml + manual.yaml
-eaa-kit render <artifact>         statement | acr | burden | trace
-eaa-kit render-all                Render everything into a directory
-eaa-kit check                     Compare against eaa.lock.json; non-zero on regression
-eaa-kit validate-pack [dir|code]  Validate jurisdiction packs
-eaa-kit packs                     List available jurisdictions
-eaa-kit contrib scaffold-pack     Start a new jurisdiction pack
-eaa-kit contrib scaffold-reader   Start a new evidence-format reader
+accessibility-statement init                      Interactive wizard; writes a11y-statement.config.yaml + manual.yaml
+accessibility-statement render <artifact>         statement | acr | burden | trace
+accessibility-statement render-all                Render everything into a directory
+accessibility-statement check                     Compare against a11y-statement.lock.json; non-zero on regression
+accessibility-statement validate-pack [dir|code]  Validate jurisdiction packs
+accessibility-statement packs                     List available jurisdictions
+accessibility-statement contrib scaffold-pack     Start a new jurisdiction pack
+accessibility-statement contrib scaffold-reader   Start a new evidence-format reader
 ```
 
 Add `--json` to any command for machine-readable output.
 
 ## Keeping it true
 
-`eaa-kit check` compares current conformance against a committed baseline
+`accessibility-statement check` compares current conformance against a committed baseline
 and fails the build when a criterion regresses — so the statement stays
 accurate after the day you generated it.
 
 ```console
-$ eaa-kit check
+$ accessibility-statement check
 Regressions:
   1.1.1: pass → fail
 
-1 criterion regression against eaa.lock.json.
+1 criterion regression against a11y-statement.lock.json.
 ```
 
-There is a [first-party GitHub Action](https://github.com/rpops101/eaa-kit/blob/main/docs/ci.md),
+There is a [first-party GitHub Action](https://github.com/rpops101/accessibility-statement/blob/main/docs/ci.md),
 recipes for other CI systems, and a pre-commit hook.
 
 ## Jurisdictions
@@ -61,11 +61,11 @@ model statement. **The other 22 member states are open contributions** —
 a pack is data, not code, and takes about an evening:
 
 ```bash
-npx eaa-kit contrib scaffold-pack --country pt
+npx accessibility-statement contrib scaffold-pack --country pt
 ```
 
-See the [support matrix](https://github.com/rpops101/eaa-kit#jurisdiction-support-matrix)
-and [CONTRIBUTING.md](https://github.com/rpops101/eaa-kit/blob/main/CONTRIBUTING.md).
+See the [support matrix](https://github.com/rpops101/accessibility-statement#jurisdiction-support-matrix)
+and [CONTRIBUTING.md](https://github.com/rpops101/accessibility-statement/blob/main/CONTRIBUTING.md).
 
 ## Licence
 
@@ -73,6 +73,6 @@ MIT.
 
 ---
 
-*eaa-kit generates drafts for human review. Every artifact carries a draft
+*This tool generates drafts for human review. Every artifact carries a draft
 watermark until a named person signs off with `--reviewed-by` and
 `--reviewed-on`. It does not constitute legal advice.*

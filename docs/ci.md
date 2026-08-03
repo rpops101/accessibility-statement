@@ -1,17 +1,17 @@
-# Running eaa-kit in CI
+# Running accessibility-statement in CI
 
-`eaa-kit check` turns a one-off document generator into something that
+`accessibility-statement check` turns a one-off document generator into something that
 keeps telling you the truth. It compares current conformance against a
 committed baseline and fails when a criterion regresses.
 
 ## The baseline
 
 ```bash
-eaa-kit check --update   # writes eaa.lock.json
-git add eaa.lock.json && git commit -m "Record accessibility baseline"
+accessibility-statement check --update   # writes a11y-statement.lock.json
+git add a11y-statement.lock.json && git commit -m "Record accessibility baseline"
 ```
 
-`eaa.lock.json` records one status per WCAG criterion, with sorted keys so
+`a11y-statement.lock.json` records one status per WCAG criterion, with sorted keys so
 diffs are readable:
 
 ```json
@@ -45,7 +45,7 @@ Statuses are ranked, and any move down the rank fails the build:
 When a regression is intentional, record it deliberately:
 
 ```bash
-eaa-kit check --update
+accessibility-statement check --update
 ```
 
 That produces a diff a reviewer can see and question, which is the point.
@@ -71,14 +71,14 @@ jobs:
       # Produce evidence however you already do it.
       - run: npm ci && npm run test:a11y   # writes axe.json
 
-      - uses: rpops101/eaa-kit/action@v1
+      - uses: rpops101/accessibility-statement/action@v1
         with:
           jurisdiction: de
           lang: de
 ```
 
 > **Before the first release**, no `v1` tag exists yet. Use
-> `rpops101/eaa-kit/action@main` until one is published, or pin a commit SHA
+> `rpops101/accessibility-statement/action@main` until one is published, or pin a commit SHA
 > — pinning a SHA is good practice for third-party actions regardless.
 
 The action runs `check`, uploads the rendered statement, ACR and burden
@@ -87,10 +87,10 @@ with the conformance delta.
 
 | Input | Default | Purpose |
 | --- | --- | --- |
-| `config` | `eaa.config.yaml` | Configuration file |
+| `config` | `a11y-statement.config.yaml` | Configuration file |
 | `jurisdiction` | from config | Pack to render with |
 | `lang` | from config | Statement language |
-| `lock` | `eaa.lock.json` | Baseline path |
+| `lock` | `a11y-statement.lock.json` | Baseline path |
 | `check` | `true` | Fail the job on a regression |
 | `render` | `true` | Render and upload artifacts |
 | `comment` | `true` | Post the summary on pull requests |
@@ -103,7 +103,7 @@ with the conformance delta.
 
 ## Other CI systems
 
-eaa-kit is a plain CLI with no network access, so any runner works. Recipes:
+It is a plain CLI with no network access, so any runner works. Recipes:
 
 - [GitHub Actions](recipes/github-actions.md)
 - [GitLab CI](recipes/gitlab-ci.md)
@@ -112,9 +112,9 @@ Writing a recipe for another system is a [welcome contribution](../CONTRIBUTING.
 The general shape:
 
 ```bash
-npm install --no-save eaa-kit @eaa-kit/packs
-npx eaa-kit check --json > conformance.json   # exit 1 on regression
-npx eaa-kit render-all --out-dir eaa-artifacts
+npm install --no-save accessibility-statement @accessibility-statement/packs
+npx accessibility-statement check --json > conformance.json   # exit 1 on regression
+npx accessibility-statement render-all --out-dir accessibility-artifacts
 ```
 
 Use `--json` on any command for machine-readable output.
@@ -124,10 +124,10 @@ Use `--json` on any command for machine-readable output.
 ```yaml
 # .pre-commit-config.yaml
 repos:
-  - repo: https://github.com/rpops101/eaa-kit
+  - repo: https://github.com/rpops101/accessibility-statement
     rev: v0.1.0
     hooks:
-      - id: eaa-kit-check
+      - id: accessibility-statement-check
 ```
 
 The hook runs against the evidence already in the repository. It does not
@@ -140,7 +140,7 @@ only if the reports are regenerated in the same job. The usual shape:
 
 1. Build the app.
 2. Run axe/pa11y/Lighthouse against it, writing JSON.
-3. Run `eaa-kit check`.
+3. Run `accessibility-statement check`.
 
 Checking stale evidence into the repository and never regenerating it makes
 the gate decorative.

@@ -2,10 +2,10 @@
 # Terminologie alignée sur le RGAA et la déclaration type de la décision
 # d'exécution (UE) 2018/1523.
 common:
-  draftWatermark: "PROJET — à faire relire. Généré par eaa-kit ; ce document ne constitue pas un avis juridique et doit être relu par une personne responsable avant publication."
+  draftWatermark: "PROJET — à faire relire. Généré par accessibility-statement ; ce document ne constitue pas un avis juridique et doit être relu par une personne responsable avant publication."
   reviewedBy: "Relu par"
   reviewedOn: "Relu le"
-  generatedBy: "Généré avec eaa-kit à partir des résultats de tests enregistrés."
+  generatedBy: "Généré avec accessibility-statement à partir des résultats de tests enregistrés."
   status:
     pass: "Conforme"
     fail: "Non conforme"

@@ -1,7 +1,7 @@
 /**
  * Minimal JSON-Schema-subset validator, vendored per DEPENDENCIES.md.
  *
- * Supports the subset eaa-kit's own schemas use:
+ * Supports the subset accessibility-statement's own schemas use:
  *   type, properties, required, additionalProperties (boolean),
  *   items, enum, pattern, minimum, maximum, minLength, minItems,
  *   format: "date" (ISO 8601 calendar date).

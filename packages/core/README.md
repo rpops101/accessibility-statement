@@ -1,13 +1,13 @@
-# @eaa-kit/core
+# @accessibility-statement/core
 
-The engine behind [eaa-kit](https://github.com/rpops101/eaa-kit): turn
+The engine behind [accessibility-statement](https://github.com/rpops101/accessibility-statement): turn
 accessibility test evidence into the artifacts the European Accessibility
 Act requires.
 
 **One runtime dependency.** No network access, ever. Deterministic output.
 
 ```bash
-npm install @eaa-kit/core @eaa-kit/packs
+npm install @accessibility-statement/core @accessibility-statement/packs
 ```
 
 ## Use
@@ -19,9 +19,9 @@ import {
   loadPack,
   renderArtifact,
   loadConfig,
-} from '@eaa-kit/core';
+} from '@accessibility-statement/core';
 
-const config = loadConfig('eaa.config.yaml');
+const config = loadConfig('a11y-statement.config.yaml');
 
 // 1. Ingest axe-core / pa11y / Lighthouse JSON plus a manual checklist.
 const evidence = loadEvidence(['axe.json'], { manualPath: 'manual.yaml' });
@@ -31,7 +31,7 @@ const conformance = computeConformance(evidence);
 conformance.summary.compliance; // 'full' | 'partial' | 'non-compliant'
 
 // 3. Render.
-const pack = loadPack('node_modules/@eaa-kit/packs/packs/de');
+const pack = loadPack('node_modules/@accessibility-statement/packs/packs/de');
 const statement = renderArtifact(conformance, config, pack, {
   kind: 'statement',   // 'statement' | 'acr' | 'burden' | 'trace'
   format: 'html',      // 'html' | 'md' | 'openacr' | 'json'
@@ -70,12 +70,12 @@ renders the full corpus on Linux, macOS and Windows and compares hashes.
 `buildLock` · `diffLock` · `getWcagStandard` · `getEnStandard` · `manualChecklistTemplate`
 
 Full TypeScript types are included. See
-[the documentation](https://github.com/rpops101/eaa-kit/tree/main/docs).
+[the documentation](https://github.com/rpops101/accessibility-statement/tree/main/docs).
 
 ## Dependencies
 
 One, justified in
-[DEPENDENCIES.md](https://github.com/rpops101/eaa-kit/blob/main/packages/core/DEPENDENCIES.md).
+[DEPENDENCIES.md](https://github.com/rpops101/accessibility-statement/blob/main/packages/core/DEPENDENCIES.md).
 The budget is five and a CI job enforces it.
 
 ## Licence

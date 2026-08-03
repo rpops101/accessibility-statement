@@ -2,12 +2,12 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import {
   BINARY_FORMATS,
-  EaaKitError,
+  A11yStatementError,
   DOCS_BASE,
   renderArtifact,
   type ArtifactFormat,
   type ArtifactKind,
-} from '@eaa-kit/core';
+} from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { loadProject } from '../context.js';
 import { resolvePack, resolvePacksDir } from '../resolve.js';
@@ -21,13 +21,13 @@ const DEFAULT_FORMAT: Record<ArtifactKind, ArtifactFormat> = {
   trace: 'md',
 };
 
-/** `eaa-kit render statement|acr|burden|trace` (FR-CLI-2). */
+/** `accessibility-statement render statement|acr|burden|trace` (FR-CLI-2). */
 export function renderCommand(args: ParsedArgs): number {
   const kind = args.positionals[0] as ArtifactKind | undefined;
   if (!kind || !KINDS.includes(kind)) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: kind ? `Unknown artifact "${kind}".` : 'render needs an artifact to produce.',
-      fix: `Use one of: ${KINDS.join(' | ')}. Example: eaa-kit render statement --jurisdiction de --lang de`,
+      fix: `Use one of: ${KINDS.join(' | ')}. Example: accessibility-statement render statement --jurisdiction de --lang de`,
       docs: `${DOCS_BASE}/artifacts.md`,
     });
   }
@@ -38,9 +38,9 @@ export function renderCommand(args: ParsedArgs): number {
 
   const outPathFlag = flagString(args.flags, 'out');
   if (BINARY_FORMATS.has(formatName) && !outPathFlag) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `"${formatName}" is a binary format and cannot be written to the terminal.`,
-      fix: `Use --out, for example: eaa-kit render ${kind} --format ${formatName} --out ${kind}.${formatName}`,
+      fix: `Use --out, for example: accessibility-statement render ${kind} --format ${formatName} --out ${kind}.${formatName}`,
       docs: `${DOCS_BASE}/artifacts.md`,
     });
   }
@@ -109,9 +109,9 @@ export function renderCommand(args: ParsedArgs): number {
   return 0;
 }
 
-/** `eaa-kit render-all` helper used by the GitHub Action. */
+/** `accessibility-statement render-all` helper used by the GitHub Action. */
 export function renderAllCommand(args: ParsedArgs): number {
-  const outDir = resolve(flagString(args.flags, 'out-dir') ?? 'eaa-artifacts');
+  const outDir = resolve(flagString(args.flags, 'out-dir') ?? 'accessibility-artifacts');
   const project = loadProject(args);
   const jurisdiction = flagString(args.flags, 'jurisdiction') ?? project.config.jurisdiction;
   const packsDir = resolvePacksDir(flagString(args.flags, 'packs-dir'));

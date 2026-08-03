@@ -6,7 +6,7 @@ import {
   type ConformanceModel,
   type EaaConfig,
   type EvidenceModel,
-} from '@eaa-kit/core';
+} from '@accessibility-statement/core';
 import { expandEvidencePaths } from './resolve.js';
 import { flagString, type ParsedArgs } from './args.js';
 
@@ -21,7 +21,7 @@ export interface ProjectContext {
 
 /** Load config + evidence + conformance — the shared prologue of render/check. */
 export function loadProject(args: ParsedArgs): ProjectContext {
-  const configPath = resolve(flagString(args.flags, 'config') ?? 'eaa.config.yaml');
+  const configPath = resolve(flagString(args.flags, 'config') ?? 'a11y-statement.config.yaml');
   const configDir = dirname(configPath);
   const config = loadConfig(configPath);
 

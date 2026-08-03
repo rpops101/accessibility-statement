@@ -16,7 +16,7 @@ import {
   validatePackDir,
   type Pack,
   type PackValidationResult,
-} from '@eaa-kit/core';
+} from '@accessibility-statement/core';
 
 export const PACKS_DIR = join(dirname(fileURLToPath(import.meta.url)), '..', 'packs');
 export const FALLBACK_DIR = join(PACKS_DIR, 'eu');

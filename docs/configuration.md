@@ -1,9 +1,9 @@
-# Configuration reference — `eaa.config.yaml`
+# Configuration reference — `a11y-statement.config.yaml`
 
-`eaa-kit init` writes a commented version of this file. Everything here is
-local; eaa-kit never sends it anywhere.
+`accessibility-statement init` writes a commented version of this file. Everything here is
+local; accessibility-statement never sends it anywhere.
 
-A JSON Schema ships at [`schemas/eaa.config.schema.json`](../schemas/eaa.config.schema.json)
+A JSON Schema ships at [`schemas/a11y-statement.config.schema.json`](../schemas/a11y-statement.config.schema.json)
 for editor autocomplete. It is generated from the schema the engine
 actually validates against, so it cannot drift.
 
@@ -49,13 +49,13 @@ performed — which is honest, and better than guessing.
 ### `jurisdiction` (required)
 
 Two-letter lowercase code of the jurisdiction pack, or `eu` for the generic
-EU model statement. `eaa-kit packs` lists what is available. If your country
-is missing, `eaa-kit contrib scaffold-pack --country xx` starts it.
+EU model statement. `accessibility-statement packs` lists what is available. If your country
+is missing, `accessibility-statement contrib scaffold-pack --country xx` starts it.
 
 ### `languages` (required)
 
 BCP 47 primary tags, most important first. The first is the default for
-`render`. The pack must ship each language you list — `eaa-kit render` names
+`render`. The pack must ship each language you list — `accessibility-statement render` names
 the available ones if it does not.
 
 ### `evidence` (required)
@@ -75,7 +75,7 @@ pa11y JSON and pa11y-ci JSON, Lighthouse JSON. See
 error, never a guess.
 
 `manual` points at the checklist covering criteria automation cannot judge.
-`eaa-kit init` generates a template listing every one of them with guidance.
+`accessibility-statement init` generates a template listing every one of them with guidance.
 
 ### `dates` (required)
 
@@ -160,7 +160,7 @@ An agency running many clients keeps one config per client and passes
 `--config`:
 
 ```bash
-eaa-kit render statement --config clients/acme/eaa.config.yaml --out clients/acme/statement.html
+accessibility-statement render statement --config clients/acme/a11y-statement.config.yaml --out clients/acme/statement.html
 ```
 
 Evidence paths resolve relative to the config file, not the working

@@ -6,7 +6,7 @@ body:
     id: what
     attributes:
       label: What happened
-      description: Include the exact command and the full output. eaa-kit never prints stack traces at users; if you saw one, that alone is a bug worth reporting.
+      description: Include the exact command and the full output. accessibility-statement never prints stack traces at users; if you saw one, that alone is a bug worth reporting.
     validations:
       required: true
 
@@ -31,7 +31,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: eaa-kit version and Node version
-      description: 'Output of: npx eaa-kit --version && node --version'
+      label: accessibility-statement version and Node version
+      description: 'Output of: npx accessibility-statement --version && node --version'
     validations:
       required: true

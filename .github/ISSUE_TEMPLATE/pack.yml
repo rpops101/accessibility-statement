@@ -11,10 +11,10 @@ body:
 
         Start with:
         ```bash
-        npx eaa-kit contrib scaffold-pack --country xx
+        npx accessibility-statement contrib scaffold-pack --country xx
         ```
         The scaffold writes a `TODO.md` with the full checklist, and
-        `npx eaa-kit validate-pack` tells you when you are done.
+        `npx accessibility-statement validate-pack` tells you when you are done.
 
   - type: input
     id: country

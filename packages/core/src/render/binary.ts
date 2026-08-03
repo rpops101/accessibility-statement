@@ -1,6 +1,6 @@
 import type { ConformanceModel, EaaConfig, RenderedArtifact } from '../types.js';
 import type { Pack } from '../packs/pack.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { renderTemplate } from './template.js';
 import { buildDocx } from './docx.js';
 import {
@@ -47,7 +47,7 @@ export function renderBinary(
   opts: BinaryOptions
 ): RenderedArtifact {
   if (opts.kind === 'statement' && !pack) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: 'Rendering a statement requires a jurisdiction pack.',
       fix: 'Pass a pack loaded with loadPack(), or use the CLI which resolves packs automatically.',
       docs: `${DOCS_BASE}/packs.md`,

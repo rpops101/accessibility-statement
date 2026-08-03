@@ -141,11 +141,11 @@ jobs:
         id: eaa
         uses: ./action
         with:
-          config: /tmp/sample/eaa.config.yaml
-          lock: /tmp/sample/eaa.lock.json
+          config: /tmp/sample/a11y-statement.config.yaml
+          lock: /tmp/sample/a11y-statement.lock.json
           jurisdiction: de
           lang: de
-          out-dir: /tmp/sample/eaa-artifacts
+          out-dir: /tmp/sample/accessibility-artifacts
           comment: 'false'
 
       - name: Check the action's outputs and artifacts
@@ -154,11 +154,11 @@ jobs:
           echo "compliance=${{ steps.eaa.outputs.compliance }}"
           echo "regressions=${{ steps.eaa.outputs.regressions }}"
           test "${{ steps.eaa.outputs.regressions }}" = "0"
-          test -s /tmp/sample/eaa-artifacts/statement.de.de.html
-          test -s /tmp/sample/eaa-artifacts/statement.de.de.docx
-          test -s /tmp/sample/eaa-artifacts/statement.de.de.pdf
-          test -s /tmp/sample/eaa-artifacts/acr.openacr.yaml
-          grep -q "Erklärung zur Barrierefreiheit" /tmp/sample/eaa-artifacts/statement.de.de.html
+          test -s /tmp/sample/accessibility-artifacts/statement.de.de.html
+          test -s /tmp/sample/accessibility-artifacts/statement.de.de.docx
+          test -s /tmp/sample/accessibility-artifacts/statement.de.de.pdf
+          test -s /tmp/sample/accessibility-artifacts/acr.openacr.yaml
+          grep -q "Erklärung zur Barrierefreiheit" /tmp/sample/accessibility-artifacts/statement.de.de.html
 
       # The regression gate must actually fail the build, or it is decoration.
       - name: Seed a regression and confirm the action fails
@@ -174,7 +174,7 @@ jobs:
           fs.writeFileSync('axe.json', JSON.stringify(axe, null, 2));
           EOF
           set +e
-          node "$GITHUB_WORKSPACE/packages/cli/dist/main.js" check --config eaa.config.yaml
+          node "$GITHUB_WORKSPACE/packages/cli/dist/main.js" check --config a11y-statement.config.yaml
           status=$?
           set -e
           if [ "$status" -eq 0 ]; then
@@ -198,9 +198,9 @@ jobs:
       - run: node packages/cli/dist/main.js validate-pack
       - name: Snapshots are up to date
         run: |
-          npm run update-snapshots -w @eaa-kit/packs
+          npm run update-snapshots -w @accessibility-statement/packs
           if ! git diff --exit-code -- packages/packs/packs; then
-            echo "::error::Pack snapshots are stale. Run: npm run update-snapshots -w @eaa-kit/packs"
+            echo "::error::Pack snapshots are stale. Run: npm run update-snapshots -w @accessibility-statement/packs"
             exit 1
           fi
 

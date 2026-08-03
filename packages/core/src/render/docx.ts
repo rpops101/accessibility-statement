@@ -155,7 +155,7 @@ ${meta.description ? `<dc:description>${escapeXml(meta.description)}</dc:descrip
 
 const APP_PROPS = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Properties xmlns="http://schemas.openxmlformats.org/officeDocument/2006/extended-properties">
-<Application>eaa-kit</Application>
+<Application>accessibility-statement</Application>
 </Properties>`;
 
 /** Wrap a WordprocessingML body in a complete .docx package. */

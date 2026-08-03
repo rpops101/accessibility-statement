@@ -1,32 +1,32 @@
 import { existsSync, readdirSync, statSync } from 'node:fs';
 import { dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { EaaKitError, DOCS_BASE, loadPack, type Pack } from '@eaa-kit/core';
+import { A11yStatementError, DOCS_BASE, loadPack, type Pack } from '@accessibility-statement/core';
 
 /**
- * Locate the bundled @eaa-kit/packs directory without any network access
- * (NFR-1). Checked in order: --packs-dir, EAA_KIT_PACKS_DIR, the installed
+ * Locate the bundled @accessibility-statement/packs directory without any network access
+ * (NFR-1). Checked in order: --packs-dir, A11Y_STATEMENT_PACKS_DIR, the installed
  * dependency, then the monorepo checkout (for contributors).
  */
 export function resolvePacksDir(explicit?: string): string {
   const candidates: string[] = [];
   if (explicit) candidates.push(resolve(explicit));
-  if (process.env['EAA_KIT_PACKS_DIR']) candidates.push(resolve(process.env['EAA_KIT_PACKS_DIR']));
+  if (process.env['A11Y_STATEMENT_PACKS_DIR']) candidates.push(resolve(process.env['A11Y_STATEMENT_PACKS_DIR']));
 
   const here = dirname(fileURLToPath(import.meta.url));
-  // Installed layout: node_modules/eaa-kit/dist/ → node_modules/@eaa-kit/packs/packs
-  candidates.push(resolve(here, '..', '..', '@eaa-kit', 'packs', 'packs'));
-  candidates.push(resolve(here, '..', 'node_modules', '@eaa-kit', 'packs', 'packs'));
+  // Installed layout: node_modules/accessibility-statement/dist/ → node_modules/@accessibility-statement/packs/packs
+  candidates.push(resolve(here, '..', '..', '@accessibility-statement', 'packs', 'packs'));
+  candidates.push(resolve(here, '..', 'node_modules', '@accessibility-statement', 'packs', 'packs'));
   // Monorepo layout: packages/cli/{src,dist}/ → packages/packs/packs
   candidates.push(resolve(here, '..', '..', 'packs', 'packs'));
 
   for (const dir of candidates) {
     if (existsSync(join(dir, 'eu', 'pack.yaml'))) return dir;
   }
-  throw new EaaKitError({
+  throw new A11yStatementError({
     what: 'Could not find the jurisdiction packs directory.',
     why: `Looked in: ${candidates.join(', ')}`,
-    fix: 'Install @eaa-kit/packs alongside eaa-kit, or pass --packs-dir <path>.',
+    fix: 'Install @accessibility-statement/packs alongside accessibility-statement, or pass --packs-dir <path>.',
     docs: `${DOCS_BASE}/packs.md`,
   });
 }
@@ -44,10 +44,10 @@ export function resolvePack(packsDir: string, code: string): Pack {
   const dir = join(packsDir, code);
   if (!existsSync(join(dir, 'pack.yaml'))) {
     const available = listJurisdictions(packsDir);
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `No jurisdiction pack for "${code}".`,
       why: `Available packs: ${available.join(', ')}.`,
-      fix: `Use --jurisdiction with one of those, or create the pack: eaa-kit contrib scaffold-pack --country ${code}. New packs are the most welcome contribution.`,
+      fix: `Use --jurisdiction with one of those, or create the pack: accessibility-statement contrib scaffold-pack --country ${code}. New packs are the most welcome contribution.`,
       docs: `${DOCS_BASE}/packs.md`,
     });
   }

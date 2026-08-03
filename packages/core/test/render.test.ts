@@ -14,7 +14,7 @@ import {
   renderTemplate,
   lintTemplate,
   escapeHtml,
-  EaaKitError,
+  A11yStatementError,
   type ConformanceModel,
   type EaaConfig,
   type Pack,
@@ -161,7 +161,7 @@ test('the ACR reflects manual overrides, not just tool output', () => {
 test('burden worksheet computes the 5-year reassessment date (FR-ART-3)', () => {
   assert.equal(reassessmentDate('2026-07-01'), '2031-07-01');
   assert.equal(reassessmentDate('2024-02-29'), '2029-03-01'); // no 29 Feb in 2029
-  assert.throws(() => reassessmentDate('01/07/2026'), EaaKitError);
+  assert.throws(() => reassessmentDate('01/07/2026'), A11yStatementError);
 
   const { conformance, config } = setup({
     dates: { preparation: '2026-07-01', burdenAssessment: '2026-09-15' },
@@ -252,7 +252,7 @@ test('requesting a language the pack does not ship names the alternatives', () =
     renderArtifact(conformance, config, pack, { kind: 'statement', format: 'html', lang: 'zz' });
     assert.fail('expected a throw');
   } catch (e) {
-    assert.ok(e instanceof EaaKitError);
+    assert.ok(e instanceof A11yStatementError);
     assert.match(e.why ?? '', /Available languages: en/);
     assert.match(e.fix ?? '', /strings\.zz\.yaml/);
   }

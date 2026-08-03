@@ -1,28 +1,28 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { buildLock, diffLock, serializeLock, EaaKitError, DOCS_BASE, type LockFile } from '@eaa-kit/core';
+import { buildLock, diffLock, serializeLock, A11yStatementError, DOCS_BASE, type LockFile } from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { loadProject } from '../context.js';
 
 /**
- * `eaa-kit check` — CI regression mode (FR-CLI-3).
- * Compares current conformance against the committed eaa.lock.json and
+ * `accessibility-statement check` — CI regression mode (FR-CLI-3).
+ * Compares current conformance against the committed a11y-statement.lock.json and
  * exits non-zero when a criterion regressed. `--update` rewrites the
  * baseline (the intentional-change path).
  */
 export function checkCommand(args: ParsedArgs): number {
   const project = loadProject(args);
-  const lockPath = resolve(flagString(args.flags, 'lock') ?? 'eaa.lock.json');
+  const lockPath = resolve(flagString(args.flags, 'lock') ?? 'a11y-statement.lock.json');
   const current = buildLock(project.conformance);
   const json = flagBool(args.flags, 'json');
   const update = flagBool(args.flags, 'update');
 
   if (!existsSync(lockPath)) {
     if (!update) {
-      throw new EaaKitError({
+      throw new A11yStatementError({
         what: `No conformance baseline at ${lockPath}.`,
         why: 'check compares the current run against a committed baseline; there is nothing to compare against yet.',
-        fix: 'Create and commit it: eaa-kit check --update',
+        fix: 'Create and commit it: accessibility-statement check --update',
         docs: `${DOCS_BASE}/ci.md`,
       });
     }
@@ -92,7 +92,7 @@ export function checkCommand(args: ParsedArgs): number {
 
   process.stdout.write(
     `\n${diff.regressions.length} criterion regression${diff.regressions.length === 1 ? '' : 's'} against ${lockPath}.\n` +
-      `Fix the underlying issues, or record the new baseline deliberately with: eaa-kit check --update\n`
+      `Fix the underlying issues, or record the new baseline deliberately with: accessibility-statement check --update\n`
   );
   return 1;
 }
@@ -102,18 +102,18 @@ function readLock(path: string): LockFile {
   try {
     parsed = JSON.parse(readFileSync(path, 'utf8'));
   } catch (e) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `${path} is not valid JSON.`,
       why: (e as Error).message,
-      fix: 'Restore it from version control, or regenerate with: eaa-kit check --update',
+      fix: 'Restore it from version control, or regenerate with: accessibility-statement check --update',
       docs: `${DOCS_BASE}/ci.md`,
     });
   }
   const lock = parsed as Partial<LockFile>;
   if (lock.lockVersion !== 1 || typeof lock.criteria !== 'object' || lock.criteria === null) {
-    throw new EaaKitError({
-      what: `${path} is not an eaa-kit lock file (lockVersion 1).`,
-      fix: 'Regenerate with: eaa-kit check --update',
+    throw new A11yStatementError({
+      what: `${path} is not an accessibility-statement lock file (lockVersion 1).`,
+      fix: 'Regenerate with: accessibility-statement check --update',
       docs: `${DOCS_BASE}/ci.md`,
     });
   }

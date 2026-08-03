@@ -1,7 +1,7 @@
 {
   "_comment": [
     "Structural schema for OpenACR output, expressed in the JSON-Schema subset",
-    "eaa-kit's own validator supports. It encodes the field names, types and",
+    "accessibility-statement's own validator supports. It encodes the field names, types and",
     "adherence vocabulary of the GSA OpenACR format (https://github.com/GSA/openacr)",
     "so `render acr --format openacr` is checked offline, in every CI run.",
     "It is a conformance check of our output shape, not a vendored copy of the",

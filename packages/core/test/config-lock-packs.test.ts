@@ -17,14 +17,14 @@ import {
   sortKeysDeep,
   compareDotted,
   validateSchema,
-  EaaKitError,
+  A11yStatementError,
   type LockFile,
 } from '../src/index.js';
 
 const PACKS = join(import.meta.dirname, '..', '..', 'packs', 'packs');
 
 function tempDir(): string {
-  return mkdtempSync(join(tmpdir(), 'eaa-kit-test-'));
+  return mkdtempSync(join(tmpdir(), 'accessibility-statement-test-'));
 }
 
 const MINIMAL_CONFIG = `
@@ -53,7 +53,7 @@ evidence: {}
 dates:
   preparation: "01/07/2026"
 `,
-      'eaa.config.yaml'
+      'a11y-statement.config.yaml'
     )
   );
   const why = err.why ?? '';
@@ -66,14 +66,14 @@ dates:
 });
 
 test('a minimal valid config parses', () => {
-  const config = parseConfig(MINIMAL_CONFIG, 'eaa.config.yaml');
+  const config = parseConfig(MINIMAL_CONFIG, 'a11y-statement.config.yaml');
   assert.equal(config.organisation.name, 'Test Org');
   assert.deepEqual(config.languages, ['de']);
 });
 
 test('a missing config file points at init', () => {
   const err = catchError(() => loadConfig(join(tempDir(), 'nope.yaml')));
-  assert.match(err.fix ?? '', /eaa-kit init/);
+  assert.match(err.fix ?? '', /accessibility-statement init/);
 });
 
 test('lock file records one status per criterion and serializes stably', () => {
@@ -288,11 +288,11 @@ test('microschema validates the constructs our schemas use', () => {
   assert.deepEqual(messages({ a: 'ok', extra: 1 }), ['$.extra: unknown property']);
 });
 
-function catchError(fn: () => unknown): EaaKitError {
+function catchError(fn: () => unknown): A11yStatementError {
   try {
     fn();
   } catch (e) {
-    assert.ok(e instanceof EaaKitError, `expected EaaKitError, got ${String(e)}`);
+    assert.ok(e instanceof A11yStatementError, `expected A11yStatementError, got ${String(e)}`);
     return e;
   }
   assert.fail('expected the call to throw');

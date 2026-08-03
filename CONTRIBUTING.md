@@ -1,4 +1,4 @@
-# Contributing to eaa-kit
+# Contributing to accessibility-statement
 
 **The smallest valid contribution: a Bronze jurisdiction pack for one country — about 2 files and one evening, with no knowledge of the engine required.**
 
@@ -9,8 +9,8 @@ If your country is missing from the [support matrix](README.md#jurisdiction-supp
 ## Set up (one step)
 
 ```bash
-git clone https://github.com/rpops101/eaa-kit
-cd eaa-kit
+git clone https://github.com/rpops101/accessibility-statement
+cd accessibility-statement
 npm install && npm test
 ```
 
@@ -24,7 +24,7 @@ There is a devcontainer, so **Code → Codespaces → Create codespace** also wo
 
 ### What it is
 
-A directory of **data** — no code — that tells eaa-kit how an accessibility statement reads in your country:
+A directory of **data** — no code — that tells accessibility-statement how an accessibility statement reads in your country:
 
 ```
 packages/packs/packs/pt/
@@ -37,7 +37,7 @@ packages/packs/packs/pt/
 ### How to make one
 
 ```bash
-npx eaa-kit contrib scaffold-pack --country pt
+npx accessibility-statement contrib scaffold-pack --country pt
 ```
 
 That writes the whole skeleton, including a `TODO.md` checklist. Then:
@@ -46,16 +46,16 @@ That writes the whole skeleton, including a `TODO.md` checklist. Then:
 2. **Translate `strings.<lang>.yaml`.** Keys stay, text changes. Delete any key you want left in English; unset keys fall back to English, so a partial translation is valid. Prefer the wording your national authority already uses over a literal translation.
 3. **Check your work.**
    ```bash
-   npx eaa-kit validate-pack packages/packs/packs/pt
+   npx accessibility-statement validate-pack packages/packs/packs/pt
    ```
    This is the same code CI runs, so green locally means green in CI. It lists exactly what remains — an unfinished scaffold fails until every `TODO` is gone.
 4. **Read the rendered statement.** You are the first person who can judge whether it sounds like a real statement in your language:
    ```bash
-   npx eaa-kit render statement --config packages/packs/packs/pt/fixture/config.yaml --jurisdiction pt --lang pt
+   npx accessibility-statement render statement --config packages/packs/packs/pt/fixture/config.yaml --jurisdiction pt --lang pt
    ```
 5. **Commit the snapshots** so future changes to the engine can never silently alter your country's statement:
    ```bash
-   npm run update-snapshots -w @eaa-kit/packs -- pt
+   npm run update-snapshots -w @accessibility-statement/packs -- pt
    ```
 6. **Add yourself** to `maintainers` in `pack.yaml` and to [CODEOWNERS](.github/CODEOWNERS). You then get review standing on your own jurisdiction — nobody changes your country's wording without you.
 
@@ -84,19 +84,19 @@ Bronze is a complete, mergeable contribution. Start there.
 
 ## Contribution unit 2: an evidence reader
 
-Support a tool eaa-kit does not read yet — Playwright's `ariaSnapshot`, WAVE, IBM Equal Access, your in-house checker:
+Support a tool accessibility-statement does not read yet — Playwright's `ariaSnapshot`, WAVE, IBM Equal Access, your in-house checker:
 
 ```bash
-npx eaa-kit contrib scaffold-reader --name wave
+npx accessibility-statement contrib scaffold-reader --name wave
 ```
 
 You get the module and its test, both commented with what to fill in. A reader is one file implementing `detect()` and `read()`; it never touches conformance computation or rendering. Save a **real** report from the tool as the fixture — real output catches shapes hand-written JSON never will. See [docs/writing-a-reader.md](docs/writing-a-reader.md).
 
-The one hard rule: `detect()` must be strict. A reader that claims another tool's file silently mis-parses somebody's compliance evidence. eaa-kit refuses to guess, and so must your reader.
+The one hard rule: `detect()` must be strict. A reader that claims another tool's file silently mis-parses somebody's compliance evidence. It refuses to guess, and so must your reader.
 
 ## Contribution unit 3: translations of the tool itself
 
-The CLI and the shared artifact strings use the same i18n layer packs use ([`packages/core/data/strings/`](packages/core/data/strings)). Adding `strings/nl.yaml` translates eaa-kit itself into Dutch. Pure data, no build step.
+The CLI and the shared artifact strings use the same i18n layer packs use ([`packages/core/data/strings/`](packages/core/data/strings)). Adding `strings/nl.yaml` translates accessibility-statement itself into Dutch. Pure data, no build step.
 
 WCAG criterion *names* are separately translatable per pack under a `criteria:` key — see [`packs/de/strings.de.yaml`](packages/packs/packs/de/strings.de.yaml) for a worked example. Translating those for your language is a well-scoped afternoon.
 
@@ -106,7 +106,7 @@ A documented, tested recipe for GitLab CI, CircleCI, Jenkins, Azure Pipelines or
 
 ## Contribution unit 5: the engine
 
-Core work is welcome too — see issues labelled `core`. Read [docs/architecture.md](docs/architecture.md) first. Core changes need tests, and coverage on `@eaa-kit/core` must stay at or above 90%.
+Core work is welcome too — see issues labelled `core`. Read [docs/architecture.md](docs/architecture.md) first. Core changes need tests, and coverage on `@accessibility-statement/core` must stay at or above 90%.
 
 ---
 
@@ -123,7 +123,7 @@ This tool produces documents with legal weight in a regime with real penalties. 
   happened to share an acronym with the German accessibility authority.
 - **Be conservative.** When unsure whether wording is required or optional, include it and say it is included.
 - **Never remove the draft watermark machinery.** The disclaimer and the "reviewed by" requirement are liability controls, not decoration.
-- **We are not lawyers, and neither is the tool.** eaa-kit generates drafts for human review. Keep language in every artifact consistent with that.
+- **We are not lawyers, and neither is the tool.** This tool generates drafts for human review. Keep language in every artifact consistent with that.
 
 ### AI assistance: disclose it
 

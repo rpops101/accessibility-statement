@@ -15,7 +15,7 @@ evidence (axe / pa11y / lighthouse JSON, manual.yaml)
         │              │
         │        [Jurisdiction packs]  ←── contributor unit: 27+ states
         │
-   outputs: HTML · MD · OpenACR YAML/JSON   (+ eaa.lock.json baseline)
+   outputs: HTML · MD · OpenACR YAML/JSON   (+ a11y-statement.lock.json baseline)
 ```
 
 Each arrow is one-way. Renderers never read evidence files; readers never
@@ -26,9 +26,9 @@ contributor units self-contained.
 
 | Package | Contents | Why separate |
 | --- | --- | --- |
-| `@eaa-kit/core` | The engine | One runtime dependency, so tools can take it transitively without inheriting a dependency tree |
-| `@eaa-kit/packs` | Jurisdiction data | Versioned independently: a translation release must not bump the engine |
-| `eaa-kit` | CLI | A thin wrapper; every command maps to a library call |
+| `@accessibility-statement/core` | The engine | One runtime dependency, so tools can take it transitively without inheriting a dependency tree |
+| `@accessibility-statement/packs` | Jurisdiction data | Versioned independently: a translation release must not bump the engine |
+| `accessibility-statement` | CLI | A thin wrapper; every command maps to a library call |
 
 ## The pipeline
 

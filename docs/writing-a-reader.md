@@ -5,7 +5,7 @@ self-contained contribution: one module, one test, one fixture. It never
 touches conformance computation, rendering or packs.
 
 ```bash
-npx eaa-kit contrib scaffold-reader --name wave
+npx accessibility-statement contrib scaffold-reader --name wave
 ```
 
 ## The interface
@@ -14,7 +14,7 @@ npx eaa-kit contrib scaffold-reader --name wave
 export interface EvidenceReader {
   /** Short id, used as Finding.source and in trace output. */
   name: string;
-  /** Human-readable label, shown when eaa-kit cannot recognise a file. */
+  /** Human-readable label, shown when accessibility-statement cannot recognise a file. */
   formatLabel: string;
   /** True only if the parsed JSON is this reader's format. */
   detect(parsed: unknown, path: string): boolean;
@@ -46,7 +46,7 @@ detect: (parsed) => Array.isArray(parsed),   // matches half the ecosystem
 ```
 
 If two formats are genuinely indistinguishable, say so in the pull request
-rather than picking one — eaa-kit would rather refuse a file than guess at
+rather than picking one — accessibility-statement would rather refuse a file than guess at
 it.
 
 ## `read`

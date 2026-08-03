@@ -1,11 +1,12 @@
 {
-  "name": "eaa-kit",
+  "name": "accessibility-statement",
   "version": "0.1.0",
-  "description": "Generate the artifacts the European Accessibility Act requires \u2014 accessibility statement, ACR/VPAT (OpenACR), disproportionate-burden worksheet \u2014 from your existing axe/pa11y/Lighthouse results. No network, no signup.",
+  "description": "Accessibility statement generator for the European Accessibility Act. Generate an EU accessibility statement, a VPAT 2.5 / ACR conformance report (OpenACR) and an Article 14 disproportionate-burden worksheet from your axe-core, pa11y or Lighthouse results. Offline, deterministic, no signup.",
   "license": "MIT",
   "type": "module",
   "bin": {
-    "eaa-kit": "./dist/main.js"
+    "accessibility-statement": "./dist/main.js",
+    "a11y-statement": "./dist/main.js"
   },
   "files": [
     "dist",
@@ -16,8 +17,8 @@
     "test": "node ../../scripts/run-tests.mjs test"
   },
   "dependencies": {
-    "@eaa-kit/core": "*",
-    "@eaa-kit/packs": "*"
+    "@accessibility-statement/core": "*",
+    "@accessibility-statement/packs": "*"
   },
   "devDependencies": {
     "tsx": "^4.19.0",
@@ -27,23 +28,33 @@
     "node": ">=20"
   },
   "keywords": [
+    "accessibility-statement",
+    "accessibility-statement-generator",
+    "a11y",
     "accessibility",
     "eaa",
     "european-accessibility-act",
-    "accessibility-statement",
-    "vpat",
-    "openacr",
     "en-301-549",
     "wcag",
+    "wcag21",
+    "vpat",
+    "vpat-generator",
+    "acr",
+    "openacr",
+    "compliance",
+    "a11y-testing",
+    "axe-core",
+    "pa11y",
+    "lighthouse",
     "cli"
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rpops101/eaa-kit.git",
+    "url": "git+https://github.com/rpops101/accessibility-statement.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/rpops101/eaa-kit/issues"
+    "url": "https://github.com/rpops101/accessibility-statement/issues"
   },
-  "homepage": "https://github.com/rpops101/eaa-kit#readme"
+  "homepage": "https://github.com/rpops101/accessibility-statement#readme"
 }

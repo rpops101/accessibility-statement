@@ -15,8 +15,8 @@
 ## Checklist
 
 - [ ] `npm test` passes locally
-- [ ] For a pack: `npx eaa-kit validate-pack packages/packs/packs/<code>` is clean
-- [ ] For a pack: snapshots committed (`npm run update-snapshots -w @eaa-kit/packs -- <code>`)
+- [ ] For a pack: `npx accessibility-statement validate-pack packages/packs/packs/<code>` is clean
+- [ ] For a pack: snapshots committed (`npm run update-snapshots -w @accessibility-statement/packs -- <code>`)
 - [ ] For a pack: I added myself to `maintainers` in `pack.yaml` and to `.github/CODEOWNERS`
 - [ ] I read the rendered artifact and it reads naturally
 

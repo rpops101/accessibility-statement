@@ -1,6 +1,6 @@
 import type { ConformanceModel, EaaConfig, RenderedArtifact } from '../types.js';
 import type { Pack } from '../packs/pack.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { resolveStrings, type StringTree } from '../i18n/strings.js';
 import { renderTemplate } from './template.js';
 
@@ -33,7 +33,7 @@ export function buildStatementView(
 ): Record<string, unknown> {
   const lang = opts.lang ?? pack.meta.defaultLanguage;
   if (!pack.meta.languages.includes(lang)) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `Pack "${pack.meta.country}" does not ship language "${lang}".`,
       why: `Available languages: ${pack.meta.languages.join(', ')}.`,
       fix: `Pass --lang with one of the available languages, or contribute the translation (strings.${lang}.yaml).`,
@@ -180,9 +180,9 @@ export function renderStatement(
   const templateName = `statement.${opts.format}`;
   const template = pack.templates[templateName];
   if (!template) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `Pack "${pack.meta.country}" has no ${templateName}.mustache template (and no fallback was found).`,
-      fix: 'Pass the packs directory of @eaa-kit/packs, or add the template to the pack.',
+      fix: 'Pass the packs directory of @accessibility-statement/packs, or add the template to the pack.',
       docs: `${DOCS_BASE}/packs.md`,
     });
   }

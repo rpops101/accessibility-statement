@@ -1,10 +1,10 @@
 # Aistriúchán Gaeilge — dréacht ó na cothabhálaithe atá ag fanacht ar
 # athbhreithniú ó chainteoir dúchais (riachtanas Óir an scála cáilíochta).
 common:
-  draftWatermark: "DRÉACHT — le hathbhreithniú daonna. Ginte ag eaa-kit; ní comhairle dlí é an doiciméad seo agus ní mór do dhuine freagrach é a athbhreithniú roimh fhoilsiú."
+  draftWatermark: "DRÉACHT — le hathbhreithniú daonna. Ginte ag accessibility-statement; ní comhairle dlí é an doiciméad seo agus ní mór do dhuine freagrach é a athbhreithniú roimh fhoilsiú."
   reviewedBy: "Athbhreithnithe ag"
   reviewedOn: "Athbhreithnithe an"
-  generatedBy: "Ginte le eaa-kit ó fhianaise tástála taifeadta."
+  generatedBy: "Ginte le accessibility-statement ó fhianaise tástála taifeadta."
   status:
     pass: "Comhlíonann"
     fail: "Ní chomhlíonann"

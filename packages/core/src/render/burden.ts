@@ -2,7 +2,7 @@ import type { EaaConfig, RenderedArtifact } from '../types.js';
 import { resolveStrings } from '../i18n/strings.js';
 import { htmlPage } from './html.js';
 import { escapeHtml } from './template.js';
-import { EaaKitError, DOCS_BASE } from '../util/errors.js';
+import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 
 /**
  * Disproportionate-burden worksheet (FR-ART-3): Article 14 EAA.
@@ -14,9 +14,9 @@ import { EaaKitError, DOCS_BASE } from '../util/errors.js';
 export function reassessmentDate(assessmentIso: string): string {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(assessmentIso);
   if (!m) {
-    throw new EaaKitError({
+    throw new A11yStatementError({
       what: `"${assessmentIso}" is not an ISO date (YYYY-MM-DD).`,
-      fix: 'Set dates.burdenAssessment (or dates.preparation) in eaa.config.yaml.',
+      fix: 'Set dates.burdenAssessment (or dates.preparation) in a11y-statement.config.yaml.',
       docs: `${DOCS_BASE}/burden.md`,
     });
   }

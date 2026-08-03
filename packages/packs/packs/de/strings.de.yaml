@@ -2,10 +2,10 @@
 # Terminologie orientiert sich am BFSG und an der Muster-Erklärung des
 # Durchführungsbeschlusses (EU) 2018/1523.
 common:
-  draftWatermark: "ENTWURF — zur menschlichen Prüfung. Erstellt mit eaa-kit; dieses Dokument stellt keine Rechtsberatung dar und muss vor der Veröffentlichung von einer verantwortlichen Person geprüft werden."
+  draftWatermark: "ENTWURF — zur menschlichen Prüfung. Erstellt mit accessibility-statement; dieses Dokument stellt keine Rechtsberatung dar und muss vor der Veröffentlichung von einer verantwortlichen Person geprüft werden."
   reviewedBy: "Geprüft von"
   reviewedOn: "Geprüft am"
-  generatedBy: "Erstellt mit eaa-kit aus aufgezeichneten Testnachweisen."
+  generatedBy: "Erstellt mit accessibility-statement aus aufgezeichneten Testnachweisen."
   status:
     pass: "Konform"
     fail: "Nicht konform"

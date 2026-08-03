@@ -55,7 +55,7 @@ deadlines:
     or both. Regulation 34 provides a due diligence defence.
 quality: silver
 maintainers:
-  - eaa-kit maintainers
+  - accessibility-statement maintainers
 notes: >-
   The Irish-language (ga) strings are a maintainer draft awaiting
   native-speaker review — reaching Gold requires that review (see the pack
