@@ -20,6 +20,7 @@
 - **[architecture.md](architecture.md)** — how the engine fits together
 - **[../MAINTAINERS.md](../MAINTAINERS.md)** — process commitments and releasing
 - **[../SECURITY.md](../SECURITY.md)** — threat model and reporting
+- **[launch-checklist.md](launch-checklist.md)** — distribution, naming and funding steps that are process rather than code
 
 ## A standing caveat
 
