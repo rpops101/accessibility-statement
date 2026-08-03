@@ -5,6 +5,7 @@ import { cpSync, existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } 
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
 
 /**
  * CLI integration tests: the CLI is exercised as a subprocess so exit
@@ -16,8 +17,9 @@ const CLI = join(import.meta.dirname, '..', 'src', 'main.ts');
 const PACKS = join(import.meta.dirname, '..', '..', 'packs', 'packs');
 const AXE_FIXTURE = join(PACKS, 'eu', 'fixture', 'axe.json');
 // Absolute, because every run happens in a throwaway project directory
-// where a bare "tsx" specifier would not resolve.
-const TSX = createRequire(import.meta.url).resolve('tsx');
+// where a bare "tsx" specifier would not resolve — and as a file:// URL,
+// because Node's ESM loader rejects a bare "D:\..." on Windows.
+const TSX = pathToFileURL(createRequire(import.meta.url).resolve('tsx')).href;
 
 interface RunResult {
   code: number;

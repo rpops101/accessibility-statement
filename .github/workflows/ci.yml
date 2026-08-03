@@ -55,12 +55,14 @@ jobs:
       # Every OS renders the same fixtures; the hashes are compared below.
       - name: Render the fixture corpus
         run: node scripts/render-corpus.mjs corpus-out
+      # Hashed in Node rather than with shell tools: shasum is absent on the
+      # Windows runners, and the path separator would otherwise make the
+      # manifests differ across platforms even when the bytes match.
       - name: Hash the output
+        run: node scripts/hash-dir.mjs corpus-out > hashes-${{ matrix.os }}.txt
+      - name: Show the manifest
         shell: bash
-        run: |
-          cd corpus-out
-          find . -type f | sort | xargs shasum -a 256 > ../hashes-${{ matrix.os }}.txt
-          cat ../hashes-${{ matrix.os }}.txt
+        run: cat hashes-${{ matrix.os }}.txt
       - uses: actions/upload-artifact@v4
         with:
           name: hashes-${{ matrix.os }}
