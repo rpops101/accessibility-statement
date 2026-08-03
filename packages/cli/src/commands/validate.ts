@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { basename, join, resolve } from 'node:path';
 import { validatePackDir, A11yStatementError, DOCS_BASE } from '@accessibility-statement/core';
 import { flagBool, flagString, type ParsedArgs } from '../args.js';
 import { listJurisdictions, resolvePacksDir } from '../resolve.js';
@@ -42,7 +42,9 @@ export function validatePackCommand(args: ParsedArgs): number {
   }
 
   for (const result of results) {
-    const label = result.dir.slice(result.dir.lastIndexOf('/') + 1);
+    // basename, not a manual '/' search: Windows separates with '\\',
+    // where lastIndexOf('/') is -1 and the label becomes the whole path.
+    const label = basename(result.dir);
     if (result.ok && result.warnings.length === 0) {
       process.stdout.write(`  ok       ${label}\n`);
       continue;

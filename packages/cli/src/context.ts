@@ -32,7 +32,9 @@ export function loadProject(args: ParsedArgs): ProjectContext {
       : resolve(configDir, config.evidence.manual)
     : undefined;
 
-  const evidence = loadEvidence(evidencePaths, { manualPath });
+  // Paths are recorded relative to the project so trace output is the
+  // same on every machine (FR-ART-5).
+  const evidence = loadEvidence(evidencePaths, { manualPath, basePath: configDir });
   const conformance = computeConformance(evidence, {
     wcagVersion: config.standards?.wcag,
     enVersion: config.standards?.en301549,

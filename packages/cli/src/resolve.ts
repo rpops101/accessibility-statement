@@ -1,5 +1,5 @@
 import { existsSync, readdirSync, statSync } from 'node:fs';
-import { dirname, isAbsolute, join, resolve } from 'node:path';
+import { basename, dirname, isAbsolute, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { A11yStatementError, DOCS_BASE, loadPack, type Pack } from '@accessibility-statement/core';
 
@@ -80,7 +80,9 @@ export function expandEvidencePaths(patterns: string[], baseDir: string): string
     const recursive = rest.startsWith('**');
     const filePattern = recursive ? rest.replace(/^\*\*\/?/, '') || '*.json' : rest;
     for (const file of walk(dir, recursive)) {
-      if (matchesSegment(file.slice(file.lastIndexOf('/') + 1), filePattern)) out.add(file);
+      // basename, because walk() joins with the platform separator and
+      // Windows would otherwise never match a filename pattern.
+      if (matchesSegment(basename(file), filePattern)) out.add(file);
     }
   }
   return [...out].sort();

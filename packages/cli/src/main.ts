@@ -104,6 +104,16 @@ export async function run(argv: string[]): Promise<number> {
 
 /** Entry point: formats errors as guidance, never as stack traces (NFR-8). */
 export async function main(argv: string[]): Promise<number> {
+  // `... | head` closes stdout early. Without this the process dies with an
+  // unhandled EPIPE and a stack trace, which is exactly what NFR-8 forbids;
+  // the correct behaviour is to stop quietly, as every other CLI does.
+  const onPipeError = (error: NodeJS.ErrnoException) => {
+    if (error.code === 'EPIPE') process.exit(0);
+    throw error;
+  };
+  process.stdout.on('error', onPipeError);
+  process.stderr.on('error', onPipeError);
+
   try {
     return await run(argv);
   } catch (error) {

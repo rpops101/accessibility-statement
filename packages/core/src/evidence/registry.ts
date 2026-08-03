@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { isAbsolute, relative, sep } from 'node:path';
 import type { EvidenceFile, EvidenceModel, ManualEntry } from '../types.js';
 import { A11yStatementError, DOCS_BASE } from '../util/errors.js';
 import { sortedUnique } from '../util/stable.js';
@@ -70,6 +71,19 @@ export interface LoadEvidenceOptions {
   readers?: EvidenceReader[];
   /** Path to a manual.yaml checklist. */
   manualPath?: string;
+  /**
+   * Record evidence paths relative to this directory, using forward
+   * slashes, instead of verbatim.
+   *
+   * The trace artifact cites the file every conclusion came from
+   * (FR-MAP-3), and output has to be byte-identical across machines
+   * (FR-ART-5). Those two requirements conflict if an absolute path is
+   * recorded: the same project would render differently for two
+   * developers, and a committed trace would churn on every machine. The
+   * project directory is the stable frame of reference, so the CLI passes
+   * the configuration file's directory here.
+   */
+  basePath?: string;
 }
 
 /**
@@ -78,6 +92,7 @@ export interface LoadEvidenceOptions {
  */
 export function loadEvidence(paths: string[], opts: LoadEvidenceOptions = {}): EvidenceModel {
   const files: EvidenceFile[] = [...paths].sort().map((p) => {
+    const recordedPath = displayPath(p, opts.basePath);
     let content: string;
     try {
       content = readFileSync(p, 'utf8');
@@ -89,7 +104,7 @@ export function loadEvidence(paths: string[], opts: LoadEvidenceOptions = {}): E
         docs: `${DOCS_BASE}/evidence-formats.md`,
       });
     }
-    return readEvidenceContent(content, p, opts.readers ?? []);
+    return readEvidenceContent(content, recordedPath, opts.readers ?? []);
   });
 
   let manual: ManualEntry[] = [];
@@ -105,10 +120,23 @@ export function loadEvidence(paths: string[], opts: LoadEvidenceOptions = {}): E
         docs: `${DOCS_BASE}/manual-checklist.md`,
       });
     }
-    manual = parseManualChecklist(content, opts.manualPath);
+    manual = parseManualChecklist(content, displayPath(opts.manualPath, opts.basePath));
   }
 
   return mergeEvidence(files, manual);
+}
+
+/**
+ * How a file is named in the output: relative to the project directory with
+ * forward slashes, so the same project renders identically on Linux, macOS
+ * and Windows. Falls back to the path as given when it lies outside the
+ * project.
+ */
+function displayPath(filePath: string, basePath?: string): string {
+  if (!basePath) return filePath;
+  const rel = relative(basePath, filePath);
+  if (rel === '' || rel.startsWith('..') || isAbsolute(rel)) return filePath;
+  return rel.split(sep).join('/');
 }
 
 /** Merge parsed evidence files + manual entries into one model. */
