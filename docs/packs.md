@@ -46,9 +46,16 @@ legal:
     - https://www.gesetze-im-internet.de/bfsg/
 enforcement:
   name: Marktüberwachungsstelle der Länder ... (MLBF)
-  url: https://www.mlbf.de/
+  url: https://mlbf-barrierefrei.de/
   address: ...
-  verified: "2026-08-01"           # required for Silver and above
+  verified: "2026-08-03"           # required for Silver and above
+  # Optional. Some member states give consumers a conciliation or
+  # ombudsman route before, or instead of, the surveillance authority.
+  # Naming only the authority would send people to the wrong door.
+  conciliation:
+    name: Schlichtungsstelle nach § 16 BGG
+    url: https://www.schlichtungsstelle-bgg.de/
+    note: Verfahren nach § 34 BFSG
 deadlines:
   enforceableSince: "2025-06-28"
   notes: Bußgelder bis zu 100.000 EUR (§ 37 BFSG).
@@ -60,6 +67,30 @@ maintainers:
 `legal.sources` is not decoration. It is how a reviewer who does not read
 your language verifies your pack. Official government or legislature
 domains only.
+
+### Getting the enforcement body right
+
+This is the field most worth slowing down on. During verification of the
+launch packs, the German pack turned out to cite `mlbf.de` — which returns
+a perfectly healthy HTTP 200 for a **cable-assembly manufacturer**. The
+actual authority is at `mlbf-barrierefrei.de`. A German user following that
+statement would have sent an accessibility complaint to a company that
+makes industrial cables.
+
+So:
+
+- **A 200 response proves nothing.** `node scripts/check-pack-links.mjs`
+  catches dead and moved links, and it explicitly cannot catch this. Open
+  the page and read it.
+- **Check who is competent for *services*, not just products.** Several
+  member states split the two, and some (Ireland) use a different legal
+  term for each. Spain devolves enforcement to the autonomous communities
+  entirely; France names six sector authorities in one article.
+- **Check whether there is a conciliation route first.** Germany gives
+  consumers a Schlichtung right under § 34 BFSG before the surveillance
+  procedure. Use `enforcement.conciliation` for it.
+- **Set `enforcement.verified` to the date you read the page**, not the
+  date you copied the URL from somewhere else.
 
 ## Strings
 

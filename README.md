@@ -6,6 +6,8 @@
 [![npm](https://img.shields.io/npm/v/eaa-kit.svg)](https://www.npmjs.com/package/eaa-kit)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+![Four commands turn an axe-core report into a German accessibility statement: the terminal on the left runs eaa-kit init, render statement and check; the document on the right is the resulting statement.html, carrying a draft watermark, a partial-compliance status, and WCAG criteria 1.1.1 and 1.4.3 listed against EN 301 549 clauses 9.1.1.1 and 9.1.4.3.](docs/assets/demo.svg)
+
 The European Accessibility Act has been enforceable since **28 June 2025**, with the next deadline on **28 June 2027**. It requires documents — an accessibility statement in your country's format and language, a conformance report, and a documented disproportionate-burden assessment if you claim one. Today those are produced by consultancies and Word templates.
 
 `eaa-kit` compiles them from evidence you already produce.

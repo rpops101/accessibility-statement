@@ -17,7 +17,9 @@
     "format": "prettier --write \"packages/**/*.{ts,yaml,md}\" \"scripts/*.mjs\" \"*.md\"",
     "format:check": "prettier --check \"packages/**/*.{ts,yaml,md}\" \"scripts/*.mjs\" \"*.md\"",
     "render-corpus": "node scripts/render-corpus.mjs",
-    "seed-issues": "node scripts/seed-issues.mjs"
+    "seed-issues": "node scripts/seed-issues.mjs",
+    "check-pack-links": "node scripts/check-pack-links.mjs",
+    "gen-demo": "node scripts/gen-demo.mjs"
   },
   "engines": {
     "node": ">=20"

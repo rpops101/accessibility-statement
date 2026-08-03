@@ -85,12 +85,18 @@ Should you notice shortcomings of digital accessibility, or should you need info
 
 If you are not satisfied with the answers to your enquiry, you can contact the responsible enforcement body:
 
-- Direction générale de la concurrence, de la consommation et de la répression des fraudes (DGCCRF)
-- 59 boulevard Vincent Auriol, 75703 Paris Cedex 13, France
+- Direction générale de la concurrence, de la consommation et de la répression des fraudes (DGCCRF) — autorité de droit commun désignée par l&#39;article L. 511-25-1 du code de la consommation
+- 59 boulevard Vincent Auriol, Télédoc 042, 75703 Paris Cedex 13, France
+- +33 1 44 87 17 17
 - https://www.economie.gouv.fr/dgccrf
+
+You may also apply to the conciliation body responsible for accessibility disputes:
+
+- SignalConso — plateforme officielle de signalement de la DGCCRF (parcours dédié à l&#39;accessibilité depuis décembre 2025)
+- https://signal.conso.gouv.fr
 
 ---
 
-Loi n° 2023-171 du 9 mars 2023 (transposition de la directive (UE) 2019/882) · Article 47 de la loi n° 2005-102 du 11 février 2005 · Référentiel général d&#39;amélioration de l&#39;accessibilité (RGAA) · Directive (UE) 2019/882 (European Accessibility Act) · EN 301 549
+Loi n° 2023-171 du 9 mars 2023 (DDADUE), article 16 — articles L. 412-13 et L. 511-25-1 du code de la consommation · Décret n° 2023-931 du 9 octobre 2023 relatif à l&#39;accessibilité aux personnes handicapées des produits et services · Arrêté du 9 octobre 2023 fixant les exigences en matière d&#39;accessibilité · Ordonnance n° 2023-859 du 6 septembre 2023 (article 47-1 de la loi n° 2005-102) · Article 47 de la loi n° 2005-102 du 11 février 2005 et décret n° 2019-768 (RGAA) · Directive (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Generated with eaa-kit from recorded test evidence.

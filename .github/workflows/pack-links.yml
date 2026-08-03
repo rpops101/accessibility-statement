@@ -1,0 +1,83 @@
+name: Pack links
+
+# Governments reorganise their websites, and a dead link in a jurisdiction
+# pack sends someone to the wrong place with a legal complaint. This runs
+# on a schedule so we find out before a user does.
+#
+# It is the only workflow that touches the network on the project's behalf.
+# eaa-kit itself never does (NFR-1) — this checks pack *data*, not the
+# engine, and nothing it does affects a build.
+
+on:
+  schedule:
+    # Monthly, on the 3rd at 07:00 UTC.
+    - cron: '0 7 3 * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - 'packages/packs/packs/**/pack.yaml'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    name: Every cited URL still resolves
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+
+      - name: Check pack links
+        id: links
+        run: |
+          set -o pipefail
+          node scripts/check-pack-links.mjs 2>&1 | tee link-report.txt
+
+      # On the scheduled run, a failure should reach a human rather than
+      # sit red in the Actions tab.
+      - name: Open an issue when a link breaks
+        if: failure() && github.event_name == 'schedule'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const report = fs.existsSync('link-report.txt')
+              ? fs.readFileSync('link-report.txt', 'utf8')
+              : 'No report produced.';
+            const title = 'Pack links: a cited URL no longer resolves';
+            const { data: existing } = await github.rest.issues.listForRepo({
+              ...context.repo,
+              state: 'open',
+              labels: 'legal-accuracy',
+            });
+            const body = [
+              'The scheduled pack link check failed. A jurisdiction pack is citing',
+              'a URL that no longer resolves, or an authority that has moved to a',
+              'different host.',
+              '',
+              'This matters more than a normal broken link: these URLs are printed',
+              'into accessibility statements as the place to send a complaint.',
+              '',
+              '```',
+              report.slice(-8000),
+              '```',
+              '',
+              `Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+            ].join('\n');
+            const match = existing.find((i) => i.title === title);
+            if (match) {
+              await github.rest.issues.createComment({ ...context.repo, issue_number: match.number, body });
+            } else {
+              await github.rest.issues.create({
+                ...context.repo,
+                title,
+                body,
+                labels: ['legal-accuracy', 'priority'],
+              });
+            }

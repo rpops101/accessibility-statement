@@ -1,6 +1,14 @@
-# Italy — Decreto legislativo 27 maggio 2022, n. 82 (attuazione della
-# direttiva (UE) 2019/882).
-# Re-verify enforcement details before each release (Silver criterion).
+# Italy — Decreto legislativo 27 maggio 2022, n. 82.
+#
+# Verificato su normattiva.it, gazzettaufficiale.it e agid.gov.it il
+# 2026-08-03. Da riverificare prima di ogni pubblicazione (criterio Silver).
+#
+# Nota per i revisori: l'art. 21 comma 1 designa AgID come Autorità di
+# vigilanza sui SERVIZI. Per i PRODOTTI l'autorità è il Ministero delle
+# imprese e del made in Italy (art. 17 comma 2). AGCOM non ha poteri
+# sanzionatori ai sensi del d.lgs. 82/2022 — esprime solo un parere sulle
+# linee guida (art. 21 comma 2); i suoi poteri sui servizi di media
+# audiovisivi derivano dall'art. 31 del d.lgs. 208/2021.
 schemaVersion: 1
 country: it
 name: Italy (Italia)
@@ -9,21 +17,39 @@ defaultLanguage: it
 legal:
   act: Decreto legislativo 27 maggio 2022, n. 82 (attuazione della direttiva (UE) 2019/882)
   references:
+    - Linee guida sull'accessibilità dei servizi (EAA), AgID, versione 1.0 del 4 marzo 2026
     - Legge 9 gennaio 2004, n. 4 (Legge Stanca)
-    - Linee guida sull'accessibilità degli strumenti informatici (AgID)
     - Direttiva (UE) 2019/882 (European Accessibility Act)
     - EN 301 549
   sources:
     - https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82
-    - https://www.agid.gov.it/it/design-servizi/accessibilita
+    - https://www.gazzettaufficiale.it/eli/id/2022/07/01/22G00089/SG
+    - https://www.agid.gov.it/it/ambiti-intervento/accessibilita-usabilita
+    - https://www.gazzettaufficiale.it/eli/id/2026/03/24/26A01427/SG
 enforcement:
-  name: Agenzia per l'Italia Digitale (AgID)
-  url: https://www.agid.gov.it/
+  name: Agenzia per l'Italia Digitale (AgID) — Autorità di vigilanza sui servizi ai sensi dell'articolo 21, comma 1, del decreto legislativo 27 maggio 2022, n. 82
+  url: https://www.agid.gov.it/it/ambiti-intervento/accessibilita-usabilita
   address: Via Liszt 21, 00144 Roma, Italia
-  verified: "2026-08-01"
+  phone: "+39 06 852641"
+  verified: "2026-08-03"
+  conciliation:
+    name: Portale segnalazioni AgID — reclamo per problemi di accessibilità di un servizio digitale (articolo 21, comma 3, lettera a)
+    url: https://segnalazioni.agid.gov.it/
+    note: >-
+      L'istruttoria preliminare è svolta dal Difensore civico per il digitale,
+      secondo il Regolamento AgID sulle modalità di accertamento e di esercizio
+      del potere sanzionatorio. La vigilanza sui prodotti spetta invece al
+      Ministero delle imprese e del made in Italy (articolo 17, comma 2).
 deadlines:
   enforceableSince: "2025-06-28"
-  notes: L'AgID vigila sull'accessibilità degli strumenti informatici; per i servizi rientranti nell'atto europeo la vigilanza di mercato coinvolge anche le autorità settoriali competenti.
+  notes: >-
+    L'articolo 24 del decreto prevede sanzioni amministrative pecuniarie da
+    5.000 a 40.000 euro per la violazione dei requisiti di accessibilità, e da
+    2.500 a 30.000 euro per l'inottemperanza agli ordini dell'autorità di
+    vigilanza o per la mancata cooperazione. Per i soggetti privati con
+    fatturato medio superiore a 500 milioni di euro si applica in ogni caso la
+    sanzione fino al 5 per cento del fatturato prevista dall'articolo 9, comma
+    1-bis, della legge n. 4 del 2004.
 quality: silver
 maintainers:
   - eaa-kit maintainers

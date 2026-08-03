@@ -17,8 +17,8 @@ legal:
     - https://eur-lex.europa.eu/eli/dec_impl/2018/1523/oj
 enforcement:
   name: The market surveillance authority of the member state in which the service is provided (see the jurisdiction packs for named bodies)
-  url: https://ec.europa.eu/social/main.jsp?catId=1202
-  verified: "2026-08-01"
+  url: https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en
+  verified: "2026-08-03"
 deadlines:
   enforceableSince: "2025-06-28"
   notes: Services already provided before 28 June 2025 benefit from transition arrangements until 28 June 2030 at the latest (Article 32).

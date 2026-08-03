@@ -85,12 +85,18 @@ Should you notice shortcomings of digital accessibility, or should you need info
 
 If you are not satisfied with the answers to your enquiry, you can contact the responsible enforcement body:
 
-- Competition and Consumer Protection Commission (CCPC)
+- Competition and Consumer Protection Commission (CCPC) — market surveillance authority for products (Regulation 4(1)) and compliance authority for e-commerce services and e-books (Regulation 4(2))
 - Bloom House, Railway Street, Dublin 1, D01 C576, Ireland
-- https://www.ccpc.ie/
+- +353 1 402 5500
+- https://www.ccpc.ie/enforcement-and-regulation/market-surveillance/accessibility/
+
+You may also apply to the conciliation body responsible for accessibility disputes:
+
+- CCPC accessibility complaint form (statutory complaints mechanism under Regulation 41)
+- https://www.ccpc.ie/enforcement-and-regulation/market-surveillance/accessibility/accessibility-for-consumers/accessibility-act-complaint-form
 
 ---
 
-European Union (Accessibility Requirements of Products and Services) Regulations 2023 (S.I. No. 636 of 2023) · Directive (EU) 2019/882 (European Accessibility Act) · EN 301 549
+European Union (Accessibility Requirements of Products and Services) Regulations 2023 (S.I. No. 636 of 2023) · Regulation 4 (market surveillance and compliance authorities) · Regulation 32 (offences and penalties) and Regulation 41 (complaints) · Directive (EU) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Generated with eaa-kit from recorded test evidence.

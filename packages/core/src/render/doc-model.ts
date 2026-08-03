@@ -69,6 +69,13 @@ export interface BinaryRenderOptions {
     email?: string;
     phone?: string;
     address?: string;
+    conciliation?: {
+      name: string;
+      url?: string;
+      email?: string;
+      phone?: string;
+      address?: string;
+    };
   };
   legal?: { act: string; references?: string[] };
 }
@@ -180,6 +187,19 @@ export function statementBlocks(
       opts.enforcement.url,
     ]) {
       if (detail) blocks.push({ type: 'bullet', text: detail });
+    }
+    const conciliation = opts.enforcement.conciliation;
+    if (conciliation) {
+      blocks.push({ type: 'p', text: s('statement.conciliationIntro') });
+      for (const detail of [
+        conciliation.name,
+        conciliation.address,
+        conciliation.email,
+        conciliation.phone,
+        conciliation.url,
+      ]) {
+        if (detail) blocks.push({ type: 'bullet', text: detail });
+      }
     }
   }
 

@@ -143,6 +143,17 @@ export function buildStatementView(
       phone: pack.meta.enforcement.phone ?? '',
       address: pack.meta.enforcement.address ?? '',
     },
+    // Optional: some member states route consumers to a conciliation body
+    // before the surveillance authority. Absent for most packs.
+    conciliation: pack.meta.enforcement.conciliation
+      ? {
+          name: pack.meta.enforcement.conciliation.name,
+          url: pack.meta.enforcement.conciliation.url ?? '',
+          email: pack.meta.enforcement.conciliation.email ?? '',
+          phone: pack.meta.enforcement.conciliation.phone ?? '',
+          address: pack.meta.enforcement.conciliation.address ?? '',
+        }
+      : { name: '' },
     legal: {
       act: pack.meta.legal.act,
       references: (pack.meta.legal.references ?? []).map((r) => ({ ref: r })),

@@ -85,12 +85,19 @@ Sollten Ihnen Mängel in Bezug auf die barrierefreie Gestaltung auffallen oder b
 
 Wenn Sie mit den Antworten auf Ihre Anfrage nicht zufrieden sind, können Sie sich an die zuständige Marktüberwachungsstelle wenden:
 
-- Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)
-- Landesverwaltungsamt Sachsen-Anhalt, Ernst-Kamieth-Straße 2, 06112 Halle (Saale), Deutschland
-- https://www.mlbf.de/
+- Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF) – Anstalt öffentlichen Rechts
+- Carl-Miller-Straße 6, 39112 Magdeburg, Deutschland
+- <kontakt@mlbf-barrierefrei.de>
+- +49 391 289 230 23
+- https://mlbf-barrierefrei.de/
+
+Sie können außerdem ein Schlichtungsverfahren bei der zuständigen Schlichtungsstelle beantragen:
+
+- Schlichtungsstelle nach § 16 BGG (Schlichtungsstelle BGG) bei der/dem Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen
+- https://www.schlichtungsstelle-bgg.de/
 
 ---
 
-Barrierefreiheitsstärkungsgesetz (BFSG) · Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) · Richtlinie (EU) 2019/882 (European Accessibility Act) · EN 301 549
+Barrierefreiheitsstärkungsgesetz (BFSG) vom 16. Juli 2021 · Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) vom 15. Juni 2022 · Richtlinie (EU) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Erstellt mit eaa-kit aus aufgezeichneten Testnachweisen.

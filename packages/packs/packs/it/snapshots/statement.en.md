@@ -85,12 +85,18 @@ Should you notice shortcomings of digital accessibility, or should you need info
 
 If you are not satisfied with the answers to your enquiry, you can contact the responsible enforcement body:
 
-- Agenzia per l&#39;Italia Digitale (AgID)
+- Agenzia per l&#39;Italia Digitale (AgID) — Autorità di vigilanza sui servizi ai sensi dell&#39;articolo 21, comma 1, del decreto legislativo 27 maggio 2022, n. 82
 - Via Liszt 21, 00144 Roma, Italia
-- https://www.agid.gov.it/
+- +39 06 852641
+- https://www.agid.gov.it/it/ambiti-intervento/accessibilita-usabilita
+
+You may also apply to the conciliation body responsible for accessibility disputes:
+
+- Portale segnalazioni AgID — reclamo per problemi di accessibilità di un servizio digitale (articolo 21, comma 3, lettera a)
+- https://segnalazioni.agid.gov.it/
 
 ---
 
-Decreto legislativo 27 maggio 2022, n. 82 (attuazione della direttiva (UE) 2019/882) · Legge 9 gennaio 2004, n. 4 (Legge Stanca) · Linee guida sull&#39;accessibilità degli strumenti informatici (AgID) · Direttiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
+Decreto legislativo 27 maggio 2022, n. 82 (attuazione della direttiva (UE) 2019/882) · Linee guida sull&#39;accessibilità dei servizi (EAA), AgID, versione 1.0 del 4 marzo 2026 · Legge 9 gennaio 2004, n. 4 (Legge Stanca) · Direttiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Generated with eaa-kit from recorded test evidence.

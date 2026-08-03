@@ -35,6 +35,7 @@ statement:
   feedbackIntro: "Má thugann tú easnaimh inrochtaineachta faoi deara, nó má theastaíonn faisnéis uait i bhformáid inrochtana, déan teagmháil linn:"
   enforcementHeading: "Nós imeachta forfheidhmithe"
   enforcementIntro: "Mura bhfuil tú sásta leis na freagraí ar d'fhiosrúchán, is féidir leat dul i dteagmháil leis an gcomhlacht forfheidhmithe freagrach:"
+  conciliationIntro: "Is féidir leat gearán a dhéanamh freisin tríd an gcainéal oifigiúil:"
   notEvaluatedHeading: "Ábhar nár measúnaíodh fós"
   notEvaluatedIntro: "Níor measúnaíodh na ceanglais seo a leanas fós:"
   burdenHeading: "Ualach díréireach"

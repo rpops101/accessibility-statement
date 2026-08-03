@@ -85,12 +85,19 @@ Should you notice shortcomings of digital accessibility, or should you need info
 
 If you are not satisfied with the answers to your enquiry, you can contact the responsible enforcement body:
 
-- Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)
-- Landesverwaltungsamt Sachsen-Anhalt, Ernst-Kamieth-Straße 2, 06112 Halle (Saale), Deutschland
-- https://www.mlbf.de/
+- Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF) – Anstalt öffentlichen Rechts
+- Carl-Miller-Straße 6, 39112 Magdeburg, Deutschland
+- <kontakt@mlbf-barrierefrei.de>
+- +49 391 289 230 23
+- https://mlbf-barrierefrei.de/
+
+You may also apply to the conciliation body responsible for accessibility disputes:
+
+- Schlichtungsstelle nach § 16 BGG (Schlichtungsstelle BGG) bei der/dem Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen
+- https://www.schlichtungsstelle-bgg.de/
 
 ---
 
-Barrierefreiheitsstärkungsgesetz (BFSG) · Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) · Richtlinie (EU) 2019/882 (European Accessibility Act) · EN 301 549
+Barrierefreiheitsstärkungsgesetz (BFSG) vom 16. Juli 2021 · Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) vom 15. Juni 2022 · Richtlinie (EU) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Generated with eaa-kit from recorded test evidence.

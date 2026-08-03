@@ -59,6 +59,28 @@ properties:
       verified:
         type: string
         format: date
+      conciliation:
+        # Some member states give consumers a conciliation or ombudsman
+        # route before, or instead of, the market surveillance authority
+        # (Germany's Schlichtungsstelle BGG under § 34 BFSG, for example).
+        # Naming only the surveillance authority would send people to the
+        # wrong door, so packs may carry both.
+        type: object
+        required: [name]
+        properties:
+          name:
+            type: string
+            minLength: 1
+          url:
+            type: string
+          email:
+            type: string
+          phone:
+            type: string
+          address:
+            type: string
+          note:
+            type: string
   deadlines:
     type: object
     properties:

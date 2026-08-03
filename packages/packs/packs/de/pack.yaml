@@ -1,28 +1,53 @@
 # Germany — Barrierefreiheitsstärkungsgesetz (BFSG).
-# Enforcement details cited from the sources below; re-verify before each
-# release (Silver criterion) and set enforcement.verified accordingly.
+#
+# Enforcement details verified against gesetze-im-internet.de and the
+# Bundesfachstelle Barrierefreiheit on 2026-08-03. Re-verify before each
+# release (Silver criterion) and update enforcement.verified.
+#
+# Note for reviewers: the MLBF is an Anstalt öffentlichen Rechts jointly
+# established by all 16 Länder and has operated nationwide since
+# 26 September 2025. Its domain is mlbf-barrierefrei.de — mlbf.de belongs
+# to an unrelated private company and must never be cited here.
 schemaVersion: 1
 country: de
 name: Germany (Deutschland)
 languages: [de, en]
 defaultLanguage: de
 legal:
-  act: Barrierefreiheitsstärkungsgesetz (BFSG)
+  act: Barrierefreiheitsstärkungsgesetz (BFSG) vom 16. Juli 2021
   references:
-    - Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV)
+    - Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV) vom 15. Juni 2022
     - Richtlinie (EU) 2019/882 (European Accessibility Act)
     - EN 301 549
   sources:
     - https://www.gesetze-im-internet.de/bfsg/
-    - https://www.bundesfachstelle-barrierefreiheit.de/DE/Fachwissen/Produkte-und-Dienstleistungen/Barrierefreiheitsstaerkungsgesetz/barrierefreiheitsstaerkungsgesetz_node.html
+    - https://www.gesetze-im-internet.de/bfsgv/
+    - https://mlbf-barrierefrei.de/
+    - https://www.bundesfachstelle-barrierefreiheit.de/SharedDocs/Kurzmeldungen/DE/website-marktueberwachungsstelle-online
 enforcement:
-  name: Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)
-  url: https://www.mlbf.de/
-  address: Landesverwaltungsamt Sachsen-Anhalt, Ernst-Kamieth-Straße 2, 06112 Halle (Saale), Deutschland
-  verified: "2026-08-01"
+  name: Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF) – Anstalt öffentlichen Rechts
+  url: https://mlbf-barrierefrei.de/
+  email: kontakt@mlbf-barrierefrei.de
+  phone: "+49 391 289 230 23"
+  address: Carl-Miller-Straße 6, 39112 Magdeburg, Deutschland
+  verified: "2026-08-03"
+  # § 34 BFSG gives consumers a right to apply for conciliation before the
+  # market surveillance procedure under § 32; a statement that named only
+  # the MLBF would send people to the wrong door first.
+  conciliation:
+    name: Schlichtungsstelle nach § 16 BGG (Schlichtungsstelle BGG) bei der/dem Beauftragten der Bundesregierung für die Belange von Menschen mit Behinderungen
+    url: https://www.schlichtungsstelle-bgg.de/
+    note: Verfahren nach § 34 BFSG; ein Verfahren nach § 32 BFSG ruht währenddessen (§ 34 Absatz 4 BFSG).
 deadlines:
   enforceableSince: "2025-06-28"
-  notes: Bußgelder bis zu 100.000 EUR (§ 37 BFSG). Übergangsfristen für bestehende Dienstleistungen bis längstens 28. Juni 2030.
+  notes: >-
+    Bußgelder bis zu 100.000 EUR in den Fällen des § 37 Absatz 1 Nummer 1, 7, 8,
+    9 und 10 BFSG, in den übrigen Fällen bis zu 10.000 EUR. Nach § 38 BFSG dürfen
+    Dienstleistungserbringer bis zum 27. Juni 2030 weiterhin Produkte einsetzen,
+    die bereits vor dem 28. Juni 2025 rechtmäßig eingesetzt wurden; vor dem
+    28. Juni 2025 geschlossene Verträge laufen längstens bis dahin unverändert
+    weiter. Selbstbedienungsterminals dürfen bis zum Ende ihrer wirtschaftlichen
+    Nutzungsdauer, höchstens 15 Jahre ab Inbetriebnahme, weiter genutzt werden.
 quality: silver
 maintainers:
   - eaa-kit maintainers

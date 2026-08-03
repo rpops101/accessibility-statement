@@ -117,6 +117,10 @@ Core work is welcome too — see issues labelled `core`. Read [docs/architecture
 This tool produces documents with legal weight in a regime with real penalties. So:
 
 - **Cite your sources.** Official government or legislature domains.
+- **Open every link before you cite it.** `node scripts/check-pack-links.mjs xx`
+  tells you a URL resolves; it cannot tell you it points at the right body.
+  One of the launch packs shipped a link to a cable manufacturer that
+  happened to share an acronym with the German accessibility authority.
 - **Be conservative.** When unsure whether wording is required or optional, include it and say it is included.
 - **Never remove the draft watermark machinery.** The disclaimer and the "reviewed by" requirement are liability controls, not decoration.
 - **We are not lawyers, and neither is the tool.** eaa-kit generates drafts for human review. Keep language in every artifact consistent with that.

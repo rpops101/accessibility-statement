@@ -80,7 +80,15 @@ footer { margin-top: 3rem; border-top: 1px solid #767676; padding-top: 1rem;
 {{/enforcement.email}}{{#enforcement.phone}}<li>{{.}}</li>
 {{/enforcement.phone}}{{#enforcement.url}}<li><a href="{{.}}">{{.}}</a></li>
 {{/enforcement.url}}</ul>
-<footer>
+{{#conciliation.name}}<p>{{t.statement.conciliationIntro}}</p>
+<ul>
+<li>{{conciliation.name}}</li>
+{{#conciliation.address}}<li>{{.}}</li>
+{{/conciliation.address}}{{#conciliation.email}}<li><a href="mailto:{{.}}">{{.}}</a></li>
+{{/conciliation.email}}{{#conciliation.phone}}<li>{{.}}</li>
+{{/conciliation.phone}}{{#conciliation.url}}<li><a href="{{.}}">{{.}}</a></li>
+{{/conciliation.url}}</ul>
+{{/conciliation.name}}<footer>
 <p>{{legal.act}}{{#legal.references}} · {{ref}}{{/legal.references}}</p>
 <p>EN 301 549 v{{standards.en}} · WCAG {{standards.wcag}} · {{generatedBy}}</p>
 </footer>

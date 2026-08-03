@@ -57,7 +57,15 @@
 - <{{.}}>{{/enforcement.email}}{{#enforcement.phone}}
 - {{.}}{{/enforcement.phone}}{{#enforcement.url}}
 - {{.}}{{/enforcement.url}}
+{{#conciliation.name}}
+{{t.statement.conciliationIntro}}
 
+- {{conciliation.name}}{{#conciliation.address}}
+- {{.}}{{/conciliation.address}}{{#conciliation.email}}
+- <{{.}}>{{/conciliation.email}}{{#conciliation.phone}}
+- {{.}}{{/conciliation.phone}}{{#conciliation.url}}
+- {{.}}{{/conciliation.url}}
+{{/conciliation.name}}
 ---
 
 {{legal.act}}{{#legal.references}} · {{ref}}{{/legal.references}}

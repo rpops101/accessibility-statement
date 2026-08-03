@@ -85,12 +85,17 @@ Si observa deficiencias de accesibilidad o necesita información en un formato a
 
 Si no está satisfecho con la respuesta a su solicitud, puede dirigirse a la autoridad competente:
 
-- Dirección General de Consumo — Ministerio de Derechos Sociales, Consumo y Agenda 2030
+- Unidad Técnica de Apoyo y Coordinación (UTAC) — Dirección General de Derechos de las Personas con Discapacidad, Ministerio de Derechos Sociales, Consumo y Agenda 2030
 - Paseo del Prado 18-20, 28014 Madrid, España
-- https://www.consumo.gob.es/
+- <utac@dsca.gob.es>
+- https://www.dsca.gob.es/es/derechos-sociales/discapacidad/unidad-tecnica-apoyo-coordinacion-autoridades-vigilancia-materia
+
+También puede dirigirse al órgano competente para tramitar y sancionar la reclamación:
+
+- Autoridad de vigilancia designada por la comunidad autónoma correspondiente (artículo 27.3 de la Ley 11/2023), que es el órgano competente para investigar y sancionar
 
 ---
 
-Ley 11/2023, de 8 de mayo (transposición de la Directiva (UE) 2019/882) · Real Decreto 1112/2018 (accesibilidad de los sitios web del sector público) · Directiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
+Ley 11/2023, de 8 de mayo, Título I (accesibilidad de determinados productos y servicios) · Real Decreto 143/2026, de 25 de febrero (Unidad Técnica de Apoyo y Coordinación) · Real Decreto Legislativo 1/2013, de 29 de noviembre (régimen sancionador supletorio, arts. 83-84) · Real Decreto 1112/2018 (accesibilidad de sitios web y aplicaciones móviles del sector público) · Directiva (UE) 2019/882 (European Accessibility Act) · EN 301 549
 
 EN 301 549 v3.2.1 · WCAG 2.1 · Generado con eaa-kit a partir de las evidencias de pruebas registradas.

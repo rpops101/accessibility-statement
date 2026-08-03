@@ -26,6 +26,15 @@ export interface PackMeta {
     phone?: string;
     address?: string;
     verified?: string;
+    /** Conciliation or ombudsman route, where national law provides one. */
+    conciliation?: {
+      name: string;
+      url?: string;
+      email?: string;
+      phone?: string;
+      address?: string;
+      note?: string;
+    };
   };
   deadlines?: {
     enforceableSince?: string;

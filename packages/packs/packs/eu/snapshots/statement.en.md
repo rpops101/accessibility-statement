@@ -86,7 +86,7 @@ Should you notice shortcomings of digital accessibility, or should you need info
 If you are not satisfied with the answers to your enquiry, you can contact the responsible enforcement body:
 
 - The market surveillance authority of the member state in which the service is provided (see the jurisdiction packs for named bodies)
-- https://ec.europa.eu/social/main.jsp?catId=1202
+- https://commission.europa.eu/strategy-and-policy/policies/justice-and-fundamental-rights/disability/european-accessibility-act-eaa_en
 
 ---
 

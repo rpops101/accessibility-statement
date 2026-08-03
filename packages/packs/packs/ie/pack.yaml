@@ -1,6 +1,17 @@
 # Ireland — European Union (Accessibility Requirements of Products and
 # Services) Regulations 2023 (S.I. No. 636 of 2023).
-# Re-verify enforcement details before each release (Silver criterion).
+#
+# Verified against irishstatutebook.ie, ccpc.ie and nda.ie on 2026-08-03.
+# Re-verify before each release (Silver criterion).
+#
+# Note for reviewers: the Regulations distinguish two roles. Regulation 4(1)
+# makes the CCPC the *market surveillance authority* for PRODUCTS.
+# Regulation 4(2) designates *compliance authorities* for SERVICES, by
+# sector — there is no "market surveillance authority for services" in Irish
+# law. For web services the relevant authority is usually the CCPC
+# (e-commerce, e-books), but telecoms go to ComReg, audiovisual media to
+# Coimisiún na Meán, banking to the Central Bank, and transport to the NTA
+# or the IAA. Regulation 41 is the statutory complaints mechanism.
 schemaVersion: 1
 country: ie
 name: Ireland (Éire)
@@ -9,20 +20,43 @@ defaultLanguage: en
 legal:
   act: European Union (Accessibility Requirements of Products and Services) Regulations 2023 (S.I. No. 636 of 2023)
   references:
+    - Regulation 4 (market surveillance and compliance authorities)
+    - Regulation 32 (offences and penalties) and Regulation 41 (complaints)
     - Directive (EU) 2019/882 (European Accessibility Act)
     - EN 301 549
   sources:
     - https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print
-    - https://www.ccpc.ie/business/help-for-business/guidelines-for-business/european-accessibility-act/
+    - https://www.ccpc.ie/enforcement-and-regulation/market-surveillance/accessibility/
+    - https://nda.ie/accessibility/european-accessibility-act
+    - https://www.gov.ie/en/department-of-children-disability-and-equality/publications/european-accessibility-act/
 enforcement:
-  name: Competition and Consumer Protection Commission (CCPC)
-  url: https://www.ccpc.ie/
+  name: Competition and Consumer Protection Commission (CCPC) — market surveillance authority for products (Regulation 4(1)) and compliance authority for e-commerce services and e-books (Regulation 4(2))
+  url: https://www.ccpc.ie/enforcement-and-regulation/market-surveillance/accessibility/
   address: Bloom House, Railway Street, Dublin 1, D01 C576, Ireland
-  verified: "2026-08-01"
+  phone: "+353 1 402 5500"
+  verified: "2026-08-03"
+  conciliation:
+    name: CCPC accessibility complaint form (statutory complaints mechanism under Regulation 41)
+    url: https://www.ccpc.ie/enforcement-and-regulation/market-surveillance/accessibility/accessibility-for-consumers/accessibility-act-complaint-form
+    note: >-
+      For services in other sectors the complaint goes to that sector's
+      compliance authority: ComReg for electronic communications and 112
+      emergency call answering, Coimisiún na Meán for access to audiovisual
+      media services, the Central Bank of Ireland for consumer banking, the
+      National Transport Authority for bus, rail and waterborne transport, and
+      the Irish Aviation Authority for air transport. The National Disability
+      Authority advises the authorities but has no enforcement role.
 deadlines:
   enforceableSince: "2025-06-28"
-  notes: Penalties can extend to fines and up to 18 months imprisonment for serious offences. ComReg is the market surveillance authority for electronic-communications services.
+  notes: >-
+    Under Regulation 32(6), an offence is punishable on summary conviction by a
+    class A fine or up to 6 months' imprisonment, or both; and on conviction on
+    indictment by a fine of up to 60,000 euro or up to 18 months' imprisonment,
+    or both. Regulation 34 provides a due diligence defence.
 quality: silver
 maintainers:
   - eaa-kit maintainers
-notes: The Irish-language (ga) strings are a maintainer draft awaiting native-speaker review — reaching Gold requires that review (see the pack quality scale).
+notes: >-
+  The Irish-language (ga) strings are a maintainer draft awaiting
+  native-speaker review — reaching Gold requires that review (see the pack
+  quality scale).

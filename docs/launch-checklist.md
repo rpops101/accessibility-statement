@@ -22,10 +22,14 @@ repository so they survive a gap in attention.
       If you create an `eaa-kit` organisation and transfer, GitHub redirects
       the old URLs automatically, but update them in the source anyway so
       clones and npm pages are not one hop behind.
-- [ ] Record the README demo. A short screen capture of `init` →
-      `render statement` → the rendered German statement, placed **above the
-      fold**. This is the single highest-leverage asset in the repository:
-      most visitors decide from it alone.
+- [x] **README hero image — done.** `docs/assets/demo.svg` shows the terminal
+      session beside the statement it produces, above the fold. Regenerate
+      with `npm run gen-demo` if the CLI output changes. It is deliberately
+      static: GitHub may strip `<style>` from an SVG, and several renderers
+      freeze CSS animations at t=0, which would show an empty terminal.
+- [ ] Optional: record a real screen capture for the launch post. The static
+      hero covers the README; a short video is better on social channels,
+      and only a human with a screen recorder can make one.
 - [ ] Fill in the maintainer handle in `MAINTAINERS.md` and `.github/CODEOWNERS`.
 - [ ] Create the labels the seeded issues use: `pack`, `reader`, `i18n`,
       `docs`, `data`, `standards`, `core`, `good first issue`, `help wanted`,
@@ -33,8 +37,12 @@ repository so they survive a gap in attention.
 - [ ] Seed the backlog: `node scripts/seed-issues.mjs` (55 issues, 51 of them
       good-first-issues). Do this **before** launch — an empty issue tracker
       converts nobody.
-- [ ] Re-verify every pack's enforcement body against its official source and
-      update `enforcement.verified`. Silver quality claims this is current.
+- [x] **Enforcement bodies verified against official sources on 3 August 2026**
+      for all five launch packs plus the EU pack, and several were wrong —
+      see the commit history. `enforcement.verified` is set accordingly.
+      Re-verify before launch if that date has gone stale; the monthly
+      `pack-links` workflow catches dead and moved URLs in the meantime, but
+      it cannot tell you a live URL points at the wrong organisation.
 - [ ] Publish the packages: `npm publish --workspaces --access public`.
 - [ ] Publish the Action to the GitHub Marketplace, and tag `v1` so
       `rpops101/eaa-kit/action@v1` resolves.
