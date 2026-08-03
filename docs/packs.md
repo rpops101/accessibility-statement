@@ -137,8 +137,8 @@ verified enforcement body fails.
 ## Validation
 
 ```bash
-npx accessibility-statement validate-pack packages/packs/packs/de   # one pack
-npx accessibility-statement validate-pack                           # all of them
+npm run cli -- validate-pack packages/packs/packs/de   # one pack
+npm run cli -- validate-pack                           # all of them
 ```
 
 This is the same code path CI runs (QA-6), so green locally means green in

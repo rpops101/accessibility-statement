@@ -5,7 +5,7 @@ self-contained contribution: one module, one test, one fixture. It never
 touches conformance computation, rendering or packs.
 
 ```bash
-npx accessibility-statement contrib scaffold-reader --name wave
+npm run cli -- contrib scaffold-reader --name wave
 ```
 
 ## The interface

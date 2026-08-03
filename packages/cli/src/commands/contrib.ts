@@ -82,7 +82,7 @@ function scaffoldPack(args: ParsedArgs): number {
       `     country, and the enforcement body a user would actually complain to.\n` +
       `  2. Translate strings.${lang}.yaml. Only the phrasing matters; the keys stay.\n` +
       `  3. Generate and eyeball your statement, then commit the snapshots:\n` +
-      `       accessibility-statement validate-pack ${target}\n` +
+      `       npm run cli -- validate-pack ${target}\n` +
       `       npm run update-snapshots -w @accessibility-statement/packs -- ${country}\n\n` +
       `Read TODO.md in the new directory for the full checklist.\n`
   );
@@ -238,12 +238,16 @@ snapshot tests are the reviewer (REQ-PACK-2).
       - \`enforcement.name\` / \`.url\`: the body a user actually complains to.
 - [ ] \`strings.${lang}.yaml\`: translate. Use your national authority's own
       wording where it exists; delete keys you want left in English.
-- [ ] Validate: \`accessibility-statement validate-pack ${target}\`
+- [ ] Validate: \`npm run cli -- validate-pack ${target}\`
 - [ ] Render and read it end to end — you are the first reader who can
       judge whether it sounds like a real statement in your language:
-      \`accessibility-statement render statement --config ${target}/fixture/config.yaml \\
+      \`npm run cli -- render statement --config ${target}/fixture/config.yaml \\
           --jurisdiction ${country} --lang ${lang}\`
 - [ ] Commit snapshots: \`npm run update-snapshots -w @accessibility-statement/packs -- ${country}\`
+
+> Inside a clone of this repository use \`npm run cli -- <args>\`. npm does not
+> link a workspace binary until the build output exists, so \`npx\` on a fresh
+> clone would look on the registry rather than at your local code.
 - [ ] Add yourself to \`maintainers\` in pack.yaml and to CODEOWNERS.
 - [ ] Open the PR. CI posts the rendered statement as an artifact, so
       reviewers read your statement, not a diff (DX-4).

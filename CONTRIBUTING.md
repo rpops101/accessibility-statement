@@ -16,6 +16,13 @@ npm install && npm test
 
 Tests should be green immediately. If they are not, that is a bug in this repository — [open an issue](../../issues/new) and we will fix it, because a broken first run is our problem, not yours.
 
+**Running the CLI from a checkout:** use `npm run cli -- <args>`, for example
+`npm run cli -- packs`. Do not use `npx accessibility-statement` inside a
+clone — npm does not link a workspace binary until the build output exists,
+so on a fresh clone `npx` would go looking on the registry instead of using
+your local code. `npx accessibility-statement` is the right command for
+*users* who installed the published package.
+
 There is a devcontainer, so **Code → Codespaces → Create codespace** also works with nothing installed locally.
 
 ---
@@ -37,7 +44,7 @@ packages/packs/packs/pt/
 ### How to make one
 
 ```bash
-npx accessibility-statement contrib scaffold-pack --country pt
+npm run cli -- contrib scaffold-pack --country pt
 ```
 
 That writes the whole skeleton, including a `TODO.md` checklist. Then:
@@ -46,12 +53,12 @@ That writes the whole skeleton, including a `TODO.md` checklist. Then:
 2. **Translate `strings.<lang>.yaml`.** Keys stay, text changes. Delete any key you want left in English; unset keys fall back to English, so a partial translation is valid. Prefer the wording your national authority already uses over a literal translation.
 3. **Check your work.**
    ```bash
-   npx accessibility-statement validate-pack packages/packs/packs/pt
+   npm run cli -- validate-pack packages/packs/packs/pt
    ```
    This is the same code CI runs, so green locally means green in CI. It lists exactly what remains — an unfinished scaffold fails until every `TODO` is gone.
 4. **Read the rendered statement.** You are the first person who can judge whether it sounds like a real statement in your language:
    ```bash
-   npx accessibility-statement render statement --config packages/packs/packs/pt/fixture/config.yaml --jurisdiction pt --lang pt
+   npm run cli -- render statement --config packages/packs/packs/pt/fixture/config.yaml --jurisdiction pt --lang pt
    ```
 5. **Commit the snapshots** so future changes to the engine can never silently alter your country's statement:
    ```bash
@@ -87,7 +94,7 @@ Bronze is a complete, mergeable contribution. Start there.
 Support a tool accessibility-statement does not read yet — Playwright's `ariaSnapshot`, WAVE, IBM Equal Access, your in-house checker:
 
 ```bash
-npx accessibility-statement contrib scaffold-reader --name wave
+npm run cli -- contrib scaffold-reader --name wave
 ```
 
 You get the module and its test, both commented with what to fill in. A reader is one file implementing `detect()` and `read()`; it never touches conformance computation or rendering. Save a **real** report from the tool as the fixture — real output catches shapes hand-written JSON never will. See [docs/writing-a-reader.md](docs/writing-a-reader.md).

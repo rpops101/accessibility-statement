@@ -11,6 +11,7 @@
   ],
   "scripts": {
     "build": "npm run build -w @accessibility-statement/core -w @accessibility-statement/packs -w accessibility-statement && npm run gen-schemas",
+    "cli": "node packages/cli/dist/main.js",
     "gen-schemas": "node scripts/gen-config-schema.mjs && npm run gen-schema -w @accessibility-statement/packs",
     "test": "npm run test -w @accessibility-statement/core -w @accessibility-statement/packs -w accessibility-statement",
     "lint": "tsc -p packages/core/tsconfig.json --noEmit && tsc -p packages/cli/tsconfig.json --noEmit",
