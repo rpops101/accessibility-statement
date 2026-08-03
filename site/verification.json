@@ -1,0 +1,17 @@
+{
+  "_comment": [
+    "Search-engine ownership verification via meta tags. These tokens are",
+    "public by design — they appear in the page source — so committing them",
+    "is correct and keeps verification reproducible across rebuilds.",
+    "",
+    "Google Search Console: add a URL-prefix property for",
+    "https://rpops101.github.io/accessibility-statement/ , choose the",
+    "'HTML tag' method, and paste the content= value below.",
+    "",
+    "Bing Webmaster Tools: import from Google, or use its meta tag.",
+    "",
+    "Leave a value empty to omit that tag entirely."
+  ],
+  "google": "",
+  "bing": ""
+}

@@ -28,6 +28,19 @@ const BASE = (process.env['BASE_PATH'] ?? '').replace(/\/$/, '');
 const ORIGIN = process.env['SITE_ORIGIN'] ?? 'https://rpops101.github.io';
 const REPO = 'https://github.com/rpops101/accessibility-statement';
 
+/*
+ * Search-engine ownership verification. Tokens are public by design — they
+ * appear in the page source — so they live in a committed file rather than
+ * a secret, which keeps verification reproducible across rebuilds. An
+ * environment variable overrides the file for one-off builds.
+ */
+const verificationFile = join(SITE, 'verification.json');
+const verification = existsSync(verificationFile)
+  ? JSON.parse(readFileSync(verificationFile, 'utf8'))
+  : {};
+const GOOGLE_VERIFICATION = process.env['GOOGLE_SITE_VERIFICATION'] ?? verification.google ?? '';
+const BING_VERIFICATION = process.env['BING_SITE_VERIFICATION'] ?? verification.bing ?? '';
+
 const url = (path) => `${BASE}${path}`;
 const absolute = (path) => `${ORIGIN}${BASE}${path}`;
 
@@ -138,7 +151,7 @@ ${hreflang}
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(absolute(path))}">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="${esc(url('/styles.css'))}">
+${GOOGLE_VERIFICATION ? `<meta name="google-site-verification" content="${esc(GOOGLE_VERIFICATION)}">\n` : ''}${BING_VERIFICATION ? `<meta name="msvalidate.01" content="${esc(BING_VERIFICATION)}">\n` : ''}<link rel="stylesheet" href="${esc(url('/styles.css'))}">
 ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
 </head>
 <body>
@@ -535,6 +548,16 @@ mkdirSync(outDir, { recursive: true });
 cpSync(join(SITE, 'src/styles.css'), join(outDir, 'styles.css'));
 cpSync(join(root, 'docs/assets/demo.svg'), join(outDir, 'demo.svg'));
 
+// Verbatim passthrough — search-engine verification files live here and
+// must be served at an exact URL.
+const publicDir = join(SITE, 'public');
+if (existsSync(publicDir)) {
+  for (const entry of readdirSync(publicDir)) {
+    if (entry === 'README.md') continue; // documentation, not a site asset
+    cpSync(join(publicDir, entry), join(outDir, entry), { recursive: true });
+  }
+}
+
 // Bundle the engine plus the UI. The packs are injected as a virtual module
 // so the site is built from the same data the CLI ships.
 const packsJson = JSON.stringify(
@@ -597,9 +620,17 @@ ${pages
 `
 );
 
+// Note: crawlers read robots.txt only from the ORIGIN root. On a GitHub
+// project page this file lives under /<repo>/, where nothing fetches it, so
+// the Sitemap directive below is documentation rather than a working
+// discovery mechanism — submit the sitemap through Search Console instead.
+// It becomes effective if the site ever moves to its own domain.
 writeFileSync(
   join(outDir, 'robots.txt'),
-  `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}${BASE}/sitemap.xml\n`
+  `# Crawlers read robots.txt from the origin root. On a project page this\n` +
+    `# file is not at the origin root, so submit the sitemap via Search\n` +
+    `# Console. This becomes effective on a custom domain.\n` +
+    `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}${BASE}/sitemap.xml\n`
 );
 
 writeFileSync(
