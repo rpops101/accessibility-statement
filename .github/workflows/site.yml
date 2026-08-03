@@ -1,0 +1,90 @@
+name: Site
+
+# Builds and deploys the static site to GitHub Pages — free, and no
+# infrastructure beyond static files, because the generator runs entirely in
+# the visitor's browser.
+#
+# GitHub Pages is free for PUBLIC repositories. While this repository is
+# private, the build and verify job still runs on every pull request; only
+# the deploy step needs the repository to be public (or a paid plan).
+# Enable at: Settings → Pages → Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'packages/packs/packs/**'
+      - 'packages/core/data/strings/**'
+      - 'docs/assets/**'
+      - '.github/workflows/site.yml'
+  pull_request:
+    paths:
+      - 'site/**'
+      - 'packages/packs/packs/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+
+      - name: Build the site
+        env:
+          # Project pages live under /<repo>/. Drop BASE_PATH if you ever
+          # move to a user page or a custom domain at the root.
+          BASE_PATH: /accessibility-statement
+          SITE_ORIGIN: https://rpops101.github.io
+        run: node site/build.mjs site/dist
+
+      - name: Install a browser and axe-core
+        run: |
+          npm install --no-save playwright@1 axe-core@4
+          npx playwright install --with-deps chromium
+
+      # The site sells accessibility. Shipping an inaccessible page would be
+      # self-refuting, and the no-network assertion is what backs the privacy
+      # claim on the generator.
+      - name: Verify accessibility, the generator, and no network egress
+        run: |
+          node site/build.mjs /tmp/site-check
+          node site/test/check-site.mjs /tmp/site-check
+
+      - name: Upload the Pages artifact
+        if: github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+  deploy:
+    name: Deploy to GitHub Pages
+    # Only on main, and only once the repository is public — the deploy will
+    # fail with a clear permissions error on a private repo without a paid
+    # plan, which is the intended signal rather than a silent no-op.
+    if: github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

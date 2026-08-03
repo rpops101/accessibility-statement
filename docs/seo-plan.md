@@ -11,69 +11,83 @@ using content only this project can produce.
 
 ---
 
-## 1. The domain decision
+## 1. Hosting, at zero cost
 
-You mentioned a subdomain of `gemresearchlabs.com`. I looked at it, and I
-would advise against it as the public home.
+**Decision: no domain purchase. The site is hosted free.** That is a
+perfectly good position — it costs you nothing and gives up less than people
+assume.
 
-`gemresearchlabs.com` is **Gemological Research Laboratories** — a gemstone
-and jewellery certification service. Registered September 2024, a small
-brochure site, no blog or article section.
+### What a free host actually gives up
 
-Three reasons that hurts, in increasing order of importance:
+A custom domain is worth something, but mostly later. What matters in the
+first year is links, content and topical relevance, and none of those depend
+on owning a domain. `github.io` and `github.com` carry substantial authority
+that a new domain would take six to twelve months to approach from zero. For
+a developer tool, a GitHub-hosted site can genuinely out-rank a brand-new
+custom domain for the first year.
 
-1. **There is no relevant authority to inherit.** The benefit people expect
-   from a subdomain is borrowed authority, and authority is largely topical
-   and link-driven. A domain about gemstone spectroscopy carries no topical
-   signal for web-accessibility compliance. Google would be starting the
-   subdomain's topical understanding from scratch either way.
-2. **The parent has little authority to lend.** Two years old, few pages, no
-   inbound-link engine. Even a subfolder — which consolidates authority
-   better than a subdomain — would pass on very little.
-3. **It undermines the product's core claim, which is the real cost.** This
-   tool generates documents with legal weight, and its central risk is
-   credibility. A compliance officer or lawyer checking where a generated
-   statement came from would land on a gemstone-certification company. That
-   is the exact moment you need the provenance to reassure them. It also
-   weakens the NLnet framing, where the pitch is a public-good commons
-   rather than a side project on a commercial lab's domain.
+What you give up is a keyword in the URL and full control of the address.
+Both are recoverable later: point a domain at the same site, keep every path
+identical, and redirect. Do that once, deliberately, rather than drifting.
 
-### Recommendation
+### The two free options
 
-**Register `accessibilitystatement.eu`.** I verified it is unregistered
-(RDAP returns 404, no nameservers). Roughly €10–20/year.
+**GitHub Pages** — free, but **only for public repositories**. Pages on a
+private repo needs a paid GitHub plan. Since the repository is going public
+before launch anyway, this is the natural choice, and it puts the site and
+the code at the same origin:
 
-It is close to the best possible domain for this project:
+```
+https://rpops101.github.io/accessibility-statement/
+```
 
-- **Exact match for the head search term**, which still carries weight in
-  click-through and in how people remember and re-find a tool.
-- **`.eu` is the differentiator, stated in the URL.** Every competitor is a
-  generic international generator. The whole wedge here is *EU member-state
-  format and language*, and the TLD says so before the page loads.
-- Credible for grant applications and for a compliance audience.
+**Cloudflare Pages** — also free, and works with a **private** repository if
+you want the site up before the code is public. Free tier includes unlimited
+bandwidth and free TLS. Use this if you want to publish the site first and
+open the repo later.
 
-`statementgen.eu` is also free if you prefer something shorter.
-`accessibilitystatement.org` appears to be taken.
+Either is fine. GitHub Pages is simpler and is what the deploy workflow in
+this repository targets.
 
-### If you would rather spend nothing
+### The one thing that costs nothing and matters most
 
-**GitHub Pages on the repository is a genuinely good answer**, not a
-consolation prize. `github.io` and `github.com` carry substantial authority,
-developer-tool queries surface GitHub repositories readily, and it costs
-nothing. You can attach a custom domain later without losing the work —
-GitHub Pages supports a `CNAME` and issues the certificate.
+**Pick the final URL before you launch and do not move it.** Every inbound
+link, every mention in a roundup, every Show HN comment points at whatever
+address you used. Moving later leaks authority and breaks links. A free
+`github.io` URL you keep is worth more than a custom domain you migrate to
+badly.
 
-The one thing to avoid is publishing at a URL you intend to abandon.
-Migrations leak authority and break the inbound links you spent months
-earning. Pick the final home before you launch.
+If you later want a domain, `accessibilitystatement.eu` was unregistered as
+of 3 August 2026 — exact-match, and the TLD states the differentiator. It is
+around €10–20/year and would be the single highest-value purchase this
+project could make. But it is an optimisation, not a prerequisite, and
+nothing in this plan depends on it.
 
-### If you still want to use gemresearchlabs
+### Not the gemresearchlabs subdomain
 
-Use it for **staging only** — a preview host for the site before it goes
-public, on a subdomain you never link to publicly and mark `noindex`. That
-is a real use and costs nothing.
+You offered a subdomain of `gemresearchlabs.com`. I looked: it is
+**Gemological Research Laboratories**, a gemstone and jewellery certification
+service, registered September 2024, small, no blog.
 
----
+Since it is free to you, it is worth saying why a free-but-wrong host is
+still the wrong call:
+
+1. **Nothing to inherit.** The authority people expect a subdomain to borrow
+   is largely topical. A domain about gemstone spectroscopy carries no signal
+   for accessibility compliance.
+2. **Little to lend.** A two-year-old brochure site with no content engine
+   has minimal authority even for its own subject.
+3. **It damages the product's core claim.** This tool generates documents
+   with legal weight, and its central risk is credibility. A compliance
+   officer checking the provenance of a generated statement would find a
+   gemstone lab. That is the exact moment the source needs to reassure them.
+   It also weakens the NLnet framing, where the pitch is a public-good
+   commons rather than a side project on an unrelated commercial domain.
+
+`github.io` has none of those problems and costs the same: nothing.
+
+The subdomain does have one good use — a **staging host** for previewing the
+site before it goes public, never linked and marked `noindex`.
 
 ## 2. What the search results actually look like
 
@@ -125,8 +139,12 @@ That is where to compete.
 
 ### 3.1 A free generator that runs entirely in the browser
 
-This is the single highest-leverage thing to build, and the architecture
-already allows it: `@accessibility-statement/core` is pure JavaScript with
+**Built — see `site/`.** `npm run site` produces it; `npm run site:check`
+verifies it. The engine is bundled for the browser with esbuild, with the
+Node built-ins the CLI paths use replaced by stubs.
+
+This was the single highest-leverage thing to build, and the architecture
+already allowed it: `@accessibility-statement/core` is pure JavaScript with
 **one dependency and no network access at all**. It runs client-side
 unchanged. No backend, no database, no hosting bill beyond static files.
 
@@ -145,8 +163,10 @@ recurring-value story is `check` in a pipeline, not a one-off document.
 
 ### 3.2 Twenty-seven country pages, in the local language
 
-Generate one page per jurisdiction pack, from `pack.yaml`, at
-`/{country}/` — for example `/de/`, `/fr/`, `/es/`.
+**Built.** One page per pack per language: `/de/` and `/de/en/`, `/fr/` and
+`/fr/en/`, and so on — thirteen pages today, one more every time a pack
+merges. Generated from `pack.yaml` at build time, so they cannot drift from
+what the tool produces.
 
 This is programmatic SEO, but it is **not** thin doorway content, and that
 distinction is what keeps it out of trouble. Each page carries genuinely
@@ -314,11 +334,19 @@ data never leaves your browser" cannot ship Google Analytics.
 
 **Before launch**
 
-- Decide and register the domain. Do not launch on a URL you will move.
-- Landing page: what it does, the five-minute demo, the country matrix.
-- The browser generator, even in rough form. It is the reason to link to you.
-- Country pages for the six packs that exist (EU, DE, FR, ES, IE, IT).
-- Search Console verified, sitemap submitted.
+- [x] Landing page, browser generator, and country pages for all six packs —
+      built, in `site/`, verified accessible with no network egress.
+- [x] Sitemap, robots.txt, canonical URLs, `hreflang`, and
+      `SoftwareApplication` / `HowTo` structured data.
+- [ ] **Make the repository public** and enable Pages
+      (Settings → Pages → Source: GitHub Actions). The deploy job is written
+      and waiting; Pages is free only for public repositories.
+- [ ] Verify the site in Google Search Console and Bing Webmaster Tools, and
+      submit the sitemap. Do this *before* launch so you have baseline data.
+- [ ] Add an `og:image`. The pages currently declare `twitter:card
+      summary` with no image, which is honest but plain; a 1200×630 PNG would
+      improve every social share. It needs a raster image, so it is a task for
+      someone with a graphics tool.
 
 **Months 1–3 — Tier 1**
 
@@ -389,11 +417,14 @@ Ignore vanity metrics. Stars and pageviews are telemetry, not targets.
 
 | Item | Cost |
 | --- | --- |
-| `accessibilitystatement.eu` | ~€10–20/year |
-| Hosting (static: GitHub Pages, Cloudflare Pages, Netlify) | €0 |
-| Analytics (Plausible, or GoatCounter, or none) | €0–9/month |
+| Hosting — GitHub Pages (public repo) or Cloudflare Pages (private) | €0 |
+| Analytics — GoatCounter is free for non-commercial use, or ship none | €0 |
 | Search Console, Bing Webmaster Tools | €0 |
-| **Total** | **under €50/year** |
+| Domain — optional, deferred | €0 |
+| **Total** | **€0** |
+
+Nothing in this plan requires spending money. The only paid item ever worth
+considering is a domain, and that can wait until the traffic justifies it.
 
 At eight hours a week, a realistic split is roughly two hours on content, one
 on outreach, and the rest on the tool. Outreach is the part most often
@@ -404,12 +435,13 @@ a page that already ranks beats a month of writing.
 
 ## Summary
 
-- **Do not host on `gemresearchlabs.com`.** The topical mismatch gains you
-  nothing and the provenance actively damages a compliance tool's
-  credibility.
-- **Register `accessibilitystatement.eu`** — confirmed available, exact-match,
-  and the TLD states the differentiator. GitHub Pages is a legitimate free
-  alternative; just decide before launch.
+- **Do not host on `gemresearchlabs.com`.** It is free, but the topical
+  mismatch gains nothing and the provenance actively damages a compliance
+  tool's credibility. `github.io` costs the same and has neither problem.
+- **Host free on GitHub Pages**, which requires the repository to be public —
+  it is going public before launch anyway. Cloudflare Pages is the free
+  option if you want the site up while the repo is still private. Decide the
+  URL before launch and never move it.
 - **Do not fight for "accessibility statement generator" in year one.** It is
   saturated by well-funded vendor lead magnets.
 - **Win the EU and national-language long tail**, where the search results

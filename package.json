@@ -20,7 +20,9 @@
     "render-corpus": "node scripts/render-corpus.mjs",
     "seed-issues": "node scripts/seed-issues.mjs",
     "check-pack-links": "node scripts/check-pack-links.mjs",
-    "gen-demo": "node scripts/gen-demo.mjs"
+    "gen-demo": "node scripts/gen-demo.mjs",
+    "site": "node site/build.mjs site/dist",
+    "site:check": "node site/build.mjs /tmp/site-check && node site/test/check-site.mjs /tmp/site-check"
   },
   "engines": {
     "node": ">=20"

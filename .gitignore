@@ -3,3 +3,6 @@ dist/
 *.tsbuildinfo
 .accessibility-statement-tmp/
 coverage/
+
+# built site output
+site/dist/
