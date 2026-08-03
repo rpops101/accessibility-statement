@@ -342,11 +342,19 @@ data never leaves your browser" cannot ship Google Analytics.
 - [x] **Google Search Console verified**, via the HTML-file method. The
       verification file is committed at `site/public/`, so it survives
       rebuilds — deleting it un-verifies the property at Google's next check.
-- [ ] Submit `sitemap.xml` in Search Console (18 URLs). This is the only
-      working discovery route here: `github.io`'s robots.txt lives at the
-      origin root, where a project page cannot write.
-- [ ] Bing Webmaster Tools — it can import directly from Search Console, so
-      it costs about five minutes. Bing also feeds DuckDuckGo.
+- [x] **IndexNow submission automated.** Every deploy pushes the live URL
+      list to Bing, DuckDuckGo, Yandex, Seznam and Naver. No account is
+      needed — ownership is proved by a hosted key file — so this runs
+      unattended in the deploy workflow. First submission accepted 3 August
+      2026.
+- [ ] **Submit `sitemap.xml` in Search Console** (18 URLs). Google does not
+      participate in IndexNow and retired its sitemap ping, so this is the
+      one step that genuinely requires the account holder. It is also the
+      only working route here: `github.io`'s robots.txt lives at the origin
+      root, where a project page cannot write.
+- [ ] Bing Webmaster Tools — optional now that IndexNow covers submission,
+      but worth it for the reporting. It can import directly from Search
+      Console.
 - [x] **og:image added** — a committed 1200×630 PNG, wired into every page
       with `summary_large_image`.
 
