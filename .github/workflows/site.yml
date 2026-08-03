@@ -93,3 +93,33 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  notify:
+    name: Tell search engines the site changed
+    # After the deploy, so the key file and the changed pages are actually
+    # live when the submission is validated.
+    if: github.ref == 'refs/heads/main'
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+
+      - name: Rebuild the sitemap for the URL list
+        env:
+          BASE_PATH: /accessibility-statement
+          SITE_ORIGIN: https://rpops101.github.io
+        run: node site/build.mjs site/dist
+
+      # IndexNow needs no account — ownership is proved by the hosted key
+      # file — so it can run unattended. Google does not participate and
+      # discovers through the sitemap submitted in Search Console.
+      # Never fail the workflow over this: a search engine being briefly
+      # unreachable is not a broken deployment.
+      - name: Submit URLs via IndexNow
+        continue-on-error: true
+        run: node scripts/indexnow.mjs
