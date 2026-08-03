@@ -1,0 +1,5 @@
+{
+  "testEngine": { "name": "axe-core", "version": "4.10.2" },
+  "url": "https://example.org/",
+  "violations": [
+    { "id": "image-alt", "nodes": [

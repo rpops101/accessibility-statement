@@ -1,0 +1,23 @@
+{
+  "testEngine": { "name": "axe-core", "version": "5.0.0-future" },
+  "url": "https://example.org/",
+  "violations": [
+    {
+      "id": "some-rule-invented-after-this-release",
+      "impact": "serious",
+      "tags": ["cat.parsing", "wcag2aa", "wcag1410"],
+      "help": "A rule that postdates the shipped mapping table",
+      "nodes": [{ "target": [".widget"] }]
+    },
+    {
+      "id": "region",
+      "impact": "moderate",
+      "tags": ["cat.keyboard", "best-practice"],
+      "help": "All page content should be contained by landmarks",
+      "nodes": [{ "target": ["p"] }]
+    }
+  ],
+  "passes": [],
+  "incomplete": [],
+  "inapplicable": []
+}

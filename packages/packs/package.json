@@ -1,0 +1,37 @@
+{
+  "name": "@eaa-kit/packs",
+  "version": "0.1.0",
+  "description": "Jurisdiction packs for eaa-kit: per-member-state accessibility-statement formats, translations, legal references and enforcement-body details. Data only — no code.",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "packs",
+    "schema"
+  ],
+  "exports": {
+    "./packs/": "./packs/",
+    "./schema/": "./schema/",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node -e \"\"",
+    "test": "node ../../scripts/run-tests.mjs test",
+    "update-snapshots": "node --import tsx scripts/update-snapshots.ts",
+    "gen-schema": "node scripts/gen-schema.mjs"
+  },
+  "devDependencies": {
+    "@eaa-kit/core": "*",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "accessibility",
+    "eaa",
+    "accessibility-statement",
+    "jurisdiction",
+    "i18n"
+  ]
+}

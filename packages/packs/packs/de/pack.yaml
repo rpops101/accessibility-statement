@@ -1,0 +1,28 @@
+# Germany — Barrierefreiheitsstärkungsgesetz (BFSG).
+# Enforcement details cited from the sources below; re-verify before each
+# release (Silver criterion) and set enforcement.verified accordingly.
+schemaVersion: 1
+country: de
+name: Germany (Deutschland)
+languages: [de, en]
+defaultLanguage: de
+legal:
+  act: Barrierefreiheitsstärkungsgesetz (BFSG)
+  references:
+    - Verordnung zum Barrierefreiheitsstärkungsgesetz (BFSGV)
+    - Richtlinie (EU) 2019/882 (European Accessibility Act)
+    - EN 301 549
+  sources:
+    - https://www.gesetze-im-internet.de/bfsg/
+    - https://www.bundesfachstelle-barrierefreiheit.de/DE/Fachwissen/Produkte-und-Dienstleistungen/Barrierefreiheitsstaerkungsgesetz/barrierefreiheitsstaerkungsgesetz_node.html
+enforcement:
+  name: Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)
+  url: https://www.mlbf.de/
+  address: Landesverwaltungsamt Sachsen-Anhalt, Ernst-Kamieth-Straße 2, 06112 Halle (Saale), Deutschland
+  verified: "2026-08-01"
+deadlines:
+  enforceableSince: "2025-06-28"
+  notes: Bußgelder bis zu 100.000 EUR (§ 37 BFSG). Übergangsfristen für bestehende Dienstleistungen bis längstens 28. Juni 2030.
+quality: silver
+maintainers:
+  - eaa-kit maintainers

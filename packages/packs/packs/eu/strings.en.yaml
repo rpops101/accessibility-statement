@@ -1,0 +1,5 @@
+# English strings for the generic EU pack.
+# Everything falls back to the core English strings (NFR-6); this file only
+# needs entries that differ from them. Bronze packs for other countries are
+# exactly this file, translated, plus pack.yaml.
+{}

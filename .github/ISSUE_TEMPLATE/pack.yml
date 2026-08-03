@@ -1,0 +1,47 @@
+name: Jurisdiction pack request or claim
+description: Add support for a country's accessibility statement (the most welcome contribution)
+title: 'pack: add <country> jurisdiction pack'
+labels: ['pack', 'good first issue']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A jurisdiction pack is **data, not code** — roughly two files and an
+        evening, with no knowledge of the engine required.
+
+        Start with:
+        ```bash
+        npx eaa-kit contrib scaffold-pack --country xx
+        ```
+        The scaffold writes a `TODO.md` with the full checklist, and
+        `npx eaa-kit validate-pack` tells you when you are done.
+
+  - type: input
+    id: country
+    attributes:
+      label: Country
+      description: Name and ISO 3166-1 alpha-2 code, e.g. "Portugal (pt)"
+    validations:
+      required: true
+
+  - type: input
+    id: languages
+    attributes:
+      label: Official language(s) you can write
+      description: Bronze needs one; Silver needs all official languages of the state.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: intent
+    attributes:
+      label: Are you claiming this?
+      options:
+        - label: I want to write this pack myself
+        - label: I am requesting it, but cannot write it
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources you already know (optional)
+      description: The national act transposing Directive (EU) 2019/882, and the enforcement body. Official domains only.

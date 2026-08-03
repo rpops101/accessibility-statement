@@ -1,0 +1,26 @@
+# pre-commit hook definitions (FR-CI-3), so the conformance checker rides
+# the pre-commit distribution channel.
+#
+# Usage in a consuming repository's .pre-commit-config.yaml:
+#
+#   repos:
+#     - repo: https://github.com/eaa-kit/eaa-kit
+#       rev: v0.1.0
+#       hooks:
+#         - id: eaa-kit-check
+
+- id: eaa-kit-check
+  name: eaa-kit conformance check
+  description: Fail the commit when an accessibility criterion regresses against eaa.lock.json.
+  entry: eaa-kit check
+  language: node
+  pass_filenames: false
+  files: ^(eaa\.config\.yaml|eaa\.lock\.json|manual\.yaml|.*\.json)$
+
+- id: eaa-kit-validate-pack
+  name: eaa-kit pack validation
+  description: Validate jurisdiction packs (for repositories that carry their own packs).
+  entry: eaa-kit validate-pack
+  language: node
+  pass_filenames: false
+  files: ^packs/.*/(pack\.yaml|strings\..*\.yaml)$

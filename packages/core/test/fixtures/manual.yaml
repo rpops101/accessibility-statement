@@ -1,0 +1,21 @@
+# Manual checklist fixture: exercises every precedence path of FR-MAP-2.
+checklist:
+  # Overrides an automated failure — must win, and surface a conflict.
+  - criterion: "1.4.3"
+    status: pass
+    evidence: The contrast failure is on a decorative element that is exempt; verified manually at 200% zoom.
+    evaluatedBy: A. Tester
+  # Criterion no automated tool can judge.
+  - criterion: "1.2.2"
+    status: fail
+    evidence: The product tour video has no captions.
+  - criterion: "2.4.3"
+    status: pass
+    evidence: Tabbed the full checkout flow; focus order follows the visual order.
+  - criterion: "1.2.1"
+    status: not-applicable
+    evidence: The service contains no audio-only or video-only content.
+  # An explicitly unevaluated entry must not decide the criterion.
+  - criterion: "3.3.4"
+    status: not-evaluated
+    evidence: ""

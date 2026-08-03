@@ -1,0 +1,41 @@
+# Aistriúchán Gaeilge — dréacht ó na cothabhálaithe atá ag fanacht ar
+# athbhreithniú ó chainteoir dúchais (riachtanas Óir an scála cáilíochta).
+common:
+  draftWatermark: "DRÉACHT — le hathbhreithniú daonna. Ginte ag eaa-kit; ní comhairle dlí é an doiciméad seo agus ní mór do dhuine freagrach é a athbhreithniú roimh fhoilsiú."
+  reviewedBy: "Athbhreithnithe ag"
+  reviewedOn: "Athbhreithnithe an"
+  generatedBy: "Ginte le eaa-kit ó fhianaise tástála taifeadta."
+  status:
+    pass: "Comhlíonann"
+    fail: "Ní chomhlíonann"
+    partial: "Comhlíonann go páirteach"
+    not-applicable: "Ní bhaineann"
+    not-evaluated: "Níor measúnaíodh"
+  compliance:
+    full: "comhlíontach go hiomlán"
+    partial: "comhlíontach go páirteach"
+    non-compliant: "neamhchomhlíontach"
+statement:
+  title: "Ráiteas Inrochtaineachta"
+  forProduct: "Baineann an ráiteas inrochtaineachta seo le"
+  complianceSentence:
+    full: "— comhlíonann sé ceanglais EN 301 549 (WCAG, leibhéal AA) go hiomlán."
+    partial: "— comhlíonann sé ceanglais EN 301 549 (WCAG, leibhéal AA) go páirteach, mar gheall ar na neamhchomhlíontachtaí agus na díolúintí atá liostaithe thíos."
+    nonCompliant: "— ní chomhlíonann sé ceanglais EN 301 549 (WCAG, leibhéal AA). Tá na neamhchomhlíontachtaí liostaithe thíos."
+  complianceStatusHeading: "Stádas comhlíonta"
+  nonAccessibleHeading: "Ábhar nach bhfuil inrochtana"
+  nonAccessibleIntro: "Níl an t-ábhar thíos inrochtana ar na cúiseanna seo a leanas:"
+  criterionLabel: "Critéar WCAG"
+  clauseLabel: "clásal EN 301 549"
+  preparationHeading: "Ullmhú an ráitis inrochtaineachta seo"
+  preparedOn: "Ullmhaíodh an ráiteas seo an"
+  method: "Modh measúnaithe"
+  lastReviewed: "Rinneadh athbhreithniú ar an ráiteas go deireanach an"
+  feedbackHeading: "Aiseolas agus faisnéis teagmhála"
+  feedbackIntro: "Má thugann tú easnaimh inrochtaineachta faoi deara, nó má theastaíonn faisnéis uait i bhformáid inrochtana, déan teagmháil linn:"
+  enforcementHeading: "Nós imeachta forfheidhmithe"
+  enforcementIntro: "Mura bhfuil tú sásta leis na freagraí ar d'fhiosrúchán, is féidir leat dul i dteagmháil leis an gcomhlacht forfheidhmithe freagrach:"
+  notEvaluatedHeading: "Ábhar nár measúnaíodh fós"
+  notEvaluatedIntro: "Níor measúnaíodh na ceanglais seo a leanas fós:"
+  burdenHeading: "Ualach díréireach"
+  burdenIntro: "Tá an t-ábhar seo a leanas díolmhaithe de bhun measúnú ualaigh dhíréirigh (Airteagal 14, Treoir (AE) 2019/882):"

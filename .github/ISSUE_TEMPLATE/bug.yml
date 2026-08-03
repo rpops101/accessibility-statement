@@ -1,0 +1,37 @@
+name: Bug report
+description: Something produced the wrong output or failed unexpectedly
+labels: ['bug']
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: Include the exact command and the full output. eaa-kit never prints stack traces at users; if you saw one, that alone is a bug worth reporting.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Input that triggers it
+      description: |
+        The smallest evidence file that reproduces it, if you can share one.
+        Redact URLs and organisation names freely — the shape of the file is
+        what matters. Real tool output (including malformed output) makes an
+        excellent regression fixture.
+      render: json
+
+  - type: input
+    id: version
+    attributes:
+      label: eaa-kit version and Node version
+      description: 'Output of: npx eaa-kit --version && node --version'
+    validations:
+      required: true

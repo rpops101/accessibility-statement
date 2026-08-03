@@ -1,0 +1,39 @@
+name: Legal accuracy problem
+description: A pack cites the wrong law, enforcement body, or uses wording that would not be accepted
+title: 'legal: <country> — '
+labels: ['legal-accuracy', 'priority']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you — these reports matter more than feature requests. A pack
+        that names the wrong enforcement body sends someone's accessibility
+        complaint to the wrong place.
+
+        Please report these publicly rather than privately: they are not
+        security vulnerabilities, and fixing them in the open lets other
+        contributors check similar packs.
+
+  - type: input
+    id: pack
+    attributes:
+      label: Which pack
+      description: Country code, e.g. "de"
+    validations:
+      required: true
+
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong
+      description: Quote the incorrect field or wording.
+    validations:
+      required: true
+
+  - type: textarea
+    id: correct
+    attributes:
+      label: What it should say, with an official source
+      description: Link to the government or legislature page that establishes this.
+    validations:
+      required: true

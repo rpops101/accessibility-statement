@@ -1,0 +1,78 @@
+{
+  "_comment": [
+    "Structural schema for OpenACR output, expressed in the JSON-Schema subset",
+    "eaa-kit's own validator supports. It encodes the field names, types and",
+    "adherence vocabulary of the GSA OpenACR format (https://github.com/GSA/openacr)",
+    "so `render acr --format openacr` is checked offline, in every CI run.",
+    "It is a conformance check of our output shape, not a vendored copy of the",
+    "upstream schema; when upstream changes, this file is updated by hand."
+  ],
+  "type": "object",
+  "required": [
+    "title",
+    "product",
+    "author",
+    "report_date",
+    "last_modified_date",
+    "version",
+    "notes",
+    "evaluation_methods_used",
+    "legal_disclaimer",
+    "catalog",
+    "chapters"
+  ],
+  "properties": {
+    "title": { "type": "string", "minLength": 1 },
+    "product": {
+      "type": "object",
+      "required": ["name", "version", "description"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "version": { "type": "string" },
+        "description": { "type": "string" }
+      }
+    },
+    "author": {
+      "type": "object",
+      "required": ["name", "company_name", "email"],
+      "properties": {
+        "name": { "type": "string" },
+        "company_name": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "website": { "type": "string" }
+      }
+    },
+    "vendor": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "company_name": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "website": { "type": "string" }
+      }
+    },
+    "report_date": { "type": "string", "format": "date" },
+    "last_modified_date": { "type": "string", "format": "date" },
+    "version": { "type": "integer", "minimum": 1 },
+    "notes": { "type": "string" },
+    "evaluation_methods_used": { "type": "string" },
+    "legal_disclaimer": { "type": "string", "minLength": 1 },
+    "repository": { "type": "string" },
+    "feedback": { "type": "string" },
+    "license": { "type": "string" },
+    "related_openacr": { "type": "array", "items": { "type": "string" } },
+    "catalog": { "type": "string", "minLength": 1 },
+    "chapters": {
+      "type": "object",
+      "required": ["success_criteria_level_a", "success_criteria_level_aa"],
+      "properties": {
+        "success_criteria_level_a": { "$comment": "see chapter definition below", "type": "object" },
+        "success_criteria_level_aa": { "type": "object" }
+      }
+    }
+  }
+}

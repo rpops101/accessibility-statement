@@ -1,0 +1,40 @@
+{
+  "name": "eaa-kit",
+  "version": "0.1.0",
+  "description": "Generate the artifacts the European Accessibility Act requires — accessibility statement, ACR/VPAT (OpenACR), disproportionate-burden worksheet — from your existing axe/pa11y/Lighthouse results. No network, no signup.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "eaa-kit": "./dist/main.js"
+  },
+  "files": [
+    "dist",
+    "templates"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "node ../../scripts/run-tests.mjs test"
+  },
+  "dependencies": {
+    "@eaa-kit/core": "*",
+    "@eaa-kit/packs": "*"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "accessibility",
+    "eaa",
+    "european-accessibility-act",
+    "accessibility-statement",
+    "vpat",
+    "openacr",
+    "en-301-549",
+    "wcag",
+    "cli"
+  ]
+}

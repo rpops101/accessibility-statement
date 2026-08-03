@@ -1,0 +1,28 @@
+# Generic EU model pack — derived from the model accessibility statement in
+# Commission Implementing Decision (EU) 2018/1523. Provides the fallback
+# statement templates every Bronze pack inherits (REQ-PACK-1).
+schemaVersion: 1
+country: eu
+name: European Union (generic model)
+languages: [en]
+defaultLanguage: en
+legal:
+  act: Directive (EU) 2019/882 (European Accessibility Act)
+  references:
+    - Directive (EU) 2016/2102 (Web Accessibility Directive)
+    - Commission Implementing Decision (EU) 2018/1523 (model accessibility statement)
+    - EN 301 549 (harmonised standard)
+  sources:
+    - https://eur-lex.europa.eu/eli/dir/2019/882/oj
+    - https://eur-lex.europa.eu/eli/dec_impl/2018/1523/oj
+enforcement:
+  name: The market surveillance authority of the member state in which the service is provided (see the jurisdiction packs for named bodies)
+  url: https://ec.europa.eu/social/main.jsp?catId=1202
+  verified: "2026-08-01"
+deadlines:
+  enforceableSince: "2025-06-28"
+  notes: Services already provided before 28 June 2025 benefit from transition arrangements until 28 June 2030 at the latest (Article 32).
+quality: silver
+maintainers:
+  - eaa-kit maintainers
+notes: This pack is jurisdiction-neutral. Prefer a country pack for a national-format statement; use this one for a generic EU statement in English.

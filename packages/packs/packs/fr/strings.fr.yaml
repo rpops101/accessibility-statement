@@ -1,0 +1,42 @@
+# Traduction française des éléments de la déclaration.
+# Terminologie alignée sur le RGAA et la déclaration type de la décision
+# d'exécution (UE) 2018/1523.
+common:
+  draftWatermark: "PROJET — à faire relire. Généré par eaa-kit ; ce document ne constitue pas un avis juridique et doit être relu par une personne responsable avant publication."
+  reviewedBy: "Relu par"
+  reviewedOn: "Relu le"
+  generatedBy: "Généré avec eaa-kit à partir des résultats de tests enregistrés."
+  status:
+    pass: "Conforme"
+    fail: "Non conforme"
+    partial: "Partiellement conforme"
+    not-applicable: "Non applicable"
+    not-evaluated: "Non évalué"
+  compliance:
+    full: "totalement conforme"
+    partial: "partiellement conforme"
+    non-compliant: "non conforme"
+statement:
+  title: "Déclaration d'accessibilité"
+  forProduct: "La présente déclaration d'accessibilité s'applique à"
+  complianceSentence:
+    full: "est totalement conforme aux exigences de la norme EN 301 549 (WCAG, niveau AA)."
+    partial: "est partiellement conforme aux exigences de la norme EN 301 549 (WCAG, niveau AA), en raison des non-conformités et des dérogations énumérées ci-dessous."
+    nonCompliant: "n'est pas conforme aux exigences de la norme EN 301 549 (WCAG, niveau AA). Les non-conformités sont énumérées ci-dessous."
+  complianceStatusHeading: "État de conformité"
+  nonAccessibleHeading: "Contenus non accessibles"
+  nonAccessibleIntro: "Les contenus listés ci-dessous ne sont pas accessibles pour les raisons suivantes :"
+  criterionLabel: "Critère WCAG"
+  clauseLabel: "clause EN 301 549"
+  preparationHeading: "Établissement de cette déclaration d'accessibilité"
+  preparedOn: "Cette déclaration a été établie le"
+  method: "Méthode d'évaluation"
+  lastReviewed: "Elle a été revue pour la dernière fois le"
+  feedbackHeading: "Retour d'information et contact"
+  feedbackIntro: "Si vous constatez un défaut d'accessibilité, ou si vous avez besoin d'une information dans un format accessible, contactez-nous :"
+  enforcementHeading: "Voies de recours"
+  enforcementIntro: "Si vous n'êtes pas satisfait des réponses apportées à votre demande, vous pouvez saisir l'autorité compétente :"
+  notEvaluatedHeading: "Contenus non encore évalués"
+  notEvaluatedIntro: "Les exigences suivantes n'ont pas encore été évaluées :"
+  burdenHeading: "Charge disproportionnée"
+  burdenIntro: "Les contenus suivants sont exemptés au titre d'une évaluation de charge disproportionnée (article 14 de la directive (UE) 2019/882) :"

@@ -1,0 +1,55 @@
+{
+  "lighthouseVersion": "12.2.1",
+  "requestedUrl": "https://example.org/",
+  "finalUrl": "https://example.org/",
+  "finalDisplayedUrl": "https://example.org/",
+  "audits": {
+    "image-alt": {
+      "id": "image-alt",
+      "title": "Image elements have `[alt]` attributes",
+      "score": 0,
+      "scoreDisplayMode": "binary",
+      "details": {
+        "items": [{ "node": { "selector": "#hero > img" } }]
+      }
+    },
+    "color-contrast": {
+      "id": "color-contrast",
+      "title": "Background and foreground colors have a sufficient contrast ratio",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "html-has-lang": {
+      "id": "html-has-lang",
+      "title": "`<html>` element has a `[lang]` attribute",
+      "score": 1,
+      "scoreDisplayMode": "binary"
+    },
+    "video-caption": {
+      "id": "video-caption",
+      "title": "`<video>` elements contain a `<track>` element with `[kind=\"captions\"]`",
+      "score": null,
+      "scoreDisplayMode": "notApplicable"
+    },
+    "focus-traps": {
+      "id": "focus-traps",
+      "title": "User focus is not accidentally trapped in a region",
+      "score": null,
+      "scoreDisplayMode": "manual"
+    }
+  },
+  "categories": {
+    "accessibility": {
+      "id": "accessibility",
+      "title": "Accessibility",
+      "score": 0.88,
+      "auditRefs": [
+        { "id": "image-alt", "weight": 10, "group": "a11y-names-labels" },
+        { "id": "color-contrast", "weight": 7, "group": "a11y-color-contrast" },
+        { "id": "html-has-lang", "weight": 7, "group": "a11y-language" },
+        { "id": "video-caption", "weight": 7, "group": "a11y-audio-video" },
+        { "id": "focus-traps", "weight": 0, "group": "a11y-best-practices" }
+      ]
+    }
+  }
+}

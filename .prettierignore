@@ -1,0 +1,6 @@
+dist/
+node_modules/
+packages/core/src/generated/
+packages/packs/packs/*/snapshots/
+schemas/
+packages/packs/schema/

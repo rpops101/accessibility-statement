@@ -1,0 +1,42 @@
+# Traducción española de los elementos de la declaración.
+# Terminología alineada con el Real Decreto 1112/2018 y la declaración
+# modelo de la Decisión de Ejecución (UE) 2018/1523.
+common:
+  draftWatermark: "BORRADOR — pendiente de revisión humana. Generado por eaa-kit; este documento no constituye asesoramiento jurídico y debe ser revisado por una persona responsable antes de su publicación."
+  reviewedBy: "Revisado por"
+  reviewedOn: "Revisado el"
+  generatedBy: "Generado con eaa-kit a partir de las evidencias de pruebas registradas."
+  status:
+    pass: "Conforme"
+    fail: "No conforme"
+    partial: "Parcialmente conforme"
+    not-applicable: "No aplicable"
+    not-evaluated: "No evaluado"
+  compliance:
+    full: "plenamente conforme"
+    partial: "parcialmente conforme"
+    non-compliant: "no conforme"
+statement:
+  title: "Declaración de accesibilidad"
+  forProduct: "La presente declaración de accesibilidad se aplica a"
+  complianceSentence:
+    full: "es plenamente conforme con los requisitos de la norma EN 301 549 (WCAG, nivel AA)."
+    partial: "es parcialmente conforme con los requisitos de la norma EN 301 549 (WCAG, nivel AA), debido a las no conformidades y exenciones que se enumeran a continuación."
+    nonCompliant: "no es conforme con los requisitos de la norma EN 301 549 (WCAG, nivel AA). Las no conformidades se enumeran a continuación."
+  complianceStatusHeading: "Situación de cumplimiento"
+  nonAccessibleHeading: "Contenido no accesible"
+  nonAccessibleIntro: "El contenido que figura a continuación no es accesible por las siguientes razones:"
+  criterionLabel: "Criterio WCAG"
+  clauseLabel: "cláusula EN 301 549"
+  preparationHeading: "Preparación de la presente declaración de accesibilidad"
+  preparedOn: "La presente declaración fue preparada el"
+  method: "Método de evaluación"
+  lastReviewed: "Última revisión de la declaración:"
+  feedbackHeading: "Observaciones y datos de contacto"
+  feedbackIntro: "Si observa deficiencias de accesibilidad o necesita información en un formato accesible, póngase en contacto con nosotros:"
+  enforcementHeading: "Procedimiento de aplicación"
+  enforcementIntro: "Si no está satisfecho con la respuesta a su solicitud, puede dirigirse a la autoridad competente:"
+  notEvaluatedHeading: "Contenido aún no evaluado"
+  notEvaluatedIntro: "Los siguientes requisitos aún no se han evaluado:"
+  burdenHeading: "Carga desproporcionada"
+  burdenIntro: "El siguiente contenido está exento en virtud de una evaluación de carga desproporcionada (artículo 14 de la Directiva (UE) 2019/882):"

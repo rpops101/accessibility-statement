@@ -1,0 +1,42 @@
+# Traduzione italiana degli elementi della dichiarazione.
+# Terminologia allineata alle Linee guida AgID e alla dichiarazione modello
+# della decisione di esecuzione (UE) 2018/1523.
+common:
+  draftWatermark: "BOZZA — da sottoporre a revisione umana. Generato da eaa-kit; questo documento non costituisce consulenza legale e deve essere esaminato da una persona responsabile prima della pubblicazione."
+  reviewedBy: "Rivisto da"
+  reviewedOn: "Rivisto il"
+  generatedBy: "Generato con eaa-kit dalle evidenze di test registrate."
+  status:
+    pass: "Conforme"
+    fail: "Non conforme"
+    partial: "Parzialmente conforme"
+    not-applicable: "Non applicabile"
+    not-evaluated: "Non valutato"
+  compliance:
+    full: "pienamente conforme"
+    partial: "parzialmente conforme"
+    non-compliant: "non conforme"
+statement:
+  title: "Dichiarazione di accessibilità"
+  forProduct: "La presente dichiarazione di accessibilità si applica a"
+  complianceSentence:
+    full: "è pienamente conforme ai requisiti della norma EN 301 549 (WCAG, livello AA)."
+    partial: "è parzialmente conforme ai requisiti della norma EN 301 549 (WCAG, livello AA), a causa delle non conformità e delle esenzioni elencate di seguito."
+    nonCompliant: "non è conforme ai requisiti della norma EN 301 549 (WCAG, livello AA). Le non conformità sono elencate di seguito."
+  complianceStatusHeading: "Stato di conformità"
+  nonAccessibleHeading: "Contenuti non accessibili"
+  nonAccessibleIntro: "I contenuti elencati di seguito non sono accessibili per i seguenti motivi:"
+  criterionLabel: "Criterio WCAG"
+  clauseLabel: "clausola EN 301 549"
+  preparationHeading: "Redazione della presente dichiarazione di accessibilità"
+  preparedOn: "La presente dichiarazione è stata redatta il"
+  method: "Metodo di valutazione"
+  lastReviewed: "La dichiarazione è stata riesaminata l'ultima volta il"
+  feedbackHeading: "Feedback e recapiti"
+  feedbackIntro: "Se riscontra carenze di accessibilità o necessita di informazioni in un formato accessibile, la preghiamo di contattarci:"
+  enforcementHeading: "Procedura di attuazione"
+  enforcementIntro: "Se non è soddisfatto delle risposte ricevute, può rivolgersi all'autorità competente:"
+  notEvaluatedHeading: "Contenuti non ancora valutati"
+  notEvaluatedIntro: "I seguenti requisiti non sono ancora stati valutati:"
+  burdenHeading: "Onere sproporzionato"
+  burdenIntro: "I seguenti contenuti sono esentati a seguito di una valutazione di onere sproporzionato (articolo 14 della direttiva (UE) 2019/882):"

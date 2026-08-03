@@ -1,0 +1,332 @@
+# WCAG 2.2 success criteria, levels A and AA.
+# Derived from wcag-2.1.yaml: 4.1.1 Parsing is removed in WCAG 2.2; six new
+# A/AA criteria are added (2.4.11, 2.5.7, 2.5.8, 3.2.6, 3.3.7, 3.3.8).
+# See wcag-2.1.yaml for the meaning of `automation` and `manualGuidance`.
+id: wcag-2.2
+version: "2.2"
+criteria:
+  - id: 1.1.1
+    name: Non-text Content
+    level: A
+    automation: partial
+    manualGuidance: Check that alt text is meaningful (not just present) and that
+      complex images have adequate long descriptions.
+  - id: 1.2.1
+    name: Audio-only and Video-only (Prerecorded)
+    level: A
+    automation: none
+    manualGuidance: For each prerecorded audio-only or video-only item, verify a
+      text alternative or audio track exists.
+  - id: 1.2.2
+    name: Captions (Prerecorded)
+    level: A
+    automation: none
+    manualGuidance: Verify prerecorded videos with audio have accurate synchronized captions.
+  - id: 1.2.3
+    name: Audio Description or Media Alternative (Prerecorded)
+    level: A
+    automation: none
+    manualGuidance: Verify prerecorded video has an audio description or full media
+      alternative.
+  - id: 1.2.4
+    name: Captions (Live)
+    level: AA
+    automation: none
+    manualGuidance: Verify live audio content (streams, webinars) has real-time captions.
+  - id: 1.2.5
+    name: Audio Description (Prerecorded)
+    level: AA
+    automation: none
+    manualGuidance: Verify prerecorded video has audio description of essential
+      visual information.
+  - id: 1.3.1
+    name: Info and Relationships
+    level: A
+    automation: partial
+    manualGuidance: Check that visual structure (headings, lists, tables, groupings)
+      is expressed programmatically, beyond what automated table/heading checks
+      cover.
+  - id: 1.3.2
+    name: Meaningful Sequence
+    level: A
+    automation: none
+    manualGuidance: Read the page with styles disabled or a screen reader; confirm
+      content order preserves meaning.
+  - id: 1.3.3
+    name: Sensory Characteristics
+    level: A
+    automation: none
+    manualGuidance: Confirm instructions never rely solely on shape, size, position,
+      orientation or sound.
+  - id: 1.3.4
+    name: Orientation
+    level: AA
+    automation: partial
+    manualGuidance: Rotate the device; confirm content works in both portrait and
+      landscape unless a specific orientation is essential.
+  - id: 1.3.5
+    name: Identify Input Purpose
+    level: AA
+    automation: partial
+    manualGuidance: Verify common user-data fields carry the appropriate autocomplete tokens.
+  - id: 1.4.1
+    name: Use of Color
+    level: A
+    automation: partial
+    manualGuidance: Verify color is never the only means of conveying information
+      (links, charts, validation states).
+  - id: 1.4.2
+    name: Audio Control
+    level: A
+    automation: partial
+    manualGuidance: If audio plays automatically for more than 3 seconds, verify a
+      pause/stop or volume control exists.
+  - id: 1.4.3
+    name: Contrast (Minimum)
+    level: AA
+    automation: partial
+    manualGuidance: Spot-check text over images/gradients and
+      disabled-looking-but-active controls that tools cannot measure.
+  - id: 1.4.4
+    name: Resize Text
+    level: AA
+    automation: partial
+    manualGuidance: Zoom text to 200%; confirm no loss of content or functionality.
+  - id: 1.4.5
+    name: Images of Text
+    level: AA
+    automation: none
+    manualGuidance: Confirm text is real text, not images of text, except for logos
+      or where essential.
+  - id: 1.4.10
+    name: Reflow
+    level: AA
+    automation: partial
+    manualGuidance: View at 320 CSS px width (400% zoom); confirm no two-dimensional
+      scrolling except where required.
+  - id: 1.4.11
+    name: Non-text Contrast
+    level: AA
+    automation: partial
+    manualGuidance: Check UI component boundaries, focus indicators and meaningful
+      graphics reach 3:1 contrast.
+  - id: 1.4.12
+    name: Text Spacing
+    level: AA
+    automation: partial
+    manualGuidance: Apply the standard text-spacing overrides; confirm no loss of
+      content or functionality.
+  - id: 1.4.13
+    name: Content on Hover or Focus
+    level: AA
+    automation: none
+    manualGuidance: For tooltips/popovers on hover or focus, verify dismissable,
+      hoverable and persistent behavior.
+  - id: 2.1.1
+    name: Keyboard
+    level: A
+    automation: partial
+    manualGuidance: Operate every interactive element with keyboard only, including
+      custom widgets and drag interactions.
+  - id: 2.1.2
+    name: No Keyboard Trap
+    level: A
+    automation: none
+    manualGuidance: Tab through the whole page; confirm focus can always move away
+      from every component using keyboard alone.
+  - id: 2.1.4
+    name: Character Key Shortcuts
+    level: A
+    automation: none
+    manualGuidance: If single-character shortcuts exist, verify they can be turned
+      off, remapped, or are active only on focus.
+  - id: 2.2.1
+    name: Timing Adjustable
+    level: A
+    automation: partial
+    manualGuidance: For each time limit, verify it can be turned off, adjusted, or
+      extended (with the listed exceptions).
+  - id: 2.2.2
+    name: Pause, Stop, Hide
+    level: A
+    automation: partial
+    manualGuidance: For moving, blinking or auto-updating content over 5 seconds,
+      verify a pause/stop/hide mechanism.
+  - id: 2.3.1
+    name: Three Flashes or Below Threshold
+    level: A
+    automation: partial
+    manualGuidance: Confirm nothing flashes more than three times per second above
+      the general/red flash thresholds.
+  - id: 2.4.1
+    name: Bypass Blocks
+    level: A
+    automation: partial
+    manualGuidance: Verify a working skip link or equivalent (landmarks, headings)
+      to bypass repeated blocks.
+  - id: 2.4.2
+    name: Page Titled
+    level: A
+    automation: partial
+    manualGuidance: Check page titles actually describe topic or purpose, not just
+      that a title exists.
+  - id: 2.4.3
+    name: Focus Order
+    level: A
+    automation: none
+    manualGuidance: Tab through the page; confirm focus order preserves meaning and
+      operability.
+  - id: 2.4.4
+    name: Link Purpose (In Context)
+    level: A
+    automation: partial
+    manualGuidance: Verify each link's purpose is clear from its text plus
+      programmatically determined context.
+  - id: 2.4.5
+    name: Multiple Ways
+    level: AA
+    automation: none
+    manualGuidance: Confirm at least two ways to locate a page (navigation, search,
+      sitemap) unless it is a process step.
+  - id: 2.4.6
+    name: Headings and Labels
+    level: AA
+    automation: partial
+    manualGuidance: Check headings and labels are descriptive of their topic or purpose.
+  - id: 2.4.7
+    name: Focus Visible
+    level: AA
+    automation: partial
+    manualGuidance: Tab through the page; confirm a visible focus indicator on every
+      focusable element.
+  - id: 2.4.11
+    name: Focus Not Obscured (Minimum)
+    level: AA
+    automation: none
+    manualGuidance: Tab through the page; verify no focused component is entirely
+      hidden by sticky headers, footers or other author-created overlays.
+  - id: 2.5.1
+    name: Pointer Gestures
+    level: A
+    automation: none
+    manualGuidance: For multipoint or path-based gestures, verify a single-pointer
+      alternative exists.
+  - id: 2.5.2
+    name: Pointer Cancellation
+    level: A
+    automation: none
+    manualGuidance: Verify down-events never complete actions, or an abort/undo
+      mechanism exists.
+  - id: 2.5.3
+    name: Label in Name
+    level: A
+    automation: partial
+    manualGuidance: For controls with visible text labels, verify the accessible
+      name contains that text.
+  - id: 2.5.4
+    name: Motion Actuation
+    level: A
+    automation: none
+    manualGuidance: If device motion triggers functionality, verify a UI alternative
+      and that motion response can be disabled.
+  - id: 2.5.7
+    name: Dragging Movements
+    level: AA
+    automation: none
+    manualGuidance: For every dragging interaction, verify a single-pointer
+      alternative that does not require dragging.
+  - id: 2.5.8
+    name: Target Size (Minimum)
+    level: AA
+    automation: partial
+    manualGuidance: Verify pointer targets are at least 24x24 CSS pixels, or have
+      sufficient spacing or an equivalent larger target.
+  - id: 3.1.1
+    name: Language of Page
+    level: A
+    automation: partial
+    manualGuidance: Confirm the declared page language matches the actual content language.
+  - id: 3.1.2
+    name: Language of Parts
+    level: AA
+    automation: partial
+    manualGuidance: Verify passages in another language carry the correct lang attribute.
+  - id: 3.2.1
+    name: On Focus
+    level: A
+    automation: none
+    manualGuidance: Tab to every component; confirm receiving focus never triggers a
+      change of context.
+  - id: 3.2.2
+    name: On Input
+    level: A
+    automation: none
+    manualGuidance: Confirm changing a setting never unexpectedly changes context
+      without prior warning.
+  - id: 3.2.3
+    name: Consistent Navigation
+    level: AA
+    automation: none
+    manualGuidance: Confirm repeated navigation appears in the same relative order
+      across pages.
+  - id: 3.2.4
+    name: Consistent Identification
+    level: AA
+    automation: none
+    manualGuidance: Confirm components with the same functionality are identified
+      consistently across pages.
+  - id: 3.2.6
+    name: Consistent Help
+    level: A
+    automation: none
+    manualGuidance: Confirm help mechanisms (contact details, chat, FAQ) appear in
+      the same relative order across pages.
+  - id: 3.3.1
+    name: Error Identification
+    level: A
+    automation: none
+    manualGuidance: Submit forms with errors; confirm errors are identified in text
+      and the erroneous item is described.
+  - id: 3.3.2
+    name: Labels or Instructions
+    level: A
+    automation: partial
+    manualGuidance: Verify labels/instructions are provided and sufficient wherever
+      content requires user input.
+  - id: 3.3.3
+    name: Error Suggestion
+    level: AA
+    automation: none
+    manualGuidance: Trigger input errors; confirm correction suggestions are
+      provided when known and safe.
+  - id: 3.3.4
+    name: Error Prevention (Legal, Financial, Data)
+    level: AA
+    automation: none
+    manualGuidance: For legal/financial/data-modifying submissions, verify reversal,
+      checking, or confirmation.
+  - id: 3.3.7
+    name: Redundant Entry
+    level: A
+    automation: none
+    manualGuidance: Verify information already entered in the same process is
+      auto-populated or selectable rather than asked again.
+  - id: 3.3.8
+    name: Accessible Authentication (Minimum)
+    level: AA
+    automation: none
+    manualGuidance: Verify authentication never requires a cognitive function test
+      (memorization, transcription) unless an alternative or assistance exists;
+      pasting and password managers must work.
+  - id: 4.1.2
+    name: Name, Role, Value
+    level: A
+    automation: partial
+    manualGuidance: For custom widgets, verify name/role/state are exposed and
+      updates are notified to assistive technology.
+  - id: 4.1.3
+    name: Status Messages
+    level: AA
+    automation: partial
+    manualGuidance: Trigger status messages (search results count, cart updates,
+      form success); confirm they are announced without receiving focus.

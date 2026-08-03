@@ -1,0 +1,23 @@
+# Pack authors own their jurisdiction (REQ-PACK-6). Ownership is the
+# retention mechanism: nobody changes your country's wording without you.
+#
+# When you contribute a pack, add yourself here in the same pull request.
+
+# Core engine and shared infrastructure
+/packages/core/                 @eaa-kit/maintainers
+/packages/cli/                  @eaa-kit/maintainers
+/.github/                       @eaa-kit/maintainers
+/scripts/                       @eaa-kit/maintainers
+
+# Shared pack infrastructure (schema, harness, the EU model templates every
+# Bronze pack inherits) — changes here affect every jurisdiction.
+/packages/packs/scripts/        @eaa-kit/maintainers
+/packages/packs/schema/         @eaa-kit/maintainers
+/packages/packs/packs/eu/       @eaa-kit/maintainers
+
+# Jurisdiction packs — add yourself when you contribute one.
+# /packages/packs/packs/de/     @your-handle
+# /packages/packs/packs/fr/     @your-handle
+# /packages/packs/packs/es/     @your-handle
+# /packages/packs/packs/it/     @your-handle
+# /packages/packs/packs/ie/     @your-handle

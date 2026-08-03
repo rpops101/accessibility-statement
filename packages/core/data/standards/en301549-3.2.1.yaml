@@ -1,0 +1,221 @@
+# EN 301 549 v3.2.1 — web clauses (chapter 9).
+# Chapter 9 mirrors WCAG 2.1 A/AA numbering: clause 9.x.y.z corresponds to
+# WCAG success criterion x.y.z (Table A.1 of the standard).
+# Chapters 5-8 (generic/hardware), 10 (non-web documents), 11 (software),
+# 12 (documentation/support) and 13 (relay/emergency) are reserved for future
+# packs/readers (FR-MAP-5) — adding them is a data-only change.
+# When EN 301 549 v4.1.1 (WCAG 2.2) publishes, add en301549-4.1.1.yaml as a
+# new file; do not edit this one (FR-MAP-4).
+id: en301549-3.2.1
+version: 3.2.1
+wcagVersion: "2.1"
+reservedChapters:
+  - 5
+  - 6
+  - 7
+  - 8
+  - 10
+  - 11
+  - 12
+  - 13
+clauses:
+  - id: 9.1.1.1
+    title: Non-text Content
+    chapter: 9
+    wcag: 1.1.1
+  - id: 9.1.2.1
+    title: Audio-only and Video-only (Prerecorded)
+    chapter: 9
+    wcag: 1.2.1
+  - id: 9.1.2.2
+    title: Captions (Prerecorded)
+    chapter: 9
+    wcag: 1.2.2
+  - id: 9.1.2.3
+    title: Audio Description or Media Alternative (Prerecorded)
+    chapter: 9
+    wcag: 1.2.3
+  - id: 9.1.2.4
+    title: Captions (Live)
+    chapter: 9
+    wcag: 1.2.4
+  - id: 9.1.2.5
+    title: Audio Description (Prerecorded)
+    chapter: 9
+    wcag: 1.2.5
+  - id: 9.1.3.1
+    title: Info and Relationships
+    chapter: 9
+    wcag: 1.3.1
+  - id: 9.1.3.2
+    title: Meaningful Sequence
+    chapter: 9
+    wcag: 1.3.2
+  - id: 9.1.3.3
+    title: Sensory Characteristics
+    chapter: 9
+    wcag: 1.3.3
+  - id: 9.1.3.4
+    title: Orientation
+    chapter: 9
+    wcag: 1.3.4
+  - id: 9.1.3.5
+    title: Identify Input Purpose
+    chapter: 9
+    wcag: 1.3.5
+  - id: 9.1.4.1
+    title: Use of Color
+    chapter: 9
+    wcag: 1.4.1
+  - id: 9.1.4.2
+    title: Audio Control
+    chapter: 9
+    wcag: 1.4.2
+  - id: 9.1.4.3
+    title: Contrast (Minimum)
+    chapter: 9
+    wcag: 1.4.3
+  - id: 9.1.4.4
+    title: Resize Text
+    chapter: 9
+    wcag: 1.4.4
+  - id: 9.1.4.5
+    title: Images of Text
+    chapter: 9
+    wcag: 1.4.5
+  - id: 9.1.4.10
+    title: Reflow
+    chapter: 9
+    wcag: 1.4.10
+  - id: 9.1.4.11
+    title: Non-text Contrast
+    chapter: 9
+    wcag: 1.4.11
+  - id: 9.1.4.12
+    title: Text Spacing
+    chapter: 9
+    wcag: 1.4.12
+  - id: 9.1.4.13
+    title: Content on Hover or Focus
+    chapter: 9
+    wcag: 1.4.13
+  - id: 9.2.1.1
+    title: Keyboard
+    chapter: 9
+    wcag: 2.1.1
+  - id: 9.2.1.2
+    title: No Keyboard Trap
+    chapter: 9
+    wcag: 2.1.2
+  - id: 9.2.1.4
+    title: Character Key Shortcuts
+    chapter: 9
+    wcag: 2.1.4
+  - id: 9.2.2.1
+    title: Timing Adjustable
+    chapter: 9
+    wcag: 2.2.1
+  - id: 9.2.2.2
+    title: Pause, Stop, Hide
+    chapter: 9
+    wcag: 2.2.2
+  - id: 9.2.3.1
+    title: Three Flashes or Below Threshold
+    chapter: 9
+    wcag: 2.3.1
+  - id: 9.2.4.1
+    title: Bypass Blocks
+    chapter: 9
+    wcag: 2.4.1
+  - id: 9.2.4.2
+    title: Page Titled
+    chapter: 9
+    wcag: 2.4.2
+  - id: 9.2.4.3
+    title: Focus Order
+    chapter: 9
+    wcag: 2.4.3
+  - id: 9.2.4.4
+    title: Link Purpose (In Context)
+    chapter: 9
+    wcag: 2.4.4
+  - id: 9.2.4.5
+    title: Multiple Ways
+    chapter: 9
+    wcag: 2.4.5
+  - id: 9.2.4.6
+    title: Headings and Labels
+    chapter: 9
+    wcag: 2.4.6
+  - id: 9.2.4.7
+    title: Focus Visible
+    chapter: 9
+    wcag: 2.4.7
+  - id: 9.2.5.1
+    title: Pointer Gestures
+    chapter: 9
+    wcag: 2.5.1
+  - id: 9.2.5.2
+    title: Pointer Cancellation
+    chapter: 9
+    wcag: 2.5.2
+  - id: 9.2.5.3
+    title: Label in Name
+    chapter: 9
+    wcag: 2.5.3
+  - id: 9.2.5.4
+    title: Motion Actuation
+    chapter: 9
+    wcag: 2.5.4
+  - id: 9.3.1.1
+    title: Language of Page
+    chapter: 9
+    wcag: 3.1.1
+  - id: 9.3.1.2
+    title: Language of Parts
+    chapter: 9
+    wcag: 3.1.2
+  - id: 9.3.2.1
+    title: On Focus
+    chapter: 9
+    wcag: 3.2.1
+  - id: 9.3.2.2
+    title: On Input
+    chapter: 9
+    wcag: 3.2.2
+  - id: 9.3.2.3
+    title: Consistent Navigation
+    chapter: 9
+    wcag: 3.2.3
+  - id: 9.3.2.4
+    title: Consistent Identification
+    chapter: 9
+    wcag: 3.2.4
+  - id: 9.3.3.1
+    title: Error Identification
+    chapter: 9
+    wcag: 3.3.1
+  - id: 9.3.3.2
+    title: Labels or Instructions
+    chapter: 9
+    wcag: 3.3.2
+  - id: 9.3.3.3
+    title: Error Suggestion
+    chapter: 9
+    wcag: 3.3.3
+  - id: 9.3.3.4
+    title: Error Prevention (Legal, Financial, Data)
+    chapter: 9
+    wcag: 3.3.4
+  - id: 9.4.1.1
+    title: Parsing
+    chapter: 9
+    wcag: 4.1.1
+  - id: 9.4.1.2
+    title: Name, Role, Value
+    chapter: 9
+    wcag: 4.1.2
+  - id: 9.4.1.3
+    title: Status Messages
+    chapter: 9
+    wcag: 4.1.3

@@ -1,0 +1,23 @@
+# Fixture configuration for snapshot tests (QA-1). Paths are relative to
+# this file. Dates are fixed — snapshots must be byte-identical (FR-ART-5).
+organisation:
+  name: Ejemplo S.L.
+  email: accesibilidad@example.es
+  website: https://example.es
+  employees: 42
+  turnoverEUR: 5000000
+product:
+  name: Tienda en línea Ejemplo
+  scope: La declaración cubre la tienda en línea pública en example.es.
+  urls:
+    - https://example.es/
+jurisdiction: es
+languages: [es, en]
+evidence:
+  paths:
+    - axe.json
+dates:
+  preparation: "2026-07-01"
+evaluationMethod: Autoevaluación con pruebas automatizadas (axe-core) y lista de comprobación manual.
+feedback:
+  email: accesibilidad@example.es

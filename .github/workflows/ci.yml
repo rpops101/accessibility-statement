@@ -1,0 +1,164 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test (Node ${{ matrix.node }}, ${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        # NFR-3: Node >= 20 LTS on Linux, macOS and Windows.
+        node: ['20', '22']
+        os: [ubuntu-latest]
+        include:
+          - node: '22'
+            os: macos-latest
+          - node: '22'
+            os: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+
+  determinism:
+    name: Byte-identical output across machines (FR-ART-5)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # Every OS renders the same fixtures; the hashes are compared below.
+      - name: Render the fixture corpus
+        run: node scripts/render-corpus.mjs corpus-out
+      - name: Hash the output
+        shell: bash
+        run: |
+          cd corpus-out
+          find . -type f | sort | xargs shasum -a 256 > ../hashes-${{ matrix.os }}.txt
+          cat ../hashes-${{ matrix.os }}.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hashes-${{ matrix.os }}
+          path: hashes-${{ matrix.os }}.txt
+
+  determinism-compare:
+    name: Compare hashes across OSes
+    needs: determinism
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: hashes-*
+          merge-multiple: true
+      - name: Assert every OS produced identical bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          ls -1 hashes-*.txt
+          reference=$(ls -1 hashes-*.txt | head -1)
+          fail=0
+          for file in hashes-*.txt; do
+            if ! diff -u "$reference" "$file"; then
+              echo "::error::$file differs from $reference — output is not deterministic across platforms"
+              fail=1
+            fi
+          done
+          exit $fail
+
+  dogfood:
+    name: Generated HTML passes axe-core (FR-ART-6, QA-4)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Render every artifact
+        run: node scripts/render-corpus.mjs corpus-out
+      # The real thing, not the structural stand-in that runs in `npm test`.
+      - name: Run axe-core against the generated HTML
+        run: npx --yes @axe-core/cli@4 --exit --load-delay 0 $(find corpus-out -name '*.html' -printf 'file://%p ')
+
+  packs:
+    name: Jurisdiction packs validate (REQ-PACK-2)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # The same command contributors run locally (QA-6).
+      - run: node packages/cli/dist/main.js validate-pack
+      - name: Snapshots are up to date
+        run: |
+          npm run update-snapshots -w @eaa-kit/packs
+          if ! git diff --exit-code -- packages/packs/packs; then
+            echo "::error::Pack snapshots are stale. Run: npm run update-snapshots -w @eaa-kit/packs"
+            exit 1
+          fi
+
+  types:
+    name: Types and formatting
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Dependency budget (NFR-2)
+        run: node scripts/check-dependency-budget.mjs
+      - name: Generated files are in sync with their sources
+        run: |
+          node packages/core/scripts/embed-data.mjs
+          npm run gen-schemas
+          if ! git diff --exit-code; then
+            echo "::error::Generated files are stale. Run: npm run build"
+            exit 1
+          fi
+
+  no-network:
+    name: The engine makes no network calls (NFR-1)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: node scripts/assert-no-network.mjs

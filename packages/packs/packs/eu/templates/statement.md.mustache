@@ -1,0 +1,65 @@
+{{! Markdown rendition of the model accessibility statement. Same view
+    model and strings as the HTML template. }}{{#draft}}> **{{watermark}}**
+
+{{/draft}}{{^draft}}> {{t.common.reviewedBy}}: {{reviewedBy}} · {{t.common.reviewedOn}}: {{reviewedOn}}
+
+{{/draft}}# {{t.statement.title}} — {{product.name}}
+
+{{org.name}}: {{t.statement.forProduct}} {{product.name}}.{{#product.scope}} {{.}}{{/product.scope}}
+{{#product.urls}}
+- {{url}}{{/product.urls}}
+
+## {{t.statement.complianceStatusHeading}}
+
+{{#compliance.isFull}}{{product.name}} {{t.statement.complianceSentence.full}}{{/compliance.isFull}}{{#compliance.isPartial}}{{product.name}} {{t.statement.complianceSentence.partial}}{{/compliance.isPartial}}{{#compliance.isNonCompliant}}{{product.name}} {{t.statement.complianceSentence.nonCompliant}}{{/compliance.isNonCompliant}}
+{{#hasNonAccessible}}
+## {{t.statement.nonAccessibleHeading}}
+
+{{t.statement.nonAccessibleIntro}}
+{{#nonAccessible}}
+- **{{t.statement.criterionLabel}} {{criterion}} — {{name}}** ({{statusLabel}}; {{t.statement.clauseLabel}} {{clause}}){{#messages}}
+  - {{text}}{{/messages}}{{/nonAccessible}}
+{{/hasNonAccessible}}{{#burden.claimed}}
+## {{t.statement.burdenHeading}}
+
+{{t.statement.burdenIntro}}
+{{#burden.exclusions}}
+- {{scope}}{{#reason}} — {{.}}{{/reason}}{{/burden.exclusions}}
+{{/burden.claimed}}{{#hasNotEvaluated}}
+## {{t.statement.notEvaluatedHeading}}
+
+{{t.statement.notEvaluatedIntro}}
+{{#notEvaluated}}
+- {{criterion}} — {{name}}{{/notEvaluated}}
+{{/hasNotEvaluated}}
+## {{t.statement.preparationHeading}}
+
+{{t.statement.preparedOn}} {{dates.preparation}}.
+{{#method}}
+{{t.statement.method}}: {{.}}
+{{/method}}{{#dates.lastReview}}
+{{t.statement.lastReviewed}} {{.}}.
+{{/dates.lastReview}}
+## {{t.statement.feedbackHeading}}
+
+{{t.statement.feedbackIntro}}
+{{#feedback.email}}
+- <{{.}}>{{/feedback.email}}{{#feedback.url}}
+- {{.}}{{/feedback.url}}{{#feedback.phone}}
+- {{.}}{{/feedback.phone}}
+
+## {{t.statement.enforcementHeading}}
+
+{{t.statement.enforcementIntro}}
+
+- {{enforcement.name}}{{#enforcement.address}}
+- {{.}}{{/enforcement.address}}{{#enforcement.email}}
+- <{{.}}>{{/enforcement.email}}{{#enforcement.phone}}
+- {{.}}{{/enforcement.phone}}{{#enforcement.url}}
+- {{.}}{{/enforcement.url}}
+
+---
+
+{{legal.act}}{{#legal.references}} · {{ref}}{{/legal.references}}
+
+EN 301 549 v{{standards.en}} · WCAG {{standards.wcag}} · {{generatedBy}}

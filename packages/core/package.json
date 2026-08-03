@@ -1,0 +1,50 @@
+{
+  "name": "@eaa-kit/core",
+  "version": "0.1.0",
+  "description": "EU Accessibility Act conformance engine: evidence ingestion, WCAG → EN 301 549 mapping, artifact rendering. No network, no telemetry.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "DEPENDENCIES.md"
+  ],
+  "scripts": {
+    "prebuild": "node scripts/embed-data.mjs",
+    "build": "tsc -p tsconfig.json && tsc -p tsconfig.cjs.json && node ./scripts/fix-cjs.mjs",
+    "pretest": "node scripts/embed-data.mjs",
+    "test": "node ../../scripts/run-tests.mjs test"
+  },
+  "dependencies": {
+    "yaml": "^2.4.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "accessibility",
+    "eaa",
+    "european-accessibility-act",
+    "en-301-549",
+    "wcag",
+    "vpat",
+    "openacr",
+    "accessibility-statement",
+    "compliance"
+  ]
+}

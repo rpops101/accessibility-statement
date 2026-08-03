@@ -1,0 +1,9 @@
+# Lighthouse accessibility audit id → WCAG success criteria (FR-MAP-1).
+#
+# Lighthouse's accessibility category is axe-core underneath and audit ids
+# equal axe rule ids, so resolution falls back to axe.yaml. This file holds
+# overrides for Lighthouse-specific audits or divergent ids.
+tool: lighthouse
+minVersion: "10.0"
+fallback: axe
+overrides: {}

@@ -1,0 +1,29 @@
+[
+  {
+    "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+    "type": "error",
+    "typeCode": 1,
+    "message": "This element has insufficient contrast at this conformance level.",
+    "context": "<a href=\"/terms\" class=\"subtle\">Terms</a>",
+    "selector": "#footer > a:nth-child(2)",
+    "runner": "htmlcs"
+  },
+  {
+    "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+    "type": "error",
+    "typeCode": 1,
+    "message": "Img element missing an alt attribute.",
+    "context": "<img src=\"/hero.png\">",
+    "selector": "#hero > img",
+    "runner": "htmlcs"
+  },
+  {
+    "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.H64.1",
+    "type": "warning",
+    "typeCode": 2,
+    "message": "Iframe element requires a non-empty title attribute.",
+    "context": "<iframe src=\"/embed\">",
+    "selector": "#embed",
+    "runner": "htmlcs"
+  }
+]

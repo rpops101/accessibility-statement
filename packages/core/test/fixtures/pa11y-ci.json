@@ -1,0 +1,25 @@
+{
+  "total": 2,
+  "passes": 0,
+  "errors": 2,
+  "results": {
+    "https://example.org/": [
+      {
+        "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+        "type": "error",
+        "message": "Img element missing an alt attribute.",
+        "selector": "#hero > img",
+        "runner": "htmlcs"
+      }
+    ],
+    "https://example.org/about": [
+      {
+        "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+        "type": "error",
+        "message": "The html element should have a lang or xml:lang attribute.",
+        "selector": "html",
+        "runner": "htmlcs"
+      }
+    ]
+  }
+}

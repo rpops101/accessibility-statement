@@ -1,0 +1,7 @@
+{
+  "reportedBy": "some-other-accessibility-tool",
+  "schemaVersion": 3,
+  "findings": [
+    { "rule": "alt-text", "severity": "high", "element": "img#hero" }
+  ]
+}

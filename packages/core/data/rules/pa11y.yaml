@@ -1,0 +1,11 @@
+# pa11y (HTML_CodeSniffer runner) code → WCAG success criteria (FR-MAP-1).
+#
+# htmlcs codes embed the criterion, e.g.:
+#   WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail  →  1.4.3
+# The pa11y reader parses the `d_d_d` segment; this file only needs
+# overrides for codes where the embedded criterion is wrong or missing.
+# pa11y can also use the axe runner, in which case rules resolve via
+# axe.yaml.
+tool: pa11y
+minVersion: "6.0"
+overrides: {}
