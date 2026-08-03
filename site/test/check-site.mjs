@@ -59,6 +59,16 @@ function* htmlFiles(dir) {
 for (const file of htmlFiles(ROOT)) {
   const html = readFileSync(file, 'utf8');
   const rel = file.slice(ROOT.length) || '/';
+
+  // Authored pages are index.html plus 404.html. Anything else with an
+  // .html extension is a passthrough asset — a search-engine verification
+  // token is plain text that merely uses the extension by convention — and
+  // holding it to a page's standards would fail the build for no reason.
+  const name = file.split(/[\\/]/).pop();
+  if (name !== 'index.html' && name !== '404.html') {
+    console.log('  skip  ' + rel + ' (passthrough asset, not a page)');
+    continue;
+  }
   const problems = [];
   if (/\$\{/.test(html)) problems.push('unresolved template literal (${...}) in the output');
   if (/&lt;(span|div|a) /.test(html)) problems.push('double-escaped markup');
