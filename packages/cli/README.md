@@ -9,6 +9,8 @@ npx accessibility-statement render statement --jurisdiction de --lang de --out s
 
 No signup. No network access, ever. No telemetry.
 
+**[Try it in your browser →](https://rpops101.github.io/accessibility-statement/generator/)** — no install, nothing uploaded.
+
 ## What it produces
 
 | Artifact | What it is |

@@ -339,21 +339,30 @@ data never leaves your browser" cannot ship Google Analytics.
 - [ ] **Make the repository public** and enable Pages
       (Settings → Pages → Source: GitHub Actions). The deploy job is written
       and waiting; Pages is free only for public repositories.
-- [ ] Verify the site in Google Search Console and Bing Webmaster Tools, and
-      submit the sitemap. Do this *before* launch so you have baseline data.
-- [ ] Add an `og:image`. The pages currently declare `twitter:card
-      summary` with no image, which is honest but plain; a 1200×630 PNG would
-      improve every social share. It needs a raster image, so it is a task for
-      someone with a graphics tool.
+- [x] **Google Search Console verified**, via the HTML-file method. The
+      verification file is committed at `site/public/`, so it survives
+      rebuilds — deleting it un-verifies the property at Google's next check.
+- [ ] Submit `sitemap.xml` in Search Console (18 URLs). This is the only
+      working discovery route here: `github.io`'s robots.txt lives at the
+      origin root, where a project page cannot write.
+- [ ] Bing Webmaster Tools — it can import directly from Search Console, so
+      it costs about five minutes. Bing also feeds DuckDuckGo.
+- [x] **og:image added** — a committed 1200×630 PNG, wired into every page
+      with `summary_large_image`.
 
 **Months 1–3 — Tier 1**
 
-- One substantial page per Tier 1 term. Write them as genuinely useful
-  reference material: what the EAA requires of a statement, what
-  disproportionate burden means and how it is assessed, what OpenACR is and
-  why a machine-readable ACR is worth having.
-- Outreach: DigitalA11Y, W3C WAI tools list, awesome lists.
-- Show HN and the 48-hour launch window.
+- [x] **A page per Tier 1 term — done.** `/european-accessibility-act/`,
+      `/en-301-549/`, `/disproportionate-burden/`, `/vpat-acr-openacr/` and
+      `/from-axe-results/`, each with FAQ structured data and sources on
+      official domains.
+- [x] og:image, breadcrumbs, valid JSON-LD, resolving internal links — all
+      verified in CI rather than assumed.
+- [ ] **Outreach — drafted and waiting in [outreach.md](outreach.md).** This
+      is now the highest-value remaining action by a wide margin. The
+      DigitalA11Y roundup already ranks on page one for the head term; one
+      listing there outweighs the five pages above.
+- [ ] Show HN and the 48-hour launch window.
 
 **Months 3–9 — Tier 2**
 

@@ -6,6 +6,8 @@ Act requires.
 
 **One runtime dependency.** No network access, ever. Deterministic output.
 
+**[Try it in your browser →](https://rpops101.github.io/accessibility-statement/generator/)** — no install, nothing uploaded.
+
 ```bash
 npm install @accessibility-statement/core @accessibility-statement/packs
 ```

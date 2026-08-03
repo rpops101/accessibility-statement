@@ -4,6 +4,8 @@
 
 `npx accessibility-statement` · also installs as `a11y-statement`
 
+**[Try it in your browser →](https://rpops101.github.io/accessibility-statement/generator/)** · [Documentation and country guides](https://rpops101.github.io/accessibility-statement/)
+
 [![CI](https://github.com/rpops101/accessibility-statement/actions/workflows/ci.yml/badge.svg)](https://github.com/rpops101/accessibility-statement/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/accessibility-statement.svg)](https://www.npmjs.com/package/accessibility-statement)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -193,6 +195,16 @@ These are constraints, not aspirations. Each is enforced by a test.
 ## Standards
 
 WCAG 2.1 and 2.2 (levels A and AA) and EN 301 549 v3.2.1 ship today; version selection is configuration. Regulatory basis: Directive (EU) 2019/882 (EAA), Directive (EU) 2016/2102, Commission Implementing Decision (EU) 2018/1523 (the model statement), ITI VPAT 2.5 and the GSA OpenACR schema.
+
+## Reference guides
+
+Written to be useful whether or not you use this tool:
+
+- [What the European Accessibility Act requires in a statement](https://rpops101.github.io/accessibility-statement/european-accessibility-act/)
+- [EN 301 549 and WCAG: how the standards relate](https://rpops101.github.io/accessibility-statement/en-301-549/)
+- [Disproportionate burden under Article 14](https://rpops101.github.io/accessibility-statement/disproportionate-burden/)
+- [VPAT, ACR and OpenACR explained](https://rpops101.github.io/accessibility-statement/vpat-acr-openacr/)
+- [Turning axe-core results into a statement](https://rpops101.github.io/accessibility-statement/from-axe-results/)
 
 ## Contributing
 

@@ -21,7 +21,8 @@
 - **[../MAINTAINERS.md](../MAINTAINERS.md)** — process commitments and releasing
 - **[../SECURITY.md](../SECURITY.md)** — threat model and reporting
 - **[launch-checklist.md](launch-checklist.md)** — distribution, naming and funding steps that are process rather than code
-- **[seo-plan.md](seo-plan.md)** — how people find this: domain choice, the competitive picture, and the national-language strategy
+- **[seo-plan.md](seo-plan.md)** — how people find this: hosting, the competitive picture, and the national-language strategy
+- **[outreach.md](outreach.md)** — drafted approaches for the links that actually move rankings
 
 ## A standing caveat
 
