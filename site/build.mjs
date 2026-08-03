@@ -16,6 +16,7 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
 import { parse } from 'yaml';
+import { CONTENT_PAGES } from './content.mjs';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const SITE = join(root, 'site');
@@ -132,6 +133,18 @@ function en(pageLang, text) {
  * Page shell
  * ------------------------------------------------------------------ */
 
+/** BreadcrumbList for a second-level page. */
+function breadcrumb(name, path) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Accessibility Statement Generator', item: absolute('/') },
+      { '@type': 'ListItem', position: 2, name, item: absolute(path) },
+    ],
+  };
+}
+
 function layout({ title, description, lang = 'en', path, body, alternates = [], jsonLd, script }) {
   const hreflang = alternates
     .map((a) => `<link rel="alternate" hreflang="${esc(a.lang)}" href="${esc(absolute(a.path))}">`)
@@ -150,9 +163,17 @@ ${hreflang}
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:url" content="${esc(absolute(path))}">
-<meta name="twitter:card" content="summary">
+<meta property="og:site_name" content="Accessibility Statement Generator">
+<meta property="og:image" content="${esc(absolute('/og.png'))}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Accessibility Statement Generator. Free and open source, runs in your browser, nothing is uploaded. Supports national EU formats, VPAT 2.5 / OpenACR and EN 301 549.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="${esc(absolute('/og.png'))}">
 ${GOOGLE_VERIFICATION ? `<meta name="google-site-verification" content="${esc(GOOGLE_VERIFICATION)}">\n` : ''}${BING_VERIFICATION ? `<meta name="msvalidate.01" content="${esc(BING_VERIFICATION)}">\n` : ''}<link rel="stylesheet" href="${esc(url('/styles.css'))}">
-${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script>` : ''}
+${(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : [])
+  .map((g) => `<script type="application/ld+json">${JSON.stringify(g)}</script>`)
+  .join('\n')}
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to main content</a>
@@ -163,6 +184,7 @@ ${jsonLd ? `<script type="application/ld+json">${JSON.stringify(jsonLd)}</script
       <ul>
         <li><a href="${esc(url('/generator/'))}">Generator</a></li>
         <li><a href="${esc(url('/#countries'))}">Countries</a></li>
+        <li><a href="${esc(url('/#guides'))}">Guides</a></li>
         <li><a href="${esc(url('/#cli'))}">CLI</a></li>
         <li><a href="${esc(REPO)}">Source</a></li>
       </ul>
@@ -297,6 +319,17 @@ ${countryRows()}
 <p>${MISSING.map(esc).join(', ')}, plus Norway, Iceland and Liechtenstein.</p>
 <p>A jurisdiction pack is <strong>data, not code</strong> — the national law, the enforcement body, and a translation. It takes about an evening and needs no knowledge of the engine. <a href="${REPO}/blob/main/CONTRIBUTING.md">Add your country</a>.</p>
 
+<h2 id="guides">Guides</h2>
+<p>Reference material on the regulation and the standards, written to be useful whether or not you use this tool.</p>
+<ul class="cards">
+${CONTENT_PAGES.map(
+  (page) => `  <li>
+    <h3><a href="${url(`/${page.slug}/`)}">${esc(page.heading)}</a></h3>
+    <p>${esc(page.lede)}</p>
+  </li>`
+).join('\n')}
+</ul>
+
 <h2 id="cli">Put it in your pipeline</h2>
 <p>The browser tool is for a one-off document. The command line is where this earns its keep: <code>check</code> compares conformance against a committed baseline and fails the build when a criterion regresses, so the statement stays true after the day you generated it.</p>
 
@@ -408,6 +441,59 @@ npx accessibility-statement render statement --jurisdiction ${esc(code)} --lang 
       body,
     }));
   }
+}
+
+/* ------------------------------------------------------------------ *
+ * Reference pages
+ * ------------------------------------------------------------------ */
+
+for (const page of CONTENT_PAGES) {
+  const path = `/${page.slug}/`;
+  const graphs = [breadcrumb(page.heading, path)];
+
+  // Only emit FAQPage when the questions are real. Marking up invented
+  // questions to farm a rich result is the kind of thing that gets a site
+  // demoted, and it would be dishonest content besides.
+  if (page.faq?.length) {
+    graphs.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: page.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.q,
+        acceptedAnswer: { '@type': 'Answer', text: item.a },
+      })),
+    });
+  }
+
+  const faqHtml = page.faq?.length
+    ? `<h2 id="questions">Common questions</h2>\n` +
+      page.faq
+        .map((item) => `<h3>${esc(item.q)}</h3>\n<p>${esc(item.a)}</p>`)
+        .join('\n')
+    : '';
+
+  write(path, layout({
+    title: `${page.title} | accessibility-statement`,
+    description: page.description,
+    path,
+    jsonLd: graphs,
+    body: `
+<nav aria-label="Breadcrumb">
+  <p><a href="${url('/')}">Home</a> › ${esc(page.heading)}</p>
+</nav>
+
+<h1>${esc(page.heading)}</h1>
+<p class="lede">${esc(page.lede)}</p>
+${page.body(url)}
+${faqHtml}
+
+<div class="cta-row">
+  <a class="cta" href="${url('/generator/')}">Generate a statement</a>
+  <a href="${url('/#countries')}">Browse countries</a>
+</div>
+`,
+  }));
 }
 
 /* ------------------------------------------------------------------ *
@@ -604,7 +690,7 @@ writeFileSync(
   `import './engine.js';\n${app}\n`
 );
 
-const pages = ['/', '/generator/'];
+const pages = ['/', '/generator/', ...CONTENT_PAGES.map((p) => `/${p.slug}/`)];
 for (const code of codes) {
   for (const lang of packs[code].meta.languages) pages.push(pagePath(code, lang));
 }

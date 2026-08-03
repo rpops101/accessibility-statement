@@ -26,6 +26,9 @@ if (!existsSync(join(ROOT, 'index.html'))) {
   console.error(`No built site at ${ROOT}. Run: node site/build.mjs ${ROOT}`);
   process.exit(1);
 }
+// Pages are built with a base path in CI; strip it when resolving links.
+const BASE = process.env['BASE_PATH'] ?? '';
+
 const MIME = {
   '.html': 'text/html', '.css': 'text/css', '.js': 'text/javascript',
   '.svg': 'image/svg+xml', '.xml': 'application/xml', '.txt': 'text/plain',
@@ -39,7 +42,10 @@ const server = createServer((req, res) => {
 });
 await new Promise((r) => server.listen(8899, r));
 
-const paths = ['/', '/generator/', '/de/', '/de/en/', '/es/', '/es/en/', '/eu/',
+const paths = ['/', '/generator/',
+               '/european-accessibility-act/', '/en-301-549/', '/disproportionate-burden/',
+               '/vpat-acr-openacr/', '/from-axe-results/',
+               '/de/', '/de/en/', '/es/', '/es/en/', '/eu/',
                '/fr/', '/fr/en/', '/ie/', '/ie/ga/', '/it/', '/it/en/', '/404.html'];
 
 let total = 0;
@@ -76,6 +82,37 @@ for (const file of htmlFiles(ROOT)) {
   if (!/<title>[^<]+<\/title>/.test(html)) problems.push('missing or empty <title>');
   if (!/<meta name="description" content="[^"]+"/.test(html)) problems.push('missing meta description');
   if (!/<link rel="canonical"/.test(html)) problems.push('missing canonical link');
+  const og = /<meta property="og:image" content="([^"]+)"/.exec(html);
+  if (!og) {
+    problems.push('missing og:image');
+  } else {
+    const file = join(ROOT, og[1].replace(/^https?:\/\/[^/]+/, '').replace(BASE, ''));
+    if (!existsSync(file)) problems.push('og:image does not exist: ' + og[1]);
+  }
+
+  // Structured data has to parse, or it is worse than absent: an invalid
+  // block is ignored and the effort is wasted silently.
+  for (const m of html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try {
+      const parsed = JSON.parse(m[1]);
+      if (!parsed['@context'] || !parsed['@type']) problems.push('JSON-LD block missing @context or @type');
+    } catch (e) {
+      problems.push('invalid JSON-LD: ' + e.message);
+    }
+  }
+
+  // Internal links must resolve. A broken link in the site's own link graph
+  // wastes the crawl budget it was added to earn.
+  for (const m of html.matchAll(/href="(\/[^"#?]*)/g)) {
+    const target = m[1];
+    if (target.startsWith('//')) continue;
+    const withoutBase = target.startsWith(BASE) ? target.slice(BASE.length) : target;
+    const candidates = [
+      join(ROOT, withoutBase),
+      join(ROOT, withoutBase, 'index.html'),
+    ];
+    if (!candidates.some((c) => existsSync(c))) problems.push('broken internal link: ' + target);
+  }
   if (problems.length === 0) {
     console.log('  ok    ' + rel + ' (markup)');
   } else {
