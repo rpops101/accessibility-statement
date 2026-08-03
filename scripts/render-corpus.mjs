@@ -48,8 +48,13 @@ for (const code of codes) {
   const configPath = join(packDir, 'fixture', 'config.yaml');
   const config = parseConfig(readFileSync(configPath, 'utf8'), configPath);
   const pack = loadPack(packDir, { fallbackTemplatesDir: join(PACKS, 'eu') });
+  // basePath so the trace artifact cites "axe.json" rather than this
+  // machine's absolute path. Without it the corpus is not comparable across
+  // machines, which is the whole point of rendering it.
+  const fixtureDir = join(packDir, 'fixture');
   const evidence = loadEvidence(
-    config.evidence.paths.map((p) => join(packDir, 'fixture', p))
+    config.evidence.paths.map((p) => join(fixtureDir, p)),
+    { basePath: fixtureDir }
   );
   const conformance = computeConformance(evidence, {
     wcagVersion: config.standards?.wcag,
