@@ -1,0 +1,26 @@
+# Byte-identical output across platforms is a hard requirement (FR-ART-5),
+# and git's default on Windows converts LF to CRLF on checkout. That alone
+# would make the same inputs render different bytes there — the YAML the
+# engine reads, the templates it renders and the snapshots it compares
+# against would all differ from Linux and macOS.
+#
+# Force LF in the working tree everywhere, on every platform.
+* text=auto eol=lf
+
+# Committed expected output. Treat as text so diffs stay readable, but never
+# let a platform rewrite the bytes being compared.
+packages/packs/packs/*/snapshots/** text eol=lf
+
+# Generated, and noisy in review.
+packages/core/src/generated/data.ts linguist-generated=true
+package-lock.json                   linguist-generated=true
+
+# Data, not source: keep these out of the repository's language statistics
+# so it reads as a TypeScript project rather than a YAML one.
+packages/core/data/**    linguist-detectable=false
+packages/packs/packs/**  linguist-detectable=false
+
+# Binary — never diff or convert.
+*.png binary
+*.pdf binary
+*.docx binary

@@ -3,10 +3,10 @@
 // behaviour.
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const { CONFIG_SCHEMA } = await import(join(root, 'packages/core/dist/esm/index.js'));
+const { CONFIG_SCHEMA } = await import(pathToFileURL(join(root, 'packages/core/dist/esm/index.js')).href);
 
 const schema = {
   $schema: 'https://json-schema.org/draft/2020-12/schema',

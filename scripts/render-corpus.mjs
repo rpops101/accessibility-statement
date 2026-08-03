@@ -7,10 +7,10 @@
 //   node scripts/render-corpus.mjs out-dir
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-const core = await import(join(root, 'packages/core/dist/esm/index.js'));
+const core = await import(pathToFileURL(join(root, 'packages/core/dist/esm/index.js')).href);
 const { computeConformance, loadEvidence, loadPack, parseConfig, renderArtifact } = core;
 
 const PACKS = join(root, 'packages/packs/packs');

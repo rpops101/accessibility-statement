@@ -7,7 +7,7 @@
 import { readFileSync, mkdtempSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 import net from 'node:net';
 import tls from 'node:tls';
 import dns from 'node:dns';
@@ -43,7 +43,7 @@ globalThis.WebSocket = function () {
   forbid('WebSocket')();
 };
 
-const core = await import(join(root, 'packages/core/dist/esm/index.js'));
+const core = await import(pathToFileURL(join(root, 'packages/core/dist/esm/index.js')).href);
 const { computeConformance, loadEvidence, loadPack, parseConfig, renderArtifact, buildLock, serializeLock } = core;
 
 const PACKS = join(root, 'packages/packs/packs');
