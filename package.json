@@ -22,7 +22,8 @@
     "check-pack-links": "node scripts/check-pack-links.mjs",
     "gen-demo": "node scripts/gen-demo.mjs",
     "site": "node site/build.mjs site/dist",
-    "site:check": "node site/build.mjs /tmp/site-check && node site/test/check-site.mjs /tmp/site-check"
+    "site:check": "node site/build.mjs /tmp/site-check && node site/test/check-site.mjs /tmp/site-check",
+    "indexnow": "node scripts/indexnow.mjs"
   },
   "engines": {
     "node": ">=20"

@@ -421,6 +421,13 @@ ${conciliation.note ? `<p>${esc(conciliation.note)}</p>` : ''}`
 ${meta.legal.sources.map((s) => `<li><a href="${esc(s)}">${esc(s)}</a></li>`).join('\n')}
 </ul>
 
+<h2>${en(lang, 'Further reading')}</h2>
+<ul>
+  <li><a href="${url('/european-accessibility-act/')}">${en(lang, 'What the European Accessibility Act requires in a statement')}</a></li>
+  <li><a href="${url('/en-301-549/')}">${en(lang, 'EN 301 549 and WCAG: how the standards relate')}</a></li>
+  <li><a href="${url('/disproportionate-burden/')}">${en(lang, 'Disproportionate burden under Article 14')}</a></li>
+</ul>
+
 <h2>${en(lang, 'Generate it from the command line')}</h2>
 <pre><code>npx accessibility-statement init
 npx accessibility-statement render statement --jurisdiction ${esc(code)} --lang ${esc(lang)} --out statement.html</code></pre>
@@ -695,12 +702,21 @@ for (const code of codes) {
   for (const lang of packs[code].meta.languages) pages.push(pagePath(code, lang));
 }
 
+// SITE_LASTMOD, not the clock: the site build is deterministic like
+// everything else here, so two builds of the same commit produce identical
+// bytes. CI passes the commit date.
+const LASTMOD = process.env['SITE_LASTMOD'] ?? '';
 writeFileSync(
   join(outDir, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${pages
-  .map((p) => `  <url><loc>${absolute(p)}</loc><changefreq>monthly</changefreq></url>`)
+  .map(
+    (p) =>
+      `  <url><loc>${absolute(p)}</loc>` +
+      (LASTMOD ? `<lastmod>${LASTMOD}</lastmod>` : '') +
+      `<changefreq>monthly</changefreq></url>`
+  )
   .join('\n')}
 </urlset>
 `

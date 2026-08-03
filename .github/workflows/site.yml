@@ -50,7 +50,12 @@ jobs:
           # move to a user page or a custom domain at the root.
           BASE_PATH: /accessibility-statement
           SITE_ORIGIN: https://rpops101.github.io
-        run: node site/build.mjs site/dist
+        run: |
+          # The commit date, not the clock, so the same commit always builds
+          # to the same bytes.
+          export SITE_LASTMOD="$(git log -1 --format=%cs)"
+          echo "lastmod: $SITE_LASTMOD"
+          node site/build.mjs site/dist
 
       - name: Install a browser and axe-core
         run: |
