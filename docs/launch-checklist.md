@@ -17,12 +17,21 @@ repository so they survive a gap in attention.
       Generator", supplying the verb, and the npm descriptions and keywords
       carry the long tail: *VPAT generator*, *ACR*, *OpenACR*,
       *EN 301 549*, *European Accessibility Act*.
-- [ ] **Add GitHub repository topics** — GitHub topics are indexed and are
-      free discovery: `accessibility`, `a11y`, `accessibility-statement`,
-      `vpat`, `wcag`, `en-301-549`, `european-accessibility-act`,
-      `compliance`, `openacr`.
+- [x] **GitHub repository topics added** — `accessibility`, `a11y`,
+      `accessibility-statement`, `accessibility-testing`, `compliance`,
+      `en-301-549`, `european-accessibility-act`, `openacr`, `vpat`, `wcag`.
+- [ ] **Work the discovery plan** in [seo-plan.md](seo-plan.md). The two
+      highest-value actions are outreach, not content: get listed in the
+      DigitalA11Y generators roundup (it ranks on page one for the head term)
+      and submitted to the W3C WAI tools list.
 - [ ] **Trademark still unchecked** for the new name too, though a
       descriptive phrase is far harder for anyone to claim than a coined one.
+- [ ] **Register the domain and decide the final home.**
+      `accessibilitystatement.eu` was unregistered as of 3 August 2026 and is
+      the recommended choice — see [seo-plan.md](seo-plan.md) §1 for why, and
+      why a subdomain of an unrelated commercial domain would cost more than
+      it saves. Do not launch on a URL you intend to move; migrations leak
+      the authority you spent months earning.
 - [ ] **Decide the final home.** Everything points at
       `github.com/rpops101/accessibility-statement`, which is where the code
       lives. The `accessibility-statement` GitHub organisation was unclaimed
